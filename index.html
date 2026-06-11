@@ -421,6 +421,10 @@ nav.nav{
 .btz-sub{font-size:12.5px;color:rgba(255,255,255,.6);margin:0 0 12px;font-weight:500}
 .btz-track{height:6px;border-radius:99px;background:rgba(255,255,255,.2);overflow:hidden;margin-bottom:14px}
 .btz-track-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#4ade80,#22d3ee);transition:width 900ms var(--ease-out)}
+.btz-cta{display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(255,255,255,.15);padding-top:11px;margin-top:2px;font-size:12.5px;font-weight:700;color:rgba(255,255,255,.85)}
+.btz-cta-left{display:flex;align-items:center;gap:7px}
+.btz-ai-dot{width:7px;height:7px;border-radius:50%;background:#A78BFA;box-shadow:0 0 6px #A78BFA;animation:ai-pulse 2s ease-in-out infinite}
+@keyframes ai-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
 .btz-stats{display:flex}
 .btz-stat{flex:1;display:flex;flex-direction:column;gap:2px;padding:8px 0}
 .btz-stat+.btz-stat{border-left:1px solid rgba(255,255,255,.18);padding-left:12px}
@@ -1900,6 +1904,13 @@ nav.nav{
             <p class="btz-sub">left to clear your bill</p>
             <div class="btz-track" aria-hidden="true">
               <div class="btz-track-fill" id="bill-fill" style="width:38%"></div>
+            </div>
+            <div class="btz-cta">
+              <div class="btz-cta-left">
+                <span class="btz-ai-dot" aria-hidden="true"></span>
+                AI · Route to Zero
+              </div>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </div>
             <span id="bill-cleared-amt" style="display:none">€6.80</span>
             <span id="bill-dial-pct" style="display:none">38%</span>
