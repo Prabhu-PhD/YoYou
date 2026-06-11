@@ -38,7 +38,8 @@ html,body{height:100%}
 body{
   font-family:var(--f);
   color:var(--ink);
-  min-height:100vh;
+  height:100vh;
+  overflow:hidden;
   background:
     radial-gradient(900px 600px at 12% -8%,#EBE0FA,transparent 55%),
     radial-gradient(700px 500px at 88% 108%,#E0F0EB,transparent 55%),
@@ -60,15 +61,33 @@ svg{display:block}
    ============================================ */
 .page-hd{
   display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:16px;
+  flex-direction:column;
+  gap:10px;
   max-width:1100px;
   margin:0 auto;
   width:100%;
-  flex-wrap:wrap;
 }
+.page-hd-top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .page-hd-left{display:flex;align-items:center;gap:14px}
+/* Journey bar */
+.journey-bar{display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:8px 12px;background:rgba(109,40,217,.05);border-radius:10px;border:1px solid rgba(109,40,217,.10)}
+.journey-bar-lbl{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--ink3);margin-right:4px;white-space:nowrap;flex-shrink:0}
+.journey-btn{
+  display:inline-flex;align-items:center;gap:5px;
+  background:#fff;color:var(--viod);
+  padding:6px 13px;border-radius:7px;
+  font-size:12px;font-weight:700;
+  border:1.5px solid var(--line);
+  cursor:pointer;white-space:nowrap;
+  transition:all .15s var(--ease);
+  box-shadow:0 1px 4px -1px rgba(60,40,120,.12);
+}
+.journey-btn:hover{background:#FAF7FE;border-color:var(--vio);transform:translateY(-1px);box-shadow:0 4px 12px -3px rgba(124,58,237,.28)}
+.journey-btn:active{transform:translateY(0) scale(.97)}
+.journey-btn.playing{background:var(--vio);color:#fff;border-color:var(--vio);box-shadow:0 4px 12px -3px rgba(124,58,237,.5)}
+.journey-btn.playing .j-dot{display:inline-block}
+.j-dot{display:none;width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.85);animation:jdot 1s ease-in-out infinite;flex-shrink:0}
+@keyframes jdot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.6)}}
 .pg-mark{display:flex;align-items:center;gap:5px;height:30px;color:var(--vio)}
 .pg-mark span{width:5.5px;border-radius:3px;background:currentColor}
 .pg-mark .dot{width:5.5px;height:5.5px;border-radius:50%}
@@ -96,6 +115,7 @@ svg{display:block}
    ============================================ */
 .stage{
   flex:1;
+  min-height:0;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -336,6 +356,8 @@ nav.nav{
   color:#fff;
   background:linear-gradient(148deg,#4E2699,#6D28D9 48%,#8B2FD6 80%,#9733D8);
   box-shadow:0 20px 40px -18px rgba(91,33,182,.7);
+  cursor:pointer;
+  transition:opacity var(--t-fast) var(--ease);
 }
 .bill::after{
   content:"";position:absolute;top:-70px;right:-55px;
@@ -351,7 +373,7 @@ nav.nav{
   z-index:2;
 }
 .bl{font-size:12.5px;color:rgba(255,255,255,.76);font-weight:500;position:relative;margin-bottom:4px}
-.bamt-row{display:flex;align-items:baseline;gap:10px;margin:0 0 12px;position:relative}
+.bamt-row{display:flex;align-items:baseline;gap:10px;margin:0 0 10px;position:relative}
 .bamt{font-family:var(--f);font-weight:800;font-size:50px;letter-spacing:-1.8px;line-height:1}
 .bamt small{font-size:25px;font-weight:700;opacity:.8}
 .dchip{
@@ -377,6 +399,14 @@ nav.nav{
 .bar .tick{position:absolute;top:0;bottom:0;width:2px;background:rgba(255,255,255,.38)}
 @keyframes fill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 .bsub{font-size:12.5px;color:rgba(255,255,255,.78);font-weight:500;position:relative;line-height:1.4}
+/* Bill card progress bar */
+.btrack{height:10px;border-radius:99px;background:rgba(255,255,255,.2);overflow:hidden;margin:0 0 10px}
+.btrack-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#4ade80,#22d3ee);transition:width 900ms var(--ease-out)}
+.bstats{display:flex;align-items:stretch}
+.bstat{flex:1;display:flex;flex-direction:column;gap:2px;padding:8px 0}
+.bstat+.bstat{border-left:1px solid rgba(255,255,255,.18);padding-left:12px}
+.bstat-val{font-size:15px;font-weight:800;color:#fff;letter-spacing:-.3px}
+.bstat-lbl{font-size:10.5px;font-weight:500;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:.4px}
 
 /* Daily Bonus chip — pulsing, gold-bordered */
 .bonus-chip{
@@ -606,21 +636,44 @@ nav.nav{
 /* ============================================
    PHASE 4: S2 SPLASH
    ============================================ */
-.splash-bg{background:linear-gradient(140deg,#8B5CF6 0%,#6D28D9 50%,#4C1D95 100%) !important}
-.splash-content{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;gap:14px;padding:20px;position:relative;z-index:2}
+/* SPLASH — animated redesign */
+.splash-bg{background:linear-gradient(160deg,#080218 0%,#130838 35%,#2E0F6E 65%,#5B21B6 100%) !important;overflow:hidden}
+.splash-orb{position:absolute;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,.45) 0%,rgba(109,40,217,.18) 45%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-55%);pointer-events:none;animation:orb-breathe 3s ease-in-out infinite}
+@keyframes orb-breathe{0%,100%{opacity:.65;transform:translate(-50%,-55%) scale(1)}50%{opacity:1;transform:translate(-50%,-55%) scale(1.18)}}
+.splash-orb-ring{position:absolute;width:260px;height:260px;border-radius:50%;border:1px solid rgba(167,139,250,.2);top:50%;left:50%;transform:translate(-50%,-56%);pointer-events:none;animation:ring-pulse 3s 1s ease-in-out infinite}
+@keyframes ring-pulse{0%,100%{transform:translate(-50%,-56%) scale(1);opacity:.4}50%{transform:translate(-50%,-56%) scale(1.3);opacity:0}}
+.splash-particle{position:absolute;border-radius:50%;background:rgba(167,139,250,.5);pointer-events:none;animation:ptcl-float linear infinite}
+@keyframes ptcl-float{0%{opacity:0;transform:translateY(0) scale(1)}10%{opacity:.8}85%{opacity:.4}100%{opacity:0;transform:translateY(-140px) scale(.3)}}
+.splash-content{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;gap:16px;padding:20px;position:relative;z-index:2}
 .splash-icon-wrap{
-  width:88px;height:88px;border-radius:22px;
-  background:rgba(255,255,255,.15);
-  box-shadow:0 24px 48px -12px rgba(0,0,0,.35),0 0 0 1px rgba(255,255,255,.2);
+  width:100px;height:100px;border-radius:26px;
+  background:rgba(255,255,255,.1);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border:1px solid rgba(255,255,255,.2);
+  box-shadow:0 30px 60px -16px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.06) inset,0 0 40px rgba(139,92,246,.25);
   display:flex;align-items:center;justify-content:center;
 }
-.splash-mark{display:flex;align-items:center;gap:5px;height:42px}
-.splash-mark span{width:6px;border-radius:3px;background:#fff}
-.splash-mark .sdot{width:6px;height:6px;border-radius:50%;background:#fff}
-.splash-wordmark{font-family:var(--f);font-weight:800;font-size:34px;letter-spacing:-.8px;color:#fff}
-.splash-tagline{font-size:14px;color:rgba(255,255,255,.55);font-weight:500}
-.splash-progress{position:absolute;bottom:0;left:0;right:0;height:3px;background:rgba(255,255,255,.12)}
-.splash-prog-fill{height:100%;background:rgba(255,255,255,.45);width:0%}
+.splash-mark{display:flex;align-items:center;gap:6px;height:50px}
+.splash-mark span{width:7px;border-radius:4px;background:#fff;transform-origin:center}
+.splash-mark .sdot{width:7px;height:7px;border-radius:50%;background:#fff;transform-origin:center}
+/* bar-rise triggered by .splash-anim on the parent section */
+.splash-anim .splash-mark span:nth-child(1){animation:bar-rise .55s .10s var(--ease-out) both}
+.splash-anim .splash-mark span:nth-child(2){animation:bar-rise .55s .22s var(--ease-out) both}
+.splash-anim .splash-mark span:nth-child(3){animation:bar-rise .55s .34s var(--ease-out) both}
+.splash-anim .splash-mark span:nth-child(4){animation:bar-rise .55s .44s var(--ease-out) both}
+.splash-anim .splash-mark span:nth-child(5){animation:bar-rise .55s .34s var(--ease-out) both}
+.splash-anim .splash-mark span:nth-child(6){animation:bar-rise .55s .22s var(--ease-out) both}
+.splash-anim .splash-mark span:nth-child(7){animation:bar-rise .55s .10s var(--ease-out) both}
+@keyframes bar-rise{0%{transform:scaleY(0);opacity:0}100%{transform:scaleY(1);opacity:1}}
+.splash-anim .splash-icon-wrap{animation:icon-pop .65s var(--ease-out) both}
+@keyframes icon-pop{0%{transform:scale(.55);opacity:0}70%{transform:scale(1.06)}100%{transform:scale(1);opacity:1}}
+.splash-anim .splash-wordmark{animation:splash-up .6s .52s var(--ease-out) both}
+.splash-anim .splash-tagline{animation:splash-up .55s .72s var(--ease-out) both}
+@keyframes splash-up{0%{opacity:0;transform:translateY(18px)}100%{opacity:1;transform:translateY(0)}}
+.splash-wordmark{font-family:var(--f);font-weight:800;font-size:40px;letter-spacing:-1px;color:#fff}
+.splash-tagline{font-size:15px;color:rgba(255,255,255,.5);font-weight:500;letter-spacing:.1px}
+.splash-progress{position:absolute;bottom:0;left:0;right:0;height:3px;background:rgba(255,255,255,.08)}
+.splash-prog-fill{height:100%;background:linear-gradient(90deg,rgba(167,139,250,.8),rgba(255,255,255,.95));width:0%}
 
 /* ============================================
    PHASE 4: S13 SESSION OVERLAY
@@ -773,7 +826,6 @@ nav.nav{
 .sett-ico{width:30px;height:30px;border-radius:9px;background:var(--vios);display:flex;align-items:center;justify-content:center;flex:0 0 auto;font-size:15px}
 .sett-label{flex:1;font-size:13.5px;font-weight:600;color:var(--ink)}
 .sett-chev{color:var(--ink3);font-size:11px}
-.bill{cursor:pointer;transition:opacity var(--t-fast) var(--ease)}
 .bill:hover{opacity:.88}
 .bill:active{opacity:.75}
 
@@ -881,8 +933,29 @@ nav.nav{
 .wbr-result{font-size:12px;font-weight:700;color:var(--grni)}
 
 /* ============================================
-   PHASE 2: SHARED
+   PHASE 2: SHARED — BUTTON SYSTEM
    ============================================ */
+.btn{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  width:100%;border-radius:10px;padding:15px;
+  font-weight:700;font-size:15px;font-family:var(--f);
+  cursor:pointer;border:none;
+  transition:opacity var(--t-fast) var(--ease), transform var(--t-fast) var(--ease), background var(--t-fast) var(--ease);
+}
+.btn:hover{opacity:.9}
+.btn:active{transform:scale(.98);opacity:.82}
+.btn.solid{
+  background:var(--vio);
+  color:#fff;
+  box-shadow:0 12px 24px -10px rgba(124,58,237,.5);
+}
+.btn.solid:hover{background:var(--viod);opacity:1}
+.btn.ghost{
+  background:transparent;
+  color:var(--vio);
+  border:1.5px solid rgba(124,58,237,.35);
+}
+.btn.ghost:hover{background:var(--vios);opacity:1}
 .btn-bottom{padding:12px 18px 8px;flex:0 0 auto}
 .btn-row{display:flex;flex-direction:column;gap:9px;width:100%;margin-top:2px}
 
@@ -1291,40 +1364,312 @@ nav.nav{
   padding:8px 0 4px;
 }
 .foot strong{color:var(--viod);font-weight:700}
+
+/* ============================================
+   NEW: CONSENT SETUP (J3S2)
+   ============================================ */
+.cs-intro{background:#fff;border-radius:14px;padding:16px;box-shadow:0 4px 12px -8px rgba(60,40,120,.18);border:1px solid var(--line)}
+.cs-icon{width:48px;height:48px;border-radius:14px;background:var(--vios);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:10px}
+.cs-intro-title{font-size:17px;font-weight:800;color:var(--ink);letter-spacing:-.3px;margin-bottom:5px}
+.cs-intro-sub{font-size:13px;color:var(--ink2);line-height:1.5}
+.cs-toggles{background:#fff;border-radius:14px;box-shadow:0 4px 12px -8px rgba(60,40,120,.18);border:1px solid var(--line);overflow:hidden}
+.cs-row{display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid var(--line);cursor:pointer}
+.cs-row:last-child{border-bottom:none}
+.cs-ico{width:36px;height:36px;border-radius:10px;background:var(--vios);display:flex;align-items:center;justify-content:center;flex:0 0 auto;font-size:18px}
+.cs-text{flex:1;min-width:0}
+.cs-label{font-size:13.5px;font-weight:700;color:var(--ink)}
+.cs-earn{font-size:11.5px;font-weight:600;color:var(--grni)}
+.cs-toggle{width:42px;height:24px;border-radius:12px;background:var(--vio);position:relative;flex:0 0 auto;transition:background var(--t-fast)}
+.cs-toggle::after{content:'';position:absolute;top:3px;left:21px;width:18px;height:18px;border-radius:50%;background:#fff;transition:left var(--t-fast) var(--ease);box-shadow:0 1px 4px rgba(0,0,0,.2)}
+.cs-toggle.off{background:#DDD6F0}
+.cs-toggle.off::after{left:3px}
+.cs-privacy{display:flex;align-items:flex-start;gap:8px;padding:12px 14px;background:var(--grns);border-radius:10px;font-size:12px;color:var(--grni);font-weight:500;line-height:1.45}
+
+/* ============================================
+   NEW: AUTOPILOT CONTROL PANEL (J3S4)
+   ============================================ */
+.acp-summary{background:linear-gradient(135deg,#4E2699,#7C3AED);border-radius:14px;padding:16px;color:#fff}
+.acp-sum-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:rgba(255,255,255,.5);margin-bottom:4px}
+.acp-sum-val{font-size:36px;font-weight:800;letter-spacing:-1px;line-height:1;margin-bottom:2px}
+.acp-sum-sub{font-size:12px;color:rgba(255,255,255,.55);font-weight:500}
+.acp-status{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.15);border-radius:20px;padding:4px 10px;font-size:11px;font-weight:700;color:#fff;margin-top:8px}
+.acp-dot{width:7px;height:7px;border-radius:50%;background:#4ade80}
+.acp-streams{background:#fff;border-radius:14px;box-shadow:0 4px 12px -8px rgba(60,40,120,.18);border:1px solid var(--line);overflow:hidden}
+.acp-sh{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3);padding:12px 16px 6px}
+.acp-stream{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.acp-stream:last-child{border-bottom:none}
+.acp-stream-ico{width:34px;height:34px;border-radius:10px;background:var(--vios);display:flex;align-items:center;justify-content:center;flex:0 0 auto;font-size:17px}
+.acp-stream-info{flex:1;min-width:0}
+.acp-stream-name{font-size:13px;font-weight:700;color:var(--ink)}
+.acp-stream-earn{font-size:11.5px;font-weight:600;color:var(--grni)}
+.acp-stream-toggle{width:38px;height:22px;border-radius:11px;background:var(--vio);position:relative;flex:0 0 auto}
+.acp-stream-toggle::after{content:'';position:absolute;top:2px;left:18px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+
+/* ============================================
+   NEW: WEEKLY EARNING PLAN (J4S2)
+   ============================================ */
+.wp-header{text-align:center;padding:4px 0 6px}
+.wp-eyebrow{font-size:11px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--ink3);margin-bottom:6px}
+.wp-title{font-size:22px;font-weight:800;color:var(--ink);letter-spacing:-.4px;margin-bottom:4px}
+.wp-sub{font-size:13px;color:var(--ink2)}
+.wp-total{background:var(--vios);border-radius:12px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between}
+.wp-total-label{font-size:12.5px;font-weight:700;color:var(--vio)}
+.wp-total-val{font-size:18px;font-weight:800;color:var(--vio);letter-spacing:-.5px}
+.wp-days{background:#fff;border-radius:14px;box-shadow:0 4px 12px -8px rgba(60,40,120,.18);border:1px solid var(--line);overflow:hidden}
+.wp-day{display:flex;align-items:center;gap:10px;padding:11px 16px;border-bottom:1px solid var(--line)}
+.wp-day:last-child{border-bottom:none}
+.wp-day.today{background:linear-gradient(90deg,rgba(124,58,237,.06),transparent)}
+.wp-day-name{font-size:12px;font-weight:700;color:var(--ink3);width:30px;flex:0 0 auto}
+.wp-day.today .wp-day-name{color:var(--vio)}
+.wp-day-task{flex:1;font-size:13px;font-weight:600;color:var(--ink);min-width:0}
+.wp-day-badge{font-size:11px;font-weight:600;color:var(--ink3);background:var(--line);padding:2px 8px;border-radius:10px;flex:0 0 auto}
+.wp-day.today .wp-day-badge{background:var(--vios);color:var(--vio)}
+.wp-day-earn{font-size:13px;font-weight:800;color:var(--grni);flex:0 0 auto;min-width:44px;text-align:right}
+
+/* ============================================
+   NEW: STREAK MILESTONE (S2)
+   ============================================ */
+.sm-hero{text-align:center;padding:6px 0 4px}
+.sm-flame{font-size:60px;line-height:1;margin-bottom:8px;filter:drop-shadow(0 6px 16px rgba(251,146,60,.5))}
+.sm-day{font-size:48px;font-weight:800;color:var(--ink);letter-spacing:-2px;line-height:1}
+.sm-label{font-size:14px;font-weight:600;color:var(--ink2);margin-top:3px}
+.sm-bonus-card{background:linear-gradient(135deg,#FFE08A,#FFB13D);border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:12px}
+.sm-bonus-ico{font-size:28px}
+.sm-bonus-text{flex:1}
+.sm-bonus-title{font-size:14px;font-weight:800;color:#7A4500}
+.sm-bonus-val{font-size:22px;font-weight:800;color:#7A4500;letter-spacing:-.5px}
+.sm-calendar{background:#fff;border-radius:14px;padding:14px 16px;box-shadow:0 4px 12px -8px rgba(60,40,120,.18);border:1px solid var(--line)}
+.sm-cal-label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3);margin-bottom:10px}
+.sm-dots{display:flex;gap:6px;align-items:flex-end;justify-content:center}
+.sm-dot{display:flex;flex-direction:column;align-items:center;gap:4px}
+.sm-dot-circle{width:36px;height:36px;border-radius:50%;background:var(--vios);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--ink3);position:relative}
+.sm-dot-circle.done{background:var(--vio);color:#fff}
+.sm-dot-circle.today{background:var(--vio);color:#fff;box-shadow:0 0 0 3px rgba(124,58,237,.25)}
+.sm-dot-circle.milestone::after{content:'⭐';font-size:10px;position:absolute;top:-8px;right:-4px}
+.sm-dot-day{font-size:10px;font-weight:600;color:var(--ink3)}
+.sm-ladder{background:#fff;border-radius:14px;box-shadow:0 4px 12px -8px rgba(60,40,120,.18);border:1px solid var(--line);overflow:hidden}
+.sm-ladder-row{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-bottom:1px solid var(--line)}
+.sm-ladder-row:last-child{border-bottom:none}
+.sm-ladder-row.active{background:var(--vios)}
+.sm-ladder-day{font-size:13px;font-weight:700;color:var(--ink3)}
+.sm-ladder-row.active .sm-ladder-day{color:var(--vio)}
+.sm-ladder-amt{font-size:13px;font-weight:800;color:var(--grni)}
+.sm-ladder-tick{font-size:14px}
+
+/* ============================================
+   NEW: AI MILESTONE (J4S4)
+   ============================================ */
+.am-bg{background:linear-gradient(160deg,#0F0524 0%,#1A0A3A 50%,#0A1428 100%) !important}
+.am-header{text-align:center;padding:4px 0 2px;position:relative;z-index:2}
+.am-eyebrow{font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:8px}
+.am-number{font-size:80px;font-weight:800;letter-spacing:-3px;color:var(--gold-1);line-height:1;filter:drop-shadow(0 4px 20px rgba(212,175,55,.4))}
+.am-number-sub{font-size:16px;font-weight:700;color:rgba(255,255,255,.6);margin-top:2px;letter-spacing:-.2px}
+.am-message{background:rgba(255,255,255,.07);border-radius:14px;padding:14px 16px;border:1px solid rgba(255,255,255,.1);position:relative;z-index:2}
+.am-msg-ai{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.am-ai-av{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#9A6BF0,#5B21B6);flex:0 0 auto}
+.am-ai-name{font-size:11.5px;font-weight:700;color:rgba(255,255,255,.5)}
+.am-msg-body{font-size:14px;color:rgba(255,255,255,.85);line-height:1.55;font-weight:500}
+.am-stats{display:grid;grid-template-columns:1fr 1fr;gap:9px;position:relative;z-index:2}
+.am-stat{background:rgba(255,255,255,.07);border-radius:12px;padding:12px 14px;border:1px solid rgba(255,255,255,.1)}
+.am-stat-val{font-size:22px;font-weight:800;color:var(--gold-1);display:block;margin-bottom:2px;letter-spacing:-.5px}
+.am-stat-lbl{font-size:10.5px;font-weight:600;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.3px}
+.am-cta{display:flex;flex-direction:column;gap:9px;position:relative;z-index:2}
+
+/* BILL DIAL */
+.bdial-wrap{display:flex;align-items:center;gap:14px;margin:4px 0 2px}
+.bdial{flex:0 0 auto;position:relative;width:52px;height:52px}
+.bdial-track{fill:none;stroke:rgba(255,255,255,.2);stroke-width:6}
+.bdial-fill{fill:none;stroke:url(#bdg);stroke-width:6;stroke-linecap:round;transition:stroke-dashoffset 900ms var(--ease-out)}
+.bdial-info{flex:1;display:flex;flex-direction:column;gap:3px}
+.bdial-pct{font-size:14px;font-weight:800;color:#fff}
+.bdial-txt{font-size:11px;color:rgba(255,255,255,.6);font-weight:500}
+
+/* ROUTE TO ZERO CARD */
+.rtz-card{background:linear-gradient(148deg,#0F0F13,#1A1A24 55%,#222232);border-radius:20px;padding:18px 18px 16px;color:#fff;position:relative;overflow:hidden;cursor:pointer;box-shadow:0 16px 32px -14px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.06);transition:transform var(--t-fast) var(--ease)}
+.rtz-card:active{transform:scale(.98)}
+.rtz-card::before{content:'';position:absolute;right:-40px;top:-40px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.04);pointer-events:none}
+.rtz-eyebrow{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,.65);margin-bottom:12px}
+.rtz-ai-dot{width:7px;height:7px;border-radius:50%;background:#4ade80;box-shadow:0 0 6px rgba(74,222,128,.8);animation:pulse-dot 2s ease-in-out infinite}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.55;transform:scale(.8)}}
+.rtz-main{display:flex;align-items:center;gap:16px}
+.rtz-dial{position:relative;flex:0 0 auto;width:86px;height:86px}
+.rtz-dial-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px}
+.rtz-dial-amt{font-size:18px;font-weight:800;letter-spacing:-.5px;line-height:1}
+.rtz-dial-sub{font-size:9px;font-weight:700;opacity:.6;text-transform:uppercase;letter-spacing:.3px}
+.rtz-info{flex:1}
+.rtz-tagline{font-size:15px;font-weight:700;line-height:1.3;margin-bottom:4px}
+.rtz-pace{font-size:12px;color:rgba(255,255,255,.6);font-weight:500;margin-bottom:12px}
+.rtz-cta-row{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:rgba(255,255,255,.85)}
+
+/* GATED BOOST + BONUS */
+.boost[data-locked],.bonus-chip[data-locked]{display:none!important}
+
+/* COME BACK TOMORROW */
+.cbt-bg{background:linear-gradient(160deg,#0F0A1E,#1A0640 55%,#0A1A10 100%)!important}
+.cbt-body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 28px;gap:18px;text-align:center}
+.cbt-icon{font-size:80px;line-height:1;filter:drop-shadow(0 8px 28px rgba(74,222,128,.45))}
+.cbt-title{font-size:28px;font-weight:800;color:#fff;letter-spacing:-.5px;line-height:1.2}
+.cbt-sub{font-size:15px;color:rgba(255,255,255,.55);line-height:1.55;max-width:240px}
+.cbt-earned-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:14px 20px;width:100%;display:flex;justify-content:space-between;align-items:center}
+.cbt-earned-lbl{font-size:12px;font-weight:600;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.5px}
+.cbt-earned-val{font-size:24px;font-weight:800;color:#4ade80;letter-spacing:-.5px}
+.cbt-streak-pill{display:inline-flex;align-items:center;gap:6px;background:rgba(255,160,50,.12);border:1px solid rgba(255,160,50,.28);border-radius:20px;padding:7px 16px;font-size:13px;font-weight:700;color:#FFB13D}
+
+/* ONBOARDING */
+.ob-screen{background:#fff}
+.ob-progress{display:flex;gap:5px;position:absolute;top:52px;left:50%;transform:translateX(-50%);z-index:10}
+.ob-dot{width:22px;height:4px;border-radius:2px;background:var(--line);transition:background var(--t-mid) var(--ease)}
+.ob-dot.on{background:var(--vio)}
+.ob-skip{position:absolute;top:50px;right:18px;font-size:13px;font-weight:600;color:var(--ink3);cursor:pointer;z-index:10;padding:6px}
+.ob-hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:70px 28px 0;text-align:center;gap:10px;overflow:hidden}
+.ob-illo{width:100%;max-width:220px;height:140px;display:flex;align-items:center;justify-content:center;margin-bottom:4px}
+.ob-title{font-size:25px;font-weight:800;color:var(--ink);letter-spacing:-.5px;line-height:1.2}
+.ob-sub{font-size:14.5px;color:var(--ink2);line-height:1.55;max-width:260px}
+.ob-steps{display:flex;flex-direction:column;gap:8px;width:100%;padding:12px 24px 0}
+.ob-step{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;background:#F8F5FE;border-radius:12px;border:1px solid var(--line)}
+.ob-step-num{width:26px;height:26px;border-radius:50%;background:var(--vio);color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex:0 0 auto;margin-top:1px}
+.ob-step-title{font-size:13.5px;font-weight:700;color:var(--ink);margin-bottom:2px}
+.ob-step-sub{font-size:12px;color:var(--ink2);line-height:1.4}
+.ob-bottom{padding:14px 24px 24px;flex:0 0 auto;display:flex;flex-direction:column;gap:9px}
+.ob-consent-list{background:#fff;border-radius:14px;box-shadow:0 4px 12px -8px rgba(60,40,120,.18);border:1px solid var(--line);overflow:hidden;margin:8px 24px 0}
+.ob-consent-row{display:flex;align-items:flex-start;gap:12px;padding:13px 16px;border-bottom:1px solid var(--line);cursor:pointer}
+.ob-consent-row:last-child{border-bottom:none}
+.ob-consent-ico{font-size:20px;flex:0 0 auto;margin-top:2px}
+.ob-consent-text{flex:1}
+.ob-consent-title{font-size:13.5px;font-weight:700;color:var(--ink);margin-bottom:2px}
+.ob-consent-sub{font-size:11.5px;color:var(--ink2);line-height:1.4}
+.ob-toggle{width:44px;height:26px;border-radius:13px;background:var(--vio);position:relative;flex:0 0 auto;cursor:pointer;transition:background var(--t-fast) var(--ease);margin-top:2px}
+.ob-toggle::after{content:'';position:absolute;top:3px;right:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform var(--t-fast) var(--ease);box-shadow:0 1px 4px rgba(0,0,0,.2)}
+.ob-toggle.off{background:rgba(0,0,0,.15)}
+.ob-toggle.off::after{transform:translateX(-18px)}
+.ob-success-icon{font-size:70px;line-height:1;filter:drop-shadow(0 6px 20px rgba(124,58,237,.4))}
+
+/* BUY POINTS */
+.bp-hero{text-align:center;padding:4px 0 10px}
+.bp-title{font-size:20px;font-weight:800;color:var(--ink);letter-spacing:-.3px;margin-bottom:4px}
+.bp-sub{font-size:13px;color:var(--ink2);line-height:1.5}
+.bp-packs{display:flex;flex-direction:column;gap:9px}
+.bp-pack{display:flex;align-items:center;gap:12px;background:#fff;border-radius:14px;border:2px solid var(--line);padding:14px 16px;cursor:pointer;transition:border-color var(--t-fast) var(--ease),box-shadow var(--t-fast) var(--ease)}
+.bp-pack:hover{border-color:var(--vio);box-shadow:0 0 0 3px rgba(124,58,237,.1)}
+.bp-pack.popular{border-color:var(--vio)}
+.bp-pack-ico{font-size:26px;flex:0 0 auto}
+.bp-pack-info{flex:1}
+.bp-pack-name{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:2px}
+.bp-pack-pts{font-size:12px;color:var(--ink2);font-weight:500}
+.bp-pack-badge{font-size:10.5px;font-weight:700;color:var(--vio);background:var(--vios);padding:2px 7px;border-radius:20px}
+.bp-pack-price{font-size:17px;font-weight:800;color:var(--ink);letter-spacing:-.3px}
+.bp-note{font-size:11px;color:var(--ink3);text-align:center;line-height:1.5;padding-top:4px}
+
+/* LEADERBOARD POINTS + ZONES */
+.lb-pts{font-size:13px;font-weight:800;color:var(--vio);min-width:52px;text-align:right}
+.lb-zone-bar{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;padding:5px 16px 4px;display:flex;align-items:center;gap:6px}
+.lb-zone-bar.promo{color:var(--grni);background:rgba(21,163,91,.06)}
+.lb-zone-bar.demo{color:var(--org);background:rgba(217,119,6,.06)}
+.lb-row.promo-zone{background:rgba(21,163,91,.04);border-left:3px solid rgba(21,163,91,.4)}
+.lb-row.demo-zone{background:rgba(217,119,6,.04);border-left:3px solid rgba(217,119,6,.4)}
+.lb-buy-bar{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:var(--vios);border-bottom:1px solid var(--line);cursor:pointer;transition:background var(--t-fast) var(--ease)}
+.lb-buy-bar:hover{background:#EAD9FC}
+.lb-buy-bar-text{font-size:13px;font-weight:700;color:var(--viod)}
+.lb-buy-bar-btn{font-size:11.5px;font-weight:700;color:#fff;background:var(--vio);padding:5px 12px;border-radius:7px}
+
+/* ROUTE TO ZERO PLAN SCREEN */
+.rtz-plan-day{display:flex;align-items:center;padding:11px 16px;border-bottom:1px solid var(--line)}
+.rtz-plan-day:last-child{border-bottom:none}
+.rtz-plan-day.locked{opacity:.38;pointer-events:none}
+.rtz-plan-day.today-row{background:rgba(124,58,237,.04)}
+.rtz-day-col{width:32px;flex:0 0 auto}
+.rtz-day-name{font-size:11.5px;font-weight:800;color:var(--ink3);text-transform:uppercase;letter-spacing:.2px}
+.rtz-day-name.today-txt{color:var(--vio)}
+.rtz-tasks-col{flex:1;padding:0 10px}
+.rtz-task-line{font-size:13px;font-weight:600;color:var(--ink);line-height:1.35}
+.rtz-task-line.dim{font-size:12px;color:var(--ink3);font-weight:500}
+.rtz-earn-col{text-align:right;min-width:44px}
+.rtz-earn-amt{font-size:13.5px;font-weight:800;color:var(--grni);letter-spacing:-.3px}
+.rtz-today-tag{display:inline-block;background:var(--vio);color:#fff;font-size:9.5px;font-weight:800;border-radius:3px;padding:1px 5px;letter-spacing:.2px;margin-left:5px;vertical-align:middle}
+/* RTZ TAB SWITCHER */
+.rtz-tabs{display:flex;background:#EEECF8;border-radius:10px;padding:3px;gap:2px}
+.rtz-tab{flex:1;padding:8px 0;border-radius:8px;font-size:13px;font-weight:600;border:none;background:transparent;color:#9086A8;cursor:pointer;transition:all .18s var(--ease)}
+.rtz-tab.active{background:#fff;color:var(--ink);box-shadow:0 1px 6px rgba(60,40,120,.14)}
+/* MONTH PANEL */
+.mth-traj{background:#fff;border-radius:14px;padding:14px 16px 12px;box-shadow:0 2px 8px -4px rgba(60,40,120,.12);border:1px solid var(--line)}
+.mth-traj-title{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#9CA3AF;margin-bottom:10px}
+.mth-traj-bar{height:8px;border-radius:99px;background:#F0EFF8;overflow:hidden;margin-bottom:6px;position:relative}
+.mth-traj-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#4ade80,#22d3ee);transition:width .9s var(--ease-out)}
+.mth-traj-row{display:flex;justify-content:space-between}
+.mth-traj-lbl{font-size:10px;color:#B0A8C8;font-weight:500}
+.mth-week-card{background:#fff;border-radius:14px;padding:12px 14px;box-shadow:0 2px 8px -4px rgba(60,40,120,.10);border:1.5px solid var(--line);display:flex;align-items:center;gap:12px}
+.mth-week-card.current-wk{border-color:var(--viod);box-shadow:0 2px 14px -6px rgba(109,40,217,.25)}
+.mth-week-card.future-wk{opacity:.55}
+.mth-wk-left{flex:0 0 38px;display:flex;flex-direction:column;gap:2px}
+.mth-wk-num{font-size:12px;font-weight:800;color:var(--ink)}
+.mth-wk-dates{font-size:10px;color:#B0A8C8;font-weight:500;white-space:nowrap}
+.mth-wk-mid{flex:1;display:flex;flex-direction:column;gap:3px}
+.mth-wk-earn{font-size:13px;font-weight:700;color:var(--ink)}
+.mth-wk-earn.clr{color:#16A34A}
+.mth-wk-sub{font-size:11px;color:#9CA3AF;font-weight:500}
+.mth-wk-right{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:3px}
+.mth-wk-tick{width:24px;height:24px;border-radius:50%;background:#DCFCE7;color:#16A34A;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800}
+.mth-wk-now{font-size:10px;font-weight:800;background:var(--viod);color:#fff;padding:2px 8px;border-radius:4px;letter-spacing:.2px;white-space:nowrap}
+.mth-wk-future{font-size:18px;opacity:.5}
+.mth-zero{display:flex;align-items:center;gap:10px;padding:11px 14px;background:linear-gradient(90deg,rgba(74,222,128,.1),rgba(34,211,238,.08));border-radius:12px;border:1px solid rgba(74,222,128,.35)}
+.mth-zero-ico{font-size:20px}
+.mth-zero-body{display:flex;flex-direction:column;gap:2px}
+.mth-zero-title{font-size:13px;font-weight:800;color:var(--ink)}
+.mth-zero-sub{font-size:11.5px;color:#4B5563;font-weight:500}
+.rtz-lock{font-size:12px;color:var(--ink3)}
 </style>
 </head>
 <body>
 
 <!-- PAGE HEADER -->
 <header class="page-hd">
-  <div class="page-hd-left">
-    <div class="pg-mark" aria-hidden="true">
-      <span class="dot"></span>
-      <span style="height:13px"></span>
-      <span style="height:22px"></span>
-      <span style="height:28px"></span>
-      <span style="height:22px"></span>
-      <span style="height:13px"></span>
-      <span class="dot"></span>
+  <div class="page-hd-top">
+    <div class="page-hd-left">
+      <div class="pg-mark" aria-hidden="true">
+        <span class="dot"></span>
+        <span style="height:13px"></span>
+        <span style="height:22px"></span>
+        <span style="height:28px"></span>
+        <span style="height:22px"></span>
+        <span style="height:13px"></span>
+        <span class="dot"></span>
+      </div>
+      <div class="pg-title">
+        <span class="pg-wm">YoYou</span>
+      </div>
     </div>
-    <div class="pg-title">
-      <span class="pg-wm">YoYou</span>
-      
+    <div class="demo-controls">
+      <button class="demo-btn" id="btn-reset" aria-label="Reset prototype">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 12a9 9 0 1 0 3-6.7"/>
+          <polyline points="3 4 3 9 8 9"/>
+        </svg>
+        Reset
+      </button>
+      <button class="demo-btn primary" id="btn-eom" aria-label="End of month">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <polygon points="5 3 19 12 5 21 5 3"/>
+        </svg>
+        End of month
+      </button>
     </div>
   </div>
-  <div class="demo-controls">
-    <button class="demo-btn" id="btn-reset" aria-label="Reset prototype">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M3 12a9 9 0 1 0 3-6.7"/>
-        <polyline points="3 4 3 9 8 9"/>
-      </svg>
-      Reset
+  <div class="journey-bar" role="toolbar" aria-label="Demo journeys">
+    <span class="journey-bar-lbl">Journeys</span>
+    <button class="journey-btn" id="j1" aria-label="Play New User journey">
+      <span class="j-dot" aria-hidden="true"></span>▶ New User
     </button>
-    <button class="demo-btn primary" id="btn-eom" aria-label="End of month ↓">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <polygon points="5 3 19 12 5 21 5 3"/>
-      </svg>
-      End of month ↓
+    <button class="journey-btn" id="j2" aria-label="Play Daily Earn journey">
+      <span class="j-dot" aria-hidden="true"></span>▶ Daily Earn
+    </button>
+    <button class="journey-btn" id="j3" aria-label="Play AI Match journey">
+      <span class="j-dot" aria-hidden="true"></span>▶ AI Match
+    </button>
+    <button class="journey-btn" id="j4" aria-label="Play Leaderboard journey">
+      <span class="j-dot" aria-hidden="true"></span>▶ Leaderboard
+    </button>
+    <button class="journey-btn" id="j5" aria-label="Play Bill Clears journey">
+      <span class="j-dot" aria-hidden="true"></span>▶ Bill Clears
     </button>
   </div>
 </header>
@@ -1384,20 +1729,23 @@ nav.nav{
            ======================================== -->
       <section class="screen screen-dark splash-bg" data-screen="splash" aria-label="YoYou launch screen">
         <div class="sb"><span>8:23</span><span class="ico" aria-hidden="true"><svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="6" width="3" height="5" rx="1" fill="#1B1430"/><rect x="4.5" y="3.5" width="3" height="7.5" rx="1" fill="#1B1430"/><rect x="9" y="1.5" width="3" height="9.5" rx="1" fill="#1B1430"/><rect x="13.5" y="0" width="3" height="11" rx="1" fill="#1B1430" opacity=".35"/></svg><svg width="22" height="11" viewBox="0 0 22 11" fill="none"><rect x=".5" y=".5" width="18" height="10" rx="2.5" stroke="#1B1430" opacity=".4"/><rect x="2" y="2" width="13.5" height="7" rx="1.3" fill="#1B1430"/><rect x="20" y="3.5" width="1.5" height="4" rx=".7" fill="#1B1430" opacity=".5"/></svg></span></div>
+        <!-- ambient glow layers -->
+        <div class="splash-orb" aria-hidden="true"></div>
+        <div class="splash-orb-ring" aria-hidden="true"></div>
         <div class="splash-content" data-route="home" role="button" tabindex="0" aria-label="Tap to skip loading">
           <div class="splash-icon-wrap" aria-hidden="true">
             <div class="splash-mark">
               <span class="sdot"></span>
-              <span style="height:18px"></span>
-              <span style="height:28px"></span>
-              <span style="height:38px"></span>
-              <span style="height:28px"></span>
-              <span style="height:18px"></span>
+              <span style="height:22px"></span>
+              <span style="height:34px"></span>
+              <span style="height:46px"></span>
+              <span style="height:34px"></span>
+              <span style="height:22px"></span>
               <span class="sdot"></span>
             </div>
           </div>
           <div class="splash-wordmark">YoYou</div>
-          <div class="splash-tagline">eSIM that earns</div>
+          <div class="splash-tagline">The eSIM that earns for you</div>
         </div>
         <div class="splash-progress" aria-hidden="true">
           <div class="splash-prog-fill" id="splash-bar"></div>
@@ -1495,15 +1843,25 @@ nav.nav{
             <p class="bl">Hi Matt — your March bill</p>
             <div class="bamt-row">
               <div class="bamt" id="bill-amt">€11<small>.20</small></div>
-              <span class="dchip" aria-label="Down 80 cents yesterday">▼ €0.80 yesterday</span>
+              <span class="dchip" aria-label="Down 1 euro 60 yesterday">▼ €1.60 yesterday</span>
             </div>
-            <div class="bar" role="progressbar" aria-valuenow="38" aria-valuemin="0" aria-valuemax="100" aria-label="Bill progress">
-              <i id="bill-fill" style="width:38%"></i>
-              <span class="tick" style="left:25%"></span>
-              <span class="tick" style="left:50%"></span>
-              <span class="tick" style="left:75%"></span>
+            <div class="btrack" aria-hidden="true">
+              <div class="btrack-fill" id="bill-fill" style="width:38%"></div>
             </div>
-            <p class="bsub" id="bill-sub">38% cleared · €6.80 of €18.00</p>
+            <div class="bstats">
+              <div class="bstat">
+                <span class="bstat-val" id="bill-cleared-amt">€6.80</span>
+                <span class="bstat-lbl">Cleared</span>
+              </div>
+              <div class="bstat">
+                <span class="bstat-val" id="bill-dial-pct">38%</span>
+                <span class="bstat-lbl">Done</span>
+              </div>
+              <div class="bstat">
+                <span class="bstat-val" id="bill-days-left">8 days</span>
+                <span class="bstat-lbl">To zero</span>
+              </div>
+            </div>
           </div>
 
           <!-- Daily Bonus chip (pulsing) -->
@@ -1544,31 +1902,39 @@ nav.nav{
             <span class="btag">2×</span>
           </div>
 
-          <!-- Today's Goal -->
-          <div class="tcard card">
-            <div class="tinner">
-              <div class="ring" aria-hidden="true">
-                <svg width="46" height="46" viewBox="0 0 46 46">
-                  <circle cx="23" cy="23" r="18" fill="none" stroke="#EEE7FB" stroke-width="5"/>
-                  <circle cx="23" cy="23" r="18" fill="none" stroke="#7C3AED" stroke-width="5" stroke-linecap="round" stroke-dasharray="113" stroke-dashoffset="70" transform="rotate(-90 23 23)"/>
-                </svg>
-                <span class="rpct">38%</span>
-              </div>
-              <div class="ttext">
-                <span class="tlabel">Today's Goal</span>
-                <span class="tval">Earn €1.20 to stay on track</span>
-              </div>
-              <div class="spill" aria-label="5 day streak">
-                <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+          <!-- Route to Zero hero card -->
+          <div class="rtz-card" data-route="route-to-zero" role="button" tabindex="0" aria-label="AI Route to Zero — see your weekly plan">
+            <div class="rtz-eyebrow">
+              <span class="rtz-ai-dot" aria-hidden="true"></span>
+              AI · Route to Zero
+            </div>
+            <div class="rtz-main">
+              <div class="rtz-dial" aria-hidden="true">
+                <svg width="86" height="86" viewBox="0 0 86 86">
                   <defs>
-                    <linearGradient id="flg" x1="0" y1="0" x2="0" y2="1">
-                      <stop stop-color="#FFC24B"/>
-                      <stop offset="1" stop-color="#FF6A3D"/>
+                    <linearGradient id="rtzg" x1="0" y1="0" x2="1" y2="1">
+                      <stop stop-color="#4ade80"/>
+                      <stop offset="1" stop-color="#22d3ee"/>
                     </linearGradient>
                   </defs>
-                  <path d="M12 2c1 4-2 5-2 8a4 4 0 0 0 8 0c0-1-.3-2-1-3 2 1 3 3 3 6a8 8 0 1 1-16 0c0-5 5-7 8-11z" fill="url(#flg)"/>
+                  <circle cx="43" cy="43" r="36" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="7"/>
+                  <circle id="rtz-dial-arc" cx="43" cy="43" r="36" fill="none" stroke="url(#rtzg)"
+                    stroke-width="7" stroke-linecap="round"
+                    stroke-dasharray="226.2" stroke-dashoffset="139.2"
+                    transform="rotate(-90 43 43)"/>
                 </svg>
-                5
+                <div class="rtz-dial-center">
+                  <span class="rtz-dial-amt" id="rtz-dial-amt">€11.20</span>
+                  <span class="rtz-dial-sub">left</span>
+                </div>
+              </div>
+              <div class="rtz-info">
+                <div class="rtz-tagline">Clear your bill in<br><strong id="rtz-days-left-card">7 days</strong> at this pace</div>
+                <div class="rtz-pace">2 tasks/day · €1.60/day pace</div>
+                <div class="rtz-cta-row">
+                  See this week's plan
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </div>
               </div>
             </div>
           </div>
@@ -2193,73 +2559,29 @@ nav.nav{
           </div>
           <div class="leaderboard-card">
             <div class="lb-header-row">
-              <span class="lb-title">Leaderboard</span>
+              <span class="lb-title">Leaderboard · Points</span>
               <span class="lb-reset-txt">Resets in 3 days</span>
             </div>
-            <div class="lb-row">
-              <span class="lb-pos">🥇</span>
-              <div class="lb-av" style="background:#0EA5B0">S</div>
-              <div class="lb-info"><div class="lb-name">Sophie K.</div><div class="lb-loc">Gold streak · 14 days</div></div>
-              <span class="lb-earned">€38.20</span>
+            <div class="lb-buy-bar" data-route="buy-points" role="button" tabindex="0">
+              <span class="lb-buy-bar-text">⚡ Boost your rank</span>
+              <span class="lb-buy-bar-btn">Buy Points</span>
             </div>
-            <div class="lb-row">
-              <span class="lb-pos">🥈</span>
-              <div class="lb-av" style="background:#3B82F6">L</div>
-              <div class="lb-info"><div class="lb-name">Lukas W.</div><div class="lb-loc">Autopilot + surveys</div></div>
-              <span class="lb-earned">€35.80</span>
-            </div>
-            <div class="lb-row">
-              <span class="lb-pos">🥉</span>
-              <div class="lb-av" style="background:#8B5CF6">P</div>
-              <div class="lb-info"><div class="lb-name">Priya N.</div><div class="lb-loc">Survey specialist</div></div>
-              <span class="lb-earned">€33.50</span>
-            </div>
-            <div class="lb-row">
-              <span class="lb-pos" style="color:var(--ink3)">4</span>
-              <div class="lb-av" style="background:#059669">M</div>
-              <div class="lb-info"><div class="lb-name">Marco B.</div><div class="lb-loc">Consistent earner</div></div>
-              <span class="lb-earned">€31.20</span>
-            </div>
-            <div class="lb-row">
-              <span class="lb-pos" style="color:var(--ink3)">5</span>
-              <div class="lb-av" style="background:#D97706">H</div>
-              <div class="lb-info"><div class="lb-name">Hannah S.</div><div class="lb-loc">Video + surveys</div></div>
-              <span class="lb-earned">€29.80</span>
-            </div>
-            <div class="lb-row">
-              <span class="lb-pos" style="color:var(--ink3)">6</span>
-              <div class="lb-av" style="background:#7C3AED">F</div>
-              <div class="lb-info"><div class="lb-name">Felix M.</div><div class="lb-loc">App trials</div></div>
-              <span class="lb-earned">€27.40</span>
-            </div>
-            <div class="lb-row">
-              <span class="lb-pos" style="color:var(--ink3)">7</span>
-              <div class="lb-av" style="background:#BE185D">A</div>
-              <div class="lb-info"><div class="lb-name">Aisha T.</div><div class="lb-loc">Daily streak</div></div>
-              <span class="lb-earned">€25.10</span>
-            </div>
-            <div class="lb-row lb-me">
-              <span class="lb-pos">8</span>
-              <div class="lb-av" style="background:var(--vio)">M</div>
-              <div class="lb-info"><div class="lb-name">Matt H. · you</div><div class="lb-loc">Rising · +€1.90 today</div></div>
-              <span class="lb-earned">€22.60</span>
-            </div>
-            <div class="lb-row">
-              <span class="lb-pos" style="color:var(--ink3)">9</span>
-              <div class="lb-av" style="background:#64748B">J</div>
-              <div class="lb-info"><div class="lb-name">Jana P.</div><div class="lb-loc">Passive earner</div></div>
-              <span class="lb-earned">€20.30</span>
-            </div>
-            <div class="lb-row">
-              <span class="lb-pos" style="color:var(--ink3)">10</span>
-              <div class="lb-av" style="background:#0EA5B0">T</div>
-              <div class="lb-info"><div class="lb-name">Tim R.</div><div class="lb-loc">Survey + video</div></div>
-              <span class="lb-earned">€18.90</span>
-            </div>
+            <div class="lb-zone-bar promo">↑ Promotion zone · top 3 move up</div>
+            <div class="lb-row promo-zone"><span class="lb-pos">🥇</span><div class="lb-av" style="background:#0EA5B0">S</div><div class="lb-info"><div class="lb-name">Sophie K.</div><div class="lb-loc">Gold streak · 14 days</div></div><span class="lb-pts">3,820</span></div>
+            <div class="lb-row promo-zone"><span class="lb-pos">🥈</span><div class="lb-av" style="background:#3B82F6">L</div><div class="lb-info"><div class="lb-name">Lukas W.</div><div class="lb-loc">Autopilot + surveys</div></div><span class="lb-pts">3,580</span></div>
+            <div class="lb-row promo-zone"><span class="lb-pos">🥉</span><div class="lb-av" style="background:#8B5CF6">P</div><div class="lb-info"><div class="lb-name">Priya N.</div><div class="lb-loc">Survey specialist</div></div><span class="lb-pts">3,350</span></div>
+            <div class="lb-row"><span class="lb-pos" style="color:var(--ink3)">4</span><div class="lb-av" style="background:#059669">M</div><div class="lb-info"><div class="lb-name">Marco B.</div><div class="lb-loc">Consistent earner</div></div><span class="lb-pts">3,120</span></div>
+            <div class="lb-row"><span class="lb-pos" style="color:var(--ink3)">5</span><div class="lb-av" style="background:#D97706">H</div><div class="lb-info"><div class="lb-name">Hannah S.</div><div class="lb-loc">Video + surveys</div></div><span class="lb-pts">2,980</span></div>
+            <div class="lb-row"><span class="lb-pos" style="color:var(--ink3)">6</span><div class="lb-av" style="background:#7C3AED">F</div><div class="lb-info"><div class="lb-name">Felix M.</div><div class="lb-loc">App trials</div></div><span class="lb-pts">2,740</span></div>
+            <div class="lb-row"><span class="lb-pos" style="color:var(--ink3)">7</span><div class="lb-av" style="background:#BE185D">A</div><div class="lb-info"><div class="lb-name">Aisha T.</div><div class="lb-loc">Daily streak</div></div><span class="lb-pts">2,510</span></div>
+            <div class="lb-row lb-me"><span class="lb-pos">8</span><div class="lb-av" style="background:var(--vio)">M</div><div class="lb-info"><div class="lb-name">Matt H. · you</div><div class="lb-loc">Rising · +190 pts today</div></div><span class="lb-pts" id="lb-my-pts">2,260</span></div>
+            <div class="lb-zone-bar demo">↓ Demotion zone · bottom 2 move down</div>
+            <div class="lb-row demo-zone"><span class="lb-pos" style="color:var(--ink3)">9</span><div class="lb-av" style="background:#64748B">J</div><div class="lb-info"><div class="lb-name">Jana P.</div><div class="lb-loc">Passive earner</div></div><span class="lb-pts">2,030</span></div>
+            <div class="lb-row demo-zone"><span class="lb-pos" style="color:var(--ink3)">10</span><div class="lb-av" style="background:#0EA5B0">T</div><div class="lb-info"><div class="lb-name">Tim R.</div><div class="lb-loc">Survey + video</div></div><span class="lb-pts">1,890</span></div>
           </div>
           <div class="gap-card">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--vio)" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-            <span class="gap-text">You're <strong>€2.50</strong> away from #7 — one good survey session gets you there</span>
+            <span class="gap-text">You're <strong>250 pts</strong> away from #7 — complete today's tasks to close the gap</span>
           </div>
         </div>
         <nav class="nav" role="tablist">
@@ -2309,9 +2631,9 @@ nav.nav{
           </div>
         </div>
         <div class="btn-bottom" style="display:flex;flex-direction:column;gap:9px">
-          <button class="btn solid" data-route="activate-autopilot" aria-label="Activate Autopilot">
-            Activate Autopilot
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"/></svg>
+          <button class="btn solid" data-route="consent-setup" aria-label="Set up Autopilot">
+            Set up Autopilot
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </button>
           <button class="btn ghost" data-route="back" aria-label="Maybe later">Maybe later</button>
         </div>
@@ -2466,6 +2788,7 @@ nav.nav{
             <div class="sett-item" data-route="esim-info"><div class="sett-ico">📶</div><span class="sett-label">Connected eSIM</span><svg class="sett-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg></div>
             <div class="sett-item" data-route="privacy"><div class="sett-ico">🔒</div><span class="sett-label">Privacy Controls</span><svg class="sett-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg></div>
             <div class="sett-item" data-route="language"><div class="sett-ico">🌍</div><span class="sett-label">Language &amp; Region</span><svg class="sett-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg></div>
+            <div class="sett-item" data-route="ai-milestone"><div class="sett-ico">🏅</div><span class="sett-label">3 Months Together</span><svg class="sett-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg></div>
             <div class="sett-item" data-route="help"><div class="sett-ico">❓</div><span class="sett-label">Help &amp; Support</span><svg class="sett-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg></div>
           </div>
           <button class="btn ghost" data-route="sign-out" style="border-color:rgba(239,68,68,.3);color:#EF4444">Sign out</button>
@@ -2655,7 +2978,7 @@ nav.nav{
            WELCOME BACK (contextual re-engagement)
            ======================================== -->
       <section class="screen" data-screen="welcome-back" aria-label="Welcome Back">
-        <div class="sb"><span>8:27</span><span class="ico" aria-hidden="true"><svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="6" width="3" height="5" rx="1" fill="#1B1430"/><rect x="4.5" y="3.5" width="3" height="7.5" rx="1" fill="#1B1430"/><rect x="13.5" y="0" width="3" height="11" rx="1" fill="#1B1430" opacity=".35"/></svg><svg width="22" height="11" viewBox="0 0 22 11" fill="none"><rect x=".5" y=".5" width="18" height="10" rx="2.5" stroke="#1B1430" opacity=".4"/><rect x="2" y="2" width="13.5" height="7" rx="1.3" fill="#1B1430"/><rect x="20" y="3.5" width="1.5" height="4" rx=".7" fill="#1B1430" opacity=".5"/></svg></span></div>
+        <div class="sb"><span>8:27</span><span class="ico" aria-hidden="true"><svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="6" width="3" height="5" rx="1" fill="#1B1430"/><rect x="4.5" y="3.5" width="3" height="7.5" rx="1" fill="#1B1430"/><rect x="9" y="1.5" width="3" height="9.5" rx="1" fill="#1B1430"/><rect x="13.5" y="0" width="3" height="11" rx="1" fill="#1B1430" opacity=".35"/></svg><svg width="22" height="11" viewBox="0 0 22 11" fill="none"><rect x=".5" y=".5" width="18" height="10" rx="2.5" stroke="#1B1430" opacity=".4"/><rect x="2" y="2" width="13.5" height="7" rx="1.3" fill="#1B1430"/><rect x="20" y="3.5" width="1.5" height="4" rx=".7" fill="#1B1430" opacity=".5"/></svg></span></div>
         <div class="appbar-back">
           <button class="back-btn" data-route="back" aria-label="Go back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>
         </div>
@@ -2698,6 +3021,614 @@ nav.nav{
         </nav>
       </section>
 
+      <!-- ========================================
+           CONSENT SETUP (J3S2)
+           ======================================== -->
+      <section class="screen" data-screen="consent-setup" aria-label="Autopilot Data Consent">
+        <div class="sb"><span>8:27</span><span class="ico" aria-hidden="true"><svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="6" width="3" height="5" rx="1" fill="#1B1430"/><rect x="4.5" y="3.5" width="3" height="7.5" rx="1" fill="#1B1430"/><rect x="9" y="1.5" width="3" height="9.5" rx="1" fill="#1B1430"/><rect x="13.5" y="0" width="3" height="11" rx="1" fill="#1B1430" opacity=".35"/></svg><svg width="22" height="11" viewBox="0 0 22 11" fill="none"><rect x=".5" y=".5" width="18" height="10" rx="2.5" stroke="#1B1430" opacity=".4"/><rect x="2" y="2" width="13.5" height="7" rx="1.3" fill="#1B1430"/><rect x="20" y="3.5" width="1.5" height="4" rx=".7" fill="#1B1430" opacity=".5"/></svg></span></div>
+        <div class="appbar-back">
+          <button class="back-btn" data-route="back" aria-label="Go back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>
+          <span class="title">Choose what you share</span>
+        </div>
+        <div class="body" style="gap:13px">
+          <div class="cs-intro">
+            <div class="cs-icon" aria-hidden="true">🔒</div>
+            <div class="cs-intro-title">Your data, your control</div>
+            <div class="cs-intro-sub">Each signal type earns differently. All are on by default — toggle off anything you're not comfortable sharing. You can change these at any time.</div>
+          </div>
+          <div class="cs-toggles" role="group" aria-label="Data sharing options">
+            <div class="cs-row" data-route="toggle-location" role="switch" aria-checked="true" tabindex="0">
+              <div class="cs-ico" aria-hidden="true">📍</div>
+              <div class="cs-text">
+                <div class="cs-label">Location Signals</div>
+                <div class="cs-earn">+€0.08 / day · footfall context, anonymised</div>
+              </div>
+              <div class="cs-toggle" id="toggle-location" aria-hidden="true"></div>
+            </div>
+            <div class="cs-row" data-route="toggle-appusage" role="switch" aria-checked="true" tabindex="0">
+              <div class="cs-ico" aria-hidden="true">📱</div>
+              <div class="cs-text">
+                <div class="cs-label">App Usage Patterns</div>
+                <div class="cs-earn">+€0.05 / day · category-level only, no content</div>
+              </div>
+              <div class="cs-toggle" id="toggle-appusage" aria-hidden="true"></div>
+            </div>
+            <div class="cs-row" data-route="toggle-network" role="switch" aria-checked="true" tabindex="0">
+              <div class="cs-ico" aria-hidden="true">📶</div>
+              <div class="cs-text">
+                <div class="cs-label">Network Behaviour</div>
+                <div class="cs-earn">+€0.07 / day · signal strength &amp; handoff patterns</div>
+              </div>
+              <div class="cs-toggle" id="toggle-network" aria-hidden="true"></div>
+            </div>
+          </div>
+          <div class="cs-privacy">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>All signals are anonymised and aggregated before leaving your device. YoYou never sells individual profiles. Turn Autopilot off at any time from Settings.</span>
+          </div>
+        </div>
+        <div class="btn-bottom" style="display:flex;flex-direction:column;gap:9px">
+          <button class="btn solid" data-route="confirm-autopilot" aria-label="Confirm and activate Autopilot">Confirm &amp; Activate · €0.08–€0.20/day</button>
+          <button class="btn ghost" data-route="back">Back</button>
+        </div>
+      </section>
+
+      <!-- ========================================
+           AUTOPILOT CONTROL PANEL (J3S4)
+           ======================================== -->
+      <section class="screen" data-screen="autopilot-panel" aria-label="Autopilot Control Panel">
+        <div class="sb"><span>8:27</span><span class="ico" aria-hidden="true"><svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="6" width="3" height="5" rx="1" fill="#1B1430"/><rect x="4.5" y="3.5" width="3" height="7.5" rx="1" fill="#1B1430"/><rect x="9" y="1.5" width="3" height="9.5" rx="1" fill="#1B1430"/><rect x="13.5" y="0" width="3" height="11" rx="1" fill="#1B1430" opacity=".35"/></svg><svg width="22" height="11" viewBox="0 0 22 11" fill="none"><rect x=".5" y=".5" width="18" height="10" rx="2.5" stroke="#1B1430" opacity=".4"/><rect x="2" y="2" width="13.5" height="7" rx="1.3" fill="#1B1430"/><rect x="20" y="3.5" width="1.5" height="4" rx=".7" fill="#1B1430" opacity=".5"/></svg></span></div>
+        <div class="appbar-back">
+          <button class="back-btn" data-route="back" aria-label="Go back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>
+          <span class="title">Autopilot</span>
+        </div>
+        <div class="body" style="gap:13px">
+          <div class="acp-summary">
+            <div class="acp-sum-label">Today's passive earn</div>
+            <div class="acp-sum-val" id="acp-today-val">€0.18</div>
+            <div class="acp-sum-sub">€3.60 earned passively this month</div>
+            <div class="acp-status"><span class="acp-dot"></span>3 streams active</div>
+          </div>
+          <div class="acp-streams">
+            <div class="acp-sh">Active streams</div>
+            <div class="acp-stream">
+              <div class="acp-stream-ico" aria-hidden="true">📍</div>
+              <div class="acp-stream-info">
+                <div class="acp-stream-name">Location Signals</div>
+                <div class="acp-stream-earn">+€0.08 today · €1.60 this month</div>
+              </div>
+              <div class="acp-stream-toggle" aria-label="Location signals on" role="switch" aria-checked="true"></div>
+            </div>
+            <div class="acp-stream">
+              <div class="acp-stream-ico" aria-hidden="true">📱</div>
+              <div class="acp-stream-info">
+                <div class="acp-stream-name">App Usage Patterns</div>
+                <div class="acp-stream-earn">+€0.05 today · €1.00 this month</div>
+              </div>
+              <div class="acp-stream-toggle" aria-label="App usage on" role="switch" aria-checked="true"></div>
+            </div>
+            <div class="acp-stream">
+              <div class="acp-stream-ico" aria-hidden="true">📶</div>
+              <div class="acp-stream-info">
+                <div class="acp-stream-name">Network Behaviour</div>
+                <div class="acp-stream-earn">+€0.05 today · €1.00 this month</div>
+              </div>
+              <div class="acp-stream-toggle" aria-label="Network behaviour on" role="switch" aria-checked="true"></div>
+            </div>
+          </div>
+          <div class="ap-privacy">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--grni)" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span class="ap-privacy-text">All streams anonymise data before processing. You can toggle individual streams off at any time without losing your account or tier status.</span>
+          </div>
+        </div>
+        <div class="btn-bottom"><button class="btn ghost" data-route="back">Done</button></div>
+        <nav class="nav" role="tablist">
+          <button class="ni" role="tab" data-route="home"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg><span>Home</span></button>
+          <button class="ni on" role="tab" data-route="earn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 9.2a4.3 4.3 0 1 0 0 5.6"/><path d="M7.5 11h6M7.5 13.2h5"/></svg><span>Earn</span></button>
+          <button class="ni" role="tab" data-route="rewards"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="9" width="17" height="11.5" rx="1.6"/><path d="M3.5 13h17"/><path d="M12 9v11.5"/><path d="M12 9C12 9 10.4 4 7.8 5.3 5.8 6.3 8 9 12 9z"/><path d="M12 9C12 9 13.6 4 16.2 5.3 18.2 6.3 16 9 12 9z"/></svg><span>Rewards</span></button>
+          <button class="ni" role="tab" data-route="profile"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-6 8-6s8 2 8 6"/></svg><span>Profile</span></button>
+        </nav>
+      </section>
+
+      <!-- ========================================
+           WEEKLY EARNING PLAN (J4S2)
+           ======================================== -->
+      <section class="screen" data-screen="route-to-zero" aria-label="Route to Zero — Weekly Plan">
+        <div class="sb"><span>9:41</span><span class="ico" aria-hidden="true"><svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="6" width="3" height="5" rx="1" fill="#1B1430"/><rect x="4.5" y="3.5" width="3" height="7.5" rx="1" fill="#1B1430"/><rect x="9" y="1.5" width="3" height="9.5" rx="1" fill="#1B1430"/><rect x="13.5" y="0" width="3" height="11" rx="1" fill="#1B1430" opacity=".35"/></svg><svg width="22" height="11" viewBox="0 0 22 11" fill="none"><rect x=".5" y=".5" width="18" height="10" rx="2.5" stroke="#1B1430" opacity=".4"/><rect x="2" y="2" width="13.5" height="7" rx="1.3" fill="#1B1430"/><rect x="20" y="3.5" width="1.5" height="4" rx=".7" fill="#1B1430" opacity=".5"/></svg></span></div>
+        <div class="appbar-back">
+          <button class="back-btn" data-route="back" aria-label="Go back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>
+          <span class="title">Route to Zero</span>
+        </div>
+        <div class="body" style="gap:12px">
+          <div style="background:linear-gradient(148deg,#4E2699,#7C3AED);border-radius:16px;padding:14px 16px;color:#fff">
+            <div style="font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,.55);margin-bottom:6px;display:flex;align-items:center;gap:5px"><span style="width:6px;height:6px;border-radius:50%;background:#4ade80;display:inline-block"></span>AI Plan · March 18–24</div>
+            <div style="font-size:20px;font-weight:800;letter-spacing:-.5px;margin-bottom:2px">€11.20 to clear</div>
+            <div style="font-size:12px;color:rgba(255,255,255,.6)">2 tasks/day · clears in <strong style="color:#fff">7 days</strong></div>
+          </div>
+
+          <!-- Tab switcher -->
+          <div class="rtz-tabs" role="tablist">
+            <button class="rtz-tab active" role="tab" aria-selected="true" data-rtz-tab="week">This week</button>
+            <button class="rtz-tab" role="tab" aria-selected="false" data-rtz-tab="month">Full month</button>
+          </div>
+
+          <!-- WEEK PANEL -->
+          <div id="rtz-week-panel">
+            <div style="background:#fff;border-radius:14px;box-shadow:0 4px 12px -8px rgba(60,40,120,.18);border:1px solid var(--line);overflow:hidden">
+              <div class="rtz-plan-day" style="opacity:.45">
+                <div class="rtz-day-col"><div class="rtz-day-name">Mon</div></div>
+                <div class="rtz-tasks-col"><div class="rtz-task-line">Nike brand survey</div><div class="rtz-task-line dim">Watch a 30s ad</div></div>
+                <div class="rtz-earn-col"><div class="rtz-earn-amt">+€1.60</div><div style="font-size:10px;color:var(--grni);font-weight:700">✓ done</div></div>
+              </div>
+              <div class="rtz-plan-day today-row" data-route="start-today-tasks" role="button" tabindex="0" style="cursor:pointer">
+                <div class="rtz-day-col"><div class="rtz-day-name today-txt">Tue</div></div>
+                <div class="rtz-tasks-col"><div class="rtz-task-line">Quick brand poll <span class="rtz-today-tag">Today</span></div><div class="rtz-task-line dim">Try Duolingo · 5 min</div></div>
+                <div class="rtz-earn-col"><div class="rtz-earn-amt">+€1.60</div></div>
+              </div>
+              <div class="rtz-plan-day locked">
+                <div class="rtz-day-col"><div class="rtz-day-name">Wed</div></div>
+                <div class="rtz-tasks-col"><div class="rtz-task-line">Mood check-in</div><div class="rtz-task-line dim">Scan a receipt</div></div>
+                <div class="rtz-earn-col"><div class="rtz-lock">🔒</div></div>
+              </div>
+              <div class="rtz-plan-day locked">
+                <div class="rtz-day-col"><div class="rtz-day-name">Thu</div></div>
+                <div class="rtz-tasks-col"><div class="rtz-task-line">Lifestyle survey</div><div class="rtz-task-line dim">Watch a 30s ad</div></div>
+                <div class="rtz-earn-col"><div class="rtz-lock">🔒</div></div>
+              </div>
+              <div class="rtz-plan-day locked">
+                <div class="rtz-day-col"><div class="rtz-day-name">Fri</div></div>
+                <div class="rtz-tasks-col"><div class="rtz-task-line">Travel habits survey</div><div class="rtz-task-line dim">App trial · 5 min</div></div>
+                <div class="rtz-earn-col"><div class="rtz-lock">🔒</div></div>
+              </div>
+              <div class="rtz-plan-day locked">
+                <div class="rtz-day-col"><div class="rtz-day-name">Sat</div></div>
+                <div class="rtz-tasks-col"><div class="rtz-task-line">Quick survey</div><div class="rtz-task-line dim">Watch a 30s ad</div></div>
+                <div class="rtz-earn-col"><div class="rtz-lock">🔒</div></div>
+              </div>
+              <div class="rtz-plan-day locked" style="border-bottom:none">
+                <div class="rtz-day-col"><div class="rtz-day-name">Sun</div></div>
+                <div class="rtz-tasks-col"><div class="rtz-task-line">Brand survey (long)</div><div class="rtz-task-line dim">Scan a receipt</div></div>
+                <div class="rtz-earn-col"><div class="rtz-lock">🔒</div></div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;padding:10px 14px;background:rgba(124,58,237,.06);border-radius:10px;border:1px solid rgba(124,58,237,.12)">
+              <span style="font-size:16px">📅</span>
+              <span style="font-size:12.5px;color:var(--ink2);font-weight:500;line-height:1.4"><strong style="color:var(--ink)">New tasks unlock daily.</strong> Come back tomorrow for Wed's tasks.</span>
+            </div>
+          </div>
+
+          <!-- MONTH PANEL -->
+          <div id="rtz-month-panel" hidden style="display:flex;flex-direction:column;gap:10px">
+            <!-- Trajectory bar -->
+            <div class="mth-traj">
+              <div class="mth-traj-title">Bill trajectory — March 2026</div>
+              <div class="mth-traj-bar">
+                <div class="mth-traj-fill" style="width:74%"></div>
+              </div>
+              <div class="mth-traj-row">
+                <span class="mth-traj-lbl">Mar 1 · €18.00</span>
+                <span class="mth-traj-lbl">Today · €11.20</span>
+                <span class="mth-traj-lbl">Mar 24 · €0</span>
+              </div>
+            </div>
+            <!-- Week 1 -->
+            <div class="mth-week-card">
+              <div class="mth-wk-left">
+                <div class="mth-wk-num">Wk 1</div>
+                <div class="mth-wk-dates">Mar 3–9</div>
+              </div>
+              <div class="mth-wk-mid">
+                <div class="mth-wk-earn clr">+€2.40 cleared</div>
+                <div class="mth-wk-sub">€15.60 left after week</div>
+              </div>
+              <div class="mth-wk-right">
+                <div class="mth-wk-tick">✓</div>
+              </div>
+            </div>
+            <!-- Week 2 -->
+            <div class="mth-week-card">
+              <div class="mth-wk-left">
+                <div class="mth-wk-num">Wk 2</div>
+                <div class="mth-wk-dates">Mar 10–16</div>
+              </div>
+              <div class="mth-wk-mid">
+                <div class="mth-wk-earn clr">+€2.80 cleared</div>
+                <div class="mth-wk-sub">€12.80 left after week</div>
+              </div>
+              <div class="mth-wk-right">
+                <div class="mth-wk-tick">✓</div>
+              </div>
+            </div>
+            <!-- Week 3 — current -->
+            <div class="mth-week-card current-wk">
+              <div class="mth-wk-left">
+                <div class="mth-wk-num">Wk 3</div>
+                <div class="mth-wk-dates">Mar 17–23</div>
+              </div>
+              <div class="mth-wk-mid">
+                <div class="mth-wk-earn">Mon done · ~€9.60 left</div>
+                <div class="mth-wk-sub">€1.60 left by Sunday</div>
+              </div>
+              <div class="mth-wk-right">
+                <div class="mth-wk-now">Now</div>
+              </div>
+            </div>
+            <!-- Week 4 — final stretch -->
+            <div class="mth-week-card future-wk">
+              <div class="mth-wk-left">
+                <div class="mth-wk-num">Wk 4</div>
+                <div class="mth-wk-dates">Mon 24 Mar</div>
+              </div>
+              <div class="mth-wk-mid">
+                <div class="mth-wk-earn">€1.60 to finish</div>
+                <div class="mth-wk-sub">1 day · 2 tasks</div>
+              </div>
+              <div class="mth-wk-right">
+                <div class="mth-wk-future">🔒</div>
+              </div>
+            </div>
+            <!-- Zero callout -->
+            <div class="mth-zero">
+              <div class="mth-zero-ico">🎯</div>
+              <div class="mth-zero-body">
+                <div class="mth-zero-title">Bill clears by <strong>Mon 24 March</strong></div>
+                <div class="mth-zero-sub">Keep your 2-task streak and you're done in 7 days</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="btn-bottom"><button class="btn solid" data-route="start-today-tasks">Start today's 2 tasks →</button></div>
+      </section>
+
+      <!-- ========================================
+           STREAK MILESTONE (S2)
+           ======================================== -->
+      <section class="screen" data-screen="streak-milestone" aria-label="Streak Milestone — Day 5">
+        <div class="sb"><span>9:41</span><span class="ico" aria-hidden="true"><svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="6" width="3" height="5" rx="1" fill="#1B1430"/><rect x="4.5" y="3.5" width="3" height="7.5" rx="1" fill="#1B1430"/><rect x="9" y="1.5" width="3" height="9.5" rx="1" fill="#1B1430"/><rect x="13.5" y="0" width="3" height="11" rx="1" fill="#1B1430" opacity=".35"/></svg><svg width="22" height="11" viewBox="0 0 22 11" fill="none"><rect x=".5" y=".5" width="18" height="10" rx="2.5" stroke="#1B1430" opacity=".4"/><rect x="2" y="2" width="13.5" height="7" rx="1.3" fill="#1B1430"/><rect x="20" y="3.5" width="1.5" height="4" rx=".7" fill="#1B1430" opacity=".5"/></svg></span></div>
+        <div class="appbar-back">
+          <button class="back-btn" data-route="back" aria-label="Go back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>
+        </div>
+        <div class="body" style="gap:13px">
+          <div class="sm-hero">
+            <div class="sm-flame" aria-hidden="true">🔥</div>
+            <div class="sm-day" id="sm-day-count">5</div>
+            <div class="sm-label">Day streak · milestone reached</div>
+          </div>
+          <div class="sm-bonus-card" aria-label="Day 5 milestone bonus: plus 40 cents">
+            <div class="sm-bonus-ico" aria-hidden="true">⭐</div>
+            <div class="sm-bonus-text">
+              <div class="sm-bonus-title">Day 5 milestone bonus</div>
+              <div class="sm-bonus-val" id="sm-bonus-val">+€0.40</div>
+            </div>
+          </div>
+          <div class="sm-calendar">
+            <div class="sm-cal-label">This week</div>
+            <div class="sm-dots" role="list" aria-label="Streak calendar">
+              <div class="sm-dot" role="listitem">
+                <div class="sm-dot-circle done">1</div>
+                <div class="sm-dot-day">Mon</div>
+              </div>
+              <div class="sm-dot" role="listitem">
+                <div class="sm-dot-circle done">2</div>
+                <div class="sm-dot-day">Tue</div>
+              </div>
+              <div class="sm-dot" role="listitem">
+                <div class="sm-dot-circle done">3</div>
+                <div class="sm-dot-day">Wed</div>
+              </div>
+              <div class="sm-dot" role="listitem">
+                <div class="sm-dot-circle done">4</div>
+                <div class="sm-dot-day">Thu</div>
+              </div>
+              <div class="sm-dot" role="listitem">
+                <div class="sm-dot-circle today milestone">5</div>
+                <div class="sm-dot-day">Fri</div>
+              </div>
+              <div class="sm-dot" role="listitem">
+                <div class="sm-dot-circle" style="opacity:.35">6</div>
+                <div class="sm-dot-day">Sat</div>
+              </div>
+              <div class="sm-dot" role="listitem">
+                <div class="sm-dot-circle milestone" style="opacity:.35">7</div>
+                <div class="sm-dot-day">Sun</div>
+              </div>
+            </div>
+          </div>
+          <div class="sm-ladder" aria-label="Streak milestone ladder">
+            <div class="sm-ladder-row"><span class="sm-ladder-day">Day 1</span><span class="sm-ladder-amt">+€0.20</span><span class="sm-ladder-tick">✓</span></div>
+            <div class="sm-ladder-row"><span class="sm-ladder-day">Day 3</span><span class="sm-ladder-amt">+€0.30</span><span class="sm-ladder-tick">✓</span></div>
+            <div class="sm-ladder-row active"><span class="sm-ladder-day">Day 5 · today</span><span class="sm-ladder-amt">+€0.40</span><span class="sm-ladder-tick">⭐</span></div>
+            <div class="sm-ladder-row"><span class="sm-ladder-day">Day 7</span><span class="sm-ladder-amt">+€0.50</span><span class="sm-ladder-tick" style="opacity:.3">—</span></div>
+          </div>
+        </div>
+        <div class="btn-bottom"><button class="btn solid" data-route="earn">Keep the streak going →</button></div>
+        <nav class="nav" role="tablist">
+          <button class="ni on" role="tab" data-route="home"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg><span>Home</span></button>
+          <button class="ni" role="tab" data-route="earn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 9.2a4.3 4.3 0 1 0 0 5.6"/><path d="M7.5 11h6M7.5 13.2h5"/></svg><span>Earn</span></button>
+          <button class="ni" role="tab" data-route="rewards"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="9" width="17" height="11.5" rx="1.6"/><path d="M3.5 13h17"/><path d="M12 9v11.5"/><path d="M12 9C12 9 10.4 4 7.8 5.3 5.8 6.3 8 9 12 9z"/><path d="M12 9C12 9 13.6 4 16.2 5.3 18.2 6.3 16 9 12 9z"/></svg><span>Rewards</span></button>
+          <button class="ni" role="tab" data-route="profile"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-6 8-6s8 2 8 6"/></svg><span>Profile</span></button>
+        </nav>
+      </section>
+
+      <!-- ========================================
+           AI MILESTONE (J4S4)
+           ======================================== -->
+      <section class="screen screen-dark am-bg" data-screen="ai-milestone" aria-label="AI Milestone — 3 Months Together">
+        <div class="sb" style="position:relative;z-index:5"><span>9:41</span><span class="ico" aria-hidden="true"><svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="6" width="3" height="5" rx="1" fill="#1B1430"/><rect x="4.5" y="3.5" width="3" height="7.5" rx="1" fill="#1B1430"/><rect x="9" y="1.5" width="3" height="9.5" rx="1" fill="#1B1430"/><rect x="13.5" y="0" width="3" height="11" rx="1" fill="#1B1430" opacity=".35"/></svg><svg width="22" height="11" viewBox="0 0 22 11" fill="none"><rect x=".5" y=".5" width="18" height="10" rx="2.5" stroke="#1B1430" opacity=".4"/><rect x="2" y="2" width="13.5" height="7" rx="1.3" fill="#1B1430"/><rect x="20" y="3.5" width="1.5" height="4" rx=".7" fill="#1B1430" opacity=".5"/></svg></span></div>
+        <div class="appbar-back" style="background:transparent">
+          <button class="back-btn" style="color:rgba(255,255,255,.65)" data-route="back" aria-label="Go back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>
+        </div>
+        <div class="body" style="gap:14px">
+          <div class="am-header">
+            <div class="am-eyebrow">3 months together</div>
+            <div class="am-number">3</div>
+            <div class="am-number-sub">months of earning with YoYou</div>
+          </div>
+          <div class="am-message">
+            <div class="am-msg-ai">
+              <div class="am-ai-av" aria-hidden="true"></div>
+              <span class="am-ai-name">YoYou AI · just now</span>
+            </div>
+            <div class="am-msg-body">Three months, Matt. You've cleared €54.20 from your bills — that's real money back in your pocket. Your earning habit is in the top 12% of YoYou users, and your streak game has been strong. Here's the full picture.</div>
+          </div>
+          <div class="am-stats" role="list">
+            <div class="am-stat" role="listitem">
+              <span class="am-stat-val">€54.20</span>
+              <span class="am-stat-lbl">Total earned</span>
+            </div>
+            <div class="am-stat" role="listitem">
+              <span class="am-stat-val">3</span>
+              <span class="am-stat-lbl">Bills cleared</span>
+            </div>
+            <div class="am-stat" role="listitem">
+              <span class="am-stat-val">47</span>
+              <span class="am-stat-lbl">Tasks done</span>
+            </div>
+            <div class="am-stat" role="listitem">
+              <span class="am-stat-val">Top 12%</span>
+              <span class="am-stat-lbl">Earner rank</span>
+            </div>
+          </div>
+          <div class="am-cta">
+            <button class="btn btn-gold" data-route="ai-wrapped">View March Wrapped ✨</button>
+            <button class="btn-dark" data-route="back">Back to home</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================
+           COME BACK TOMORROW
+           ======================================== -->
+      <section class="screen cbt-bg" data-screen="come-back-tomorrow" aria-label="All done for today">
+        <div class="sb dark"><span>9:41</span><span class="ico" aria-hidden="true"><svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="6" width="3" height="5" rx="1" fill="#fff"/><rect x="4.5" y="3.5" width="3" height="7.5" rx="1" fill="#fff"/><rect x="9" y="1.5" width="3" height="9.5" rx="1" fill="#fff"/><rect x="13.5" y="0" width="3" height="11" rx="1" fill="#fff" opacity=".35"/></svg><svg width="22" height="11" viewBox="0 0 22 11" fill="none"><rect x=".5" y=".5" width="18" height="10" rx="2.5" stroke="#fff" opacity=".4"/><rect x="2" y="2" width="13.5" height="7" rx="1.3" fill="#fff"/><rect x="20" y="3.5" width="1.5" height="4" rx=".7" fill="#fff" opacity=".5"/></svg></span></div>
+        <div class="cbt-body">
+          <div class="cbt-icon">🌙</div>
+          <div class="cbt-title">All done for today!</div>
+          <div class="cbt-sub">You've completed your 2 tasks. Come back tomorrow to keep your Route to Zero on track.</div>
+          <div class="cbt-earned-card">
+            <div>
+              <div class="cbt-earned-lbl">Earned today</div>
+              <div class="cbt-earned-val" id="cbt-earned">+€1.60</div>
+            </div>
+            <div style="text-align:right">
+              <div class="cbt-earned-lbl">Bill remaining</div>
+              <div style="font-size:20px;font-weight:800;color:#fff;letter-spacing:-.5px" id="cbt-bill-left">€9.60</div>
+            </div>
+          </div>
+          <div class="cbt-streak-pill">🔥 Day <span id="cbt-streak-day">6</span> streak — keep it going!</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.35);display:flex;align-items:center;gap:5px">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+            Wed's tasks unlock at midnight
+          </div>
+        </div>
+        <div class="btn-bottom" style="display:flex;flex-direction:column;gap:9px">
+          <button class="btn solid" data-route="home">Back to home</button>
+        </div>
+      </section>
+
+      <!-- ========================================
+           BUY POINTS
+           ======================================== -->
+      <section class="screen" data-screen="buy-points" aria-label="Buy Points">
+        <div class="sb"><span>9:41</span><span class="ico" aria-hidden="true"><svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="6" width="3" height="5" rx="1" fill="#1B1430"/><rect x="4.5" y="3.5" width="3" height="7.5" rx="1" fill="#1B1430"/><rect x="9" y="1.5" width="3" height="9.5" rx="1" fill="#1B1430"/><rect x="13.5" y="0" width="3" height="11" rx="1" fill="#1B1430" opacity=".35"/></svg><svg width="22" height="11" viewBox="0 0 22 11" fill="none"><rect x=".5" y=".5" width="18" height="10" rx="2.5" stroke="#1B1430" opacity=".4"/><rect x="2" y="2" width="13.5" height="7" rx="1.3" fill="#1B1430"/><rect x="20" y="3.5" width="1.5" height="4" rx=".7" fill="#1B1430" opacity=".5"/></svg></span></div>
+        <div class="appbar-back">
+          <button class="back-btn" data-route="back" aria-label="Go back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>
+          <span class="title">Boost your rank</span>
+        </div>
+        <div class="body" style="gap:13px">
+          <div class="bp-hero">
+            <div class="bp-title">Buy Points</div>
+            <div class="bp-sub">Climb the Silver League and stay out of the demotion zone</div>
+          </div>
+          <div style="background:rgba(124,58,237,.06);border:1px solid rgba(124,58,237,.15);border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:10px">
+            <span style="font-size:18px">🏅</span>
+            <div>
+              <div style="font-size:13px;font-weight:700;color:var(--ink)">Your current rank: <strong style="color:var(--vio)">#8 · 2,260 pts</strong></div>
+              <div style="font-size:11.5px;color:var(--ink2);margin-top:1px">250 pts to reach #7 · 3 days remaining</div>
+            </div>
+          </div>
+          <div class="bp-packs">
+            <div class="bp-pack" data-route="buy-pack-250">
+              <div class="bp-pack-ico">⚡</div>
+              <div class="bp-pack-info">
+                <div class="bp-pack-name">Starter Pack</div>
+                <div class="bp-pack-pts">250 points · one-time</div>
+              </div>
+              <div class="bp-pack-price">€0.99</div>
+            </div>
+            <div class="bp-pack popular" data-route="buy-pack-750">
+              <div class="bp-pack-ico">🚀</div>
+              <div class="bp-pack-info">
+                <div class="bp-pack-name">Boost Pack</div>
+                <div class="bp-pack-pts">750 points · most popular</div>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px">
+                <div class="bp-pack-badge">Best value</div>
+                <div class="bp-pack-price">€1.99</div>
+              </div>
+            </div>
+            <div class="bp-pack" data-route="buy-pack-2000">
+              <div class="bp-pack-ico">👑</div>
+              <div class="bp-pack-info">
+                <div class="bp-pack-name">Elite Pack</div>
+                <div class="bp-pack-pts">2,000 points · league domination</div>
+              </div>
+              <div class="bp-pack-price">€3.99</div>
+            </div>
+          </div>
+          <div class="bp-note">Points are non-refundable. Does not affect your bill earnings.<br>Points earned through tasks are always free.</div>
+        </div>
+      </section>
+
+      <!-- ========================================
+           ONBOARDING 1 — Welcome
+           ======================================== -->
+      <section class="screen ob-screen" data-screen="onboard-1" aria-label="Welcome to YoYou">
+        <div class="sb"><span>9:41</span><span class="ico" aria-hidden="true"><svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="6" width="3" height="5" rx="1" fill="#1B1430"/><rect x="4.5" y="3.5" width="3" height="7.5" rx="1" fill="#1B1430"/><rect x="9" y="1.5" width="3" height="9.5" rx="1" fill="#1B1430"/><rect x="13.5" y="0" width="3" height="11" rx="1" fill="#1B1430" opacity=".35"/></svg><svg width="22" height="11" viewBox="0 0 22 11" fill="none"><rect x=".5" y=".5" width="18" height="10" rx="2.5" stroke="#1B1430" opacity=".4"/><rect x="2" y="2" width="13.5" height="7" rx="1.3" fill="#1B1430"/><rect x="20" y="3.5" width="1.5" height="4" rx=".7" fill="#1B1430" opacity=".5"/></svg></span></div>
+        <div class="ob-progress" aria-label="Step 1 of 4">
+          <div class="ob-dot on"></div><div class="ob-dot"></div><div class="ob-dot"></div><div class="ob-dot"></div>
+        </div>
+        <div class="ob-hero">
+          <div class="ob-illo" aria-hidden="true">
+            <svg viewBox="0 0 200 150" fill="none" xmlns="http://www.w3.org/2000/svg" width="200" height="150">
+              <rect x="60" y="10" width="80" height="130" rx="16" fill="#F3ECFE" stroke="#DDD0FA" stroke-width="2"/>
+              <rect x="68" y="25" width="64" height="75" rx="8" fill="#7C3AED" opacity=".12"/>
+              <circle cx="100" cy="62" r="22" fill="#7C3AED" opacity=".18"/>
+              <circle cx="100" cy="62" r="14" fill="#7C3AED"/>
+              <path d="M93 62l5 5 9-9" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="76" y="108" width="48" height="8" rx="4" fill="#7C3AED" opacity=".25"/>
+              <path d="M130 55 L158 38 L162 46 L134 63z" fill="#4ade80" opacity=".8"/>
+              <circle cx="165" cy="35" r="12" fill="#E6F6EC"/>
+              <text x="161" y="40" font-size="14" fill="#15A35B">€</text>
+            </svg>
+          </div>
+          <div class="ob-title">Your eSIM<br>earns back your bill</div>
+          <div class="ob-sub">Complete small daily tasks and watch your phone bill drop to zero — automatically.</div>
+        </div>
+        <div class="ob-bottom">
+          <button class="btn solid" data-route="onboard-2">Get started →</button>
+          <button class="btn ghost" data-route="lock" style="font-size:13px;padding:11px">Skip for now</button>
+        </div>
+      </section>
+
+      <!-- ========================================
+           ONBOARDING 2 — How it works
+           ======================================== -->
+      <section class="screen ob-screen" data-screen="onboard-2" aria-label="How YoYou works">
+        <div class="sb"><span>9:41</span><span class="ico" aria-hidden="true"><svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="6" width="3" height="5" rx="1" fill="#1B1430"/><rect x="4.5" y="3.5" width="3" height="7.5" rx="1" fill="#1B1430"/><rect x="9" y="1.5" width="3" height="9.5" rx="1" fill="#1B1430"/><rect x="13.5" y="0" width="3" height="11" rx="1" fill="#1B1430" opacity=".35"/></svg><svg width="22" height="11" viewBox="0 0 22 11" fill="none"><rect x=".5" y=".5" width="18" height="10" rx="2.5" stroke="#1B1430" opacity=".4"/><rect x="2" y="2" width="13.5" height="7" rx="1.3" fill="#1B1430"/><rect x="20" y="3.5" width="1.5" height="4" rx=".7" fill="#1B1430" opacity=".5"/></svg></span></div>
+        <div class="ob-progress" aria-label="Step 2 of 4">
+          <div class="ob-dot on"></div><div class="ob-dot on"></div><div class="ob-dot"></div><div class="ob-dot"></div>
+        </div>
+        <div class="ob-hero" style="padding-bottom:0">
+          <div class="ob-title">Here's how it works</div>
+          <div class="ob-sub">Three simple steps, every day.</div>
+        </div>
+        <div class="ob-steps">
+          <div class="ob-step">
+            <div class="ob-step-num">1</div>
+            <div>
+              <div class="ob-step-title">Complete 2 tasks a day</div>
+              <div class="ob-step-sub">Short surveys, watching a clip, or scanning a receipt. Never more than 5 minutes.</div>
+            </div>
+          </div>
+          <div class="ob-step">
+            <div class="ob-step-num">2</div>
+            <div>
+              <div class="ob-step-title">Earnings reduce your bill</div>
+              <div class="ob-step-sub">Every task credits directly against your monthly eSIM bill — in real time.</div>
+            </div>
+          </div>
+          <div class="ob-step">
+            <div class="ob-step-num">3</div>
+            <div>
+              <div class="ob-step-title">Route to Zero</div>
+              <div class="ob-step-sub">Your AI plan shows exactly how many days until your bill hits €0.00.</div>
+            </div>
+          </div>
+        </div>
+        <div class="ob-bottom">
+          <button class="btn solid" data-route="onboard-3">Next →</button>
+        </div>
+      </section>
+
+      <!-- ========================================
+           ONBOARDING 3 — Data consent
+           ======================================== -->
+      <section class="screen ob-screen" data-screen="onboard-3" aria-label="Data permissions">
+        <div class="sb"><span>9:41</span><span class="ico" aria-hidden="true"><svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="6" width="3" height="5" rx="1" fill="#1B1430"/><rect x="4.5" y="3.5" width="3" height="7.5" rx="1" fill="#1B1430"/><rect x="9" y="1.5" width="3" height="9.5" rx="1" fill="#1B1430"/><rect x="13.5" y="0" width="3" height="11" rx="1" fill="#1B1430" opacity=".35"/></svg><svg width="22" height="11" viewBox="0 0 22 11" fill="none"><rect x=".5" y=".5" width="18" height="10" rx="2.5" stroke="#1B1430" opacity=".4"/><rect x="2" y="2" width="13.5" height="7" rx="1.3" fill="#1B1430"/><rect x="20" y="3.5" width="1.5" height="4" rx=".7" fill="#1B1430" opacity=".5"/></svg></span></div>
+        <div class="ob-progress" aria-label="Step 3 of 4">
+          <div class="ob-dot on"></div><div class="ob-dot on"></div><div class="ob-dot on"></div><div class="ob-dot"></div>
+        </div>
+        <div class="ob-hero" style="padding-bottom:4px;flex:0 0 auto;justify-content:flex-start;padding-top:72px">
+          <div class="ob-title" style="font-size:22px">What we use<br>to personalise your tasks</div>
+          <div class="ob-sub" style="font-size:13px">You control what's shared. All data is anonymised and never sold.</div>
+        </div>
+        <div class="ob-consent-list">
+          <div class="ob-consent-row" data-route="ob-toggle-location" role="switch" aria-checked="true">
+            <div class="ob-consent-ico">📍</div>
+            <div class="ob-consent-text">
+              <div class="ob-consent-title">Location (city-level only)</div>
+              <div class="ob-consent-sub">Unlocks location-relevant surveys. We never track your precise GPS.</div>
+            </div>
+            <div class="ob-toggle" id="ob-tog-location"></div>
+          </div>
+          <div class="ob-consent-row" data-route="ob-toggle-appusage" role="switch" aria-checked="true">
+            <div class="ob-consent-ico">📱</div>
+            <div class="ob-consent-text">
+              <div class="ob-consent-title">App usage patterns</div>
+              <div class="ob-consent-sub">Helps match you to relevant app trial tasks. Category-level only.</div>
+            </div>
+            <div class="ob-toggle" id="ob-tog-appusage"></div>
+          </div>
+          <div class="ob-consent-row" data-route="ob-toggle-network" role="switch" aria-checked="true">
+            <div class="ob-consent-ico">📶</div>
+            <div class="ob-consent-text">
+              <div class="ob-consent-title">Network data usage</div>
+              <div class="ob-consent-sub">Powers Autopilot earnings. No content is ever read — only data volumes.</div>
+            </div>
+            <div class="ob-toggle" id="ob-tog-network"></div>
+          </div>
+        </div>
+        <div class="ob-bottom">
+          <button class="btn solid" data-route="onboard-4">Confirm &amp; continue →</button>
+          <p style="font-size:11px;color:var(--ink3);text-align:center;line-height:1.5">You can change these anytime in Settings → Privacy</p>
+        </div>
+      </section>
+
+      <!-- ========================================
+           ONBOARDING 4 — You're set
+           ======================================== -->
+      <section class="screen ob-screen" data-screen="onboard-4" aria-label="You're all set">
+        <div class="sb"><span>9:41</span><span class="ico" aria-hidden="true"><svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="6" width="3" height="5" rx="1" fill="#1B1430"/><rect x="4.5" y="3.5" width="3" height="7.5" rx="1" fill="#1B1430"/><rect x="9" y="1.5" width="3" height="9.5" rx="1" fill="#1B1430"/><rect x="13.5" y="0" width="3" height="11" rx="1" fill="#1B1430" opacity=".35"/></svg><svg width="22" height="11" viewBox="0 0 22 11" fill="none"><rect x=".5" y=".5" width="18" height="10" rx="2.5" stroke="#1B1430" opacity=".4"/><rect x="2" y="2" width="13.5" height="7" rx="1.3" fill="#1B1430"/><rect x="20" y="3.5" width="1.5" height="4" rx=".7" fill="#1B1430" opacity=".5"/></svg></span></div>
+        <div class="ob-progress" aria-label="Step 4 of 4">
+          <div class="ob-dot on"></div><div class="ob-dot on"></div><div class="ob-dot on"></div><div class="ob-dot on"></div>
+        </div>
+        <div class="ob-hero">
+          <div class="ob-success-icon">✨</div>
+          <div class="ob-title">You're all set,<br>Matt!</div>
+          <div class="ob-sub">Your Route to Zero plan is ready. Start your first 2 tasks and watch your bill drop.</div>
+          <div style="background:#F8F5FE;border-radius:14px;border:1px solid var(--line);padding:14px 16px;width:100%;text-align:left;margin-top:4px">
+            <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3);margin-bottom:8px">Today's first tasks</div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+              <div style="width:28px;height:28px;border-radius:8px;background:var(--vio);display:flex;align-items:center;justify-content:center;flex:0 0 auto">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><rect x="5" y="3.5" width="14" height="17" rx="2"/><path d="M9 3.5h6v3H9z"/><path d="M8.5 12h7"/></svg>
+              </div>
+              <div style="font-size:13px;font-weight:600;color:var(--ink)">Quick brand poll <span style="color:var(--ink3);font-weight:500">· 2 min · +€0.40</span></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px">
+              <div style="width:28px;height:28px;border-radius:8px;background:var(--teal);display:flex;align-items:center;justify-content:center;flex:0 0 auto">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M11 9.5l4.5 2.5-4.5 2.5z" fill="#fff" stroke="none"/></svg>
+              </div>
+              <div style="font-size:13px;font-weight:600;color:var(--ink)">Try Duolingo · 5 min <span style="color:var(--ink3);font-weight:500">· +€1.20</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="ob-bottom">
+          <button class="btn solid" data-route="lock">Start earning →</button>
+        </div>
+      </section>
+
     </div>
   </div>
 </main>
@@ -2716,9 +3647,12 @@ const initialState = {
   autopilotOn: false,
   surveyCompleted: false,
   surveyStep: 2,
+  todayTasksDone: false,
+  points: 2260,
   sessionEarned: 0,
   sessionMinutes: 0,
   monthCleared: false,
+  currentTask: null,
   history: ['lock'],
   lastFrom: null
 };
@@ -2786,16 +3720,43 @@ function goBack(){
    SCREEN ENTRY HOOKS
    ============================================ */
 function onScreenEnter(screenId, fromId){
-  if(screenId === 'home')          { clearTimeout(splashTimer); refreshHomeUI(fromId); }
-  if(screenId === 'bonus')           initBonusScreen();
-  if(screenId === 'survey')          initSurveyScreen();
-  if(screenId === 'reward-reveal')   initRewardReveal();
-  if(screenId === 'earn')            initEarnScreen();
-  if(screenId === 'ai')              initAIScreen();
-  if(screenId === 'rewards')         initRewardsScreen();
-  if(screenId === 'splash')          initSplash();
-  if(screenId === 'earn-task')       initEarnTask();
-  if(screenId === 'notifications')   initNotifications();
+  if(screenId === 'home')            { clearTimeout(splashTimer); refreshHomeUI(fromId); }
+  if(screenId === 'bonus')             initBonusScreen();
+  if(screenId === 'survey')            initSurveyScreen();
+  if(screenId === 'reward-reveal')   { initRewardReveal(); checkMonthClearTrigger(); }
+  if(screenId === 'earn')              initEarnScreen();
+  if(screenId === 'ai')                initAIScreen();
+  if(screenId === 'rewards')           initRewardsScreen();
+  if(screenId === 'splash')            initSplash();
+  if(screenId === 'earn-task')         initEarnTask();
+  if(screenId === 'notifications')     initNotifications();
+  if(screenId === 'consent-setup')      initConsentSetup();
+  if(screenId === 'streak-milestone')   initStreakMilestone();
+  if(screenId === 'come-back-tomorrow') initComeBack();
+  if(screenId === 'route-to-zero'){ updateBillUI(); initRtzTabs(); }
+}
+
+function initRtzTabs(){
+  const tabs = document.querySelectorAll('[data-rtz-tab]');
+  const weekPanel  = document.getElementById('rtz-week-panel');
+  const monthPanel = document.getElementById('rtz-month-panel');
+  if(!tabs.length || !weekPanel || !monthPanel) return;
+  // Reset to week tab on each screen entry
+  tabs.forEach(t => {
+    t.classList.toggle('active', t.dataset.rtzTab === 'week');
+    t.setAttribute('aria-selected', String(t.dataset.rtzTab === 'week'));
+  });
+  weekPanel.hidden  = false;
+  monthPanel.hidden = true;
+  tabs.forEach(tab => {
+    tab.onclick = () => {
+      const target = tab.dataset.rtzTab;
+      tabs.forEach(t => { t.classList.toggle('active', t === tab); t.setAttribute('aria-selected', String(t === tab)); });
+      weekPanel.hidden  = target !== 'week';
+      monthPanel.hidden = target !== 'month';
+      if(monthPanel.hidden === false) monthPanel.style.display = 'flex';
+    };
+  });
 }
 
 /* ============================================
@@ -2823,6 +3784,12 @@ function refreshHomeUI(fromId){
     streakTxt.textContent = state.dailyBonusClaimed ? 'Streak active · 5 days' : 'Day 5 streak';
   }
 
+  // Gate boost + daily bonus until today's tasks are done
+  const boostEl = document.querySelector('.boost');
+  const bonusEl = document.getElementById('bonus-chip');
+  if(boostEl)  boostEl.toggleAttribute('data-locked', !state.todayTasksDone);
+  if(bonusEl)  bonusEl.toggleAttribute('data-locked', !state.todayTasksDone);
+
   // Toast / overlay on return
   if(fromId === 'bonus' && state.dailyBonusClaimed){
     showToast('+€0.30 applied to your bill');
@@ -2830,24 +3797,43 @@ function refreshHomeUI(fromId){
   if(fromId === 'reward-reveal' && state.surveyCompleted){
     setTimeout(showSessionOverlay, 380);
   }
+  if(fromId === 'come-back-tomorrow'){
+    showToast('Welcome back! Today\'s tasks are ready');
+  }
 }
 
 /* ============================================
    BILL UI
    ============================================ */
 function updateBillUI(){
-  const pct = Math.min(100, ((state.billTotal - state.bill) / state.billTotal) * 100);
-  const whole = Math.floor(state.bill);
-  const frac  = String(Math.round((state.bill - whole) * 100)).padStart(2,'0');
+  const pct     = Math.min(100, ((state.billTotal - state.bill) / state.billTotal) * 100);
+  const whole   = Math.floor(state.bill);
+  const frac    = String(Math.round((state.bill - whole) * 100)).padStart(2,'0');
   const cleared = (state.billTotal - state.bill).toFixed(2);
+  const daysLeft= Math.ceil(state.bill / 1.60);
 
-  const amtEl  = document.getElementById('bill-amt');
-  const fillEl = document.getElementById('bill-fill');
-  const subEl  = document.getElementById('bill-sub');
+  const amtEl      = document.getElementById('bill-amt');
+  const dialPct    = document.getElementById('bill-dial-pct');
+  const billFill   = document.getElementById('bill-fill');
+  const clearedAmt = document.getElementById('bill-cleared-amt');
+  const daysEl     = document.getElementById('bill-days-left');
+  const rtzAmt     = document.getElementById('rtz-dial-amt');
+  const rtzArc     = document.getElementById('rtz-dial-arc');
 
-  if(amtEl)  amtEl.innerHTML = `€${whole}<small>.${frac}</small>`;
-  if(fillEl) fillEl.style.width = `${pct}%`;
-  if(subEl)  subEl.textContent = `${Math.round(pct)}% cleared · €${cleared} of €${state.billTotal.toFixed(2)}`;
+  if(amtEl)      amtEl.innerHTML = `€${whole}<small>.${frac}</small>`;
+  if(dialPct)    dialPct.textContent = `${Math.round(pct)}%`;
+  if(billFill)   billFill.style.width = `${pct.toFixed(1)}%`;
+  if(clearedAmt) clearedAmt.textContent = `€${cleared}`;
+  if(daysEl)     daysEl.textContent = `${daysLeft} day${daysLeft!==1?'s':''}`;
+  const rtzCardDays = document.getElementById('rtz-days-left-card');
+  if(rtzCardDays) rtzCardDays.textContent = `${daysLeft} day${daysLeft!==1?'s':''}`;
+
+  // Route to Zero big dial (r=36, circumference=226.2)
+  if(rtzAmt) rtzAmt.textContent = `€${state.bill.toFixed(2)}`;
+  if(rtzArc){
+    const offset = 226.2 * (1 - pct / 100);
+    rtzArc.style.strokeDashoffset = offset.toFixed(1);
+  }
 }
 
 function applyBillDelta(amount){
@@ -2910,7 +3896,8 @@ function completeSurvey(){
   state.sessionMinutes += 7;
   applyBillDelta(1.60);  // apply to state before reveal screen reads it
   navigate('reward-reveal', 'forward');
-  checkMonthClearTrigger();
+  // checkMonthClearTrigger is called from onScreenEnter('reward-reveal')
+  // so it runs only after the transition has fully settled
 }
 
 /* ============================================
@@ -3046,11 +4033,15 @@ const QR_ANSWERS = {
   'autopilot':"Autopilot is rolling out to accounts this week. I'll notify you the moment yours activates — it earns €0.08–€0.20 per day without you lifting a finger."
 };
 let aiActive = false;
+let aiTimers = [];
 
 function initAIScreen(){
   const chatBody = document.getElementById('chat-body');
   const qrChips  = document.getElementById('qr-chips');
   if(!chatBody) return;
+
+  aiTimers.forEach(t => clearTimeout(t));
+  aiTimers = [];
 
   chatBody.innerHTML = '';
   if(qrChips){ qrChips.classList.remove('visible'); }
@@ -3072,15 +4063,15 @@ function initAIScreen(){
     chatBody.scrollTop = chatBody.scrollHeight;
   }
 
-  setTimeout(()=> addTyping(),                          350);
-  setTimeout(()=> addBubble(AI_MSGS[0]),               1100);
-  setTimeout(()=> addTyping(),                         1550);
-  setTimeout(()=> addBubble(AI_MSGS[1]),               2550);
-  setTimeout(()=> addTyping(),                         3050);
-  setTimeout(()=>{
+  aiTimers.push(setTimeout(()=> addTyping(),                350));
+  aiTimers.push(setTimeout(()=> addBubble(AI_MSGS[0]),     1100));
+  aiTimers.push(setTimeout(()=> addTyping(),               1550));
+  aiTimers.push(setTimeout(()=> addBubble(AI_MSGS[1]),     2550));
+  aiTimers.push(setTimeout(()=> addTyping(),               3050));
+  aiTimers.push(setTimeout(()=>{
     addBubble(AI_MSGS[2]);
-    if(qrChips) setTimeout(()=> qrChips.classList.add('visible'), 350);
-  }, 4200);
+    aiTimers.push(setTimeout(()=> qrChips && qrChips.classList.add('visible'), 350));
+  }, 4200));
 }
 
 function handleQR(key){
@@ -3107,6 +4098,18 @@ function handleQR(key){
     const b = document.createElement('div');
     b.className = 'ai-bubble'; b.textContent = QR_ANSWERS[key] || '';
     chatBody.appendChild(b); chatBody.scrollTop = chatBody.scrollHeight;
+
+    if(key === 'take-me'){
+      setTimeout(()=>{
+        const planBtn = document.createElement('button');
+        planBtn.className = 'btn solid';
+        planBtn.style.cssText = 'margin-top:8px;font-size:13px;padding:11px 16px;width:100%';
+        planBtn.textContent = 'See my weekly plan →';
+        planBtn.addEventListener('click', ()=> navigate('weekly-plan','forward'));
+        chatBody.appendChild(planBtn);
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }, 400);
+    }
   }, 1550);
 }
 
@@ -3131,15 +4134,39 @@ function initRewardsScreen(){
 let splashTimer = null;
 let earnTaskInterval = null;
 function initSplash(){
+  const screen = document.querySelector('[data-screen="splash"]');
+  // Restart CSS animations by toggling the class
+  if(screen){
+    screen.classList.remove('splash-anim');
+    void screen.offsetWidth;
+    screen.classList.add('splash-anim');
+    // Regenerate floating particles
+    screen.querySelectorAll('.splash-particle').forEach(p => p.remove());
+    [
+      {size:9, l:18, delay:.4, dur:3.2},
+      {size:5, l:72, delay:.9, dur:2.6},
+      {size:13,l:42, delay:1.3, dur:3.6},
+      {size:6, l:83, delay:.15,dur:2.9},
+      {size:4, l:58, delay:1.7, dur:2.3},
+    ].forEach(p => {
+      const el = document.createElement('div');
+      el.className = 'splash-particle';
+      el.style.cssText = `width:${p.size}px;height:${p.size}px;left:${p.l}%;bottom:15%;animation-delay:${p.delay}s;animation-duration:${p.dur}s`;
+      screen.appendChild(el);
+    });
+  }
   const bar = document.getElementById('splash-bar');
   if(bar){
     bar.style.transition = 'none';
     bar.style.width = '0%';
     void bar.offsetWidth;
-    bar.style.transition = 'width 1.4s linear';
+    bar.style.transition = 'width 2s .3s linear';
     bar.style.width = '100%';
   }
-  splashTimer = setTimeout(()=> navigate('home', 'forward'), 1500);
+  // Only auto-navigate when not in a journey (journey runner handles its own timing)
+  if(!_jBtn){
+    splashTimer = setTimeout(()=> navigate('home', 'forward'), 2400);
+  }
 }
 
 /* ============================================
@@ -3289,14 +4316,27 @@ function resetPrototype(){
   state = structuredClone(initialState);
   clearTimeout(splashTimer);
   clearTimeout(sessionOverlayTimer);
+  clearInterval(earnTaskInterval);
 
-  // Reset bill UI
-  const amtEl  = document.getElementById('bill-amt');
-  const fillEl = document.getElementById('bill-fill');
-  const subEl  = document.getElementById('bill-sub');
-  if(amtEl)  amtEl.innerHTML = '€11<small>.20</small>';
-  if(fillEl){ fillEl.style.transition='none'; fillEl.style.width='38%'; }
-  if(subEl)  subEl.textContent = '38% cleared · €6.80 of €18.00';
+  // Reset bill UI (dial)
+  const amtEl    = document.getElementById('bill-amt');
+  const subEl    = document.getElementById('bill-sub');
+  const dialPct  = document.getElementById('bill-dial-pct');
+  const dialFill = document.getElementById('bill-dial-fill');
+  const rtzAmt   = document.getElementById('rtz-dial-amt');
+  const rtzArc   = document.getElementById('rtz-dial-arc');
+  if(amtEl)    amtEl.innerHTML = '€11<small>.20</small>';
+  if(subEl)    subEl.textContent = '€6.80 of €18.00 paid off';
+  if(dialPct)  dialPct.textContent = '38% cleared';
+  if(dialFill){ dialFill.style.transition='none'; dialFill.style.strokeDashoffset='77.7'; }
+  if(rtzAmt)   rtzAmt.textContent = '€11.20';
+  if(rtzArc){  rtzArc.style.transition='none'; rtzArc.style.strokeDashoffset='139.2'; }
+
+  // Reset gated elements
+  const boostEl = document.querySelector('.boost');
+  const bonusEl = document.getElementById('bonus-chip');
+  if(boostEl)  boostEl.removeAttribute('data-locked');
+  if(bonusEl)  bonusEl.removeAttribute('data-locked');
 
   // Reset bonus chip
   const chip = document.getElementById('bonus-chip');
@@ -3319,6 +4359,39 @@ function resetPrototype(){
   });
   const lockScreen = screenEl('lock');
   if(lockScreen) lockScreen.classList.add('active');
+}
+
+/* ============================================
+   CONSENT SETUP
+   ============================================ */
+function initConsentSetup(){
+  // Ensure all toggles start in ON state each time the screen is entered
+  ['toggle-location','toggle-appusage','toggle-network'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el) el.classList.remove('off');
+  });
+}
+
+function toggleConsentRow(toggleId){
+  const el = document.getElementById(toggleId);
+  if(!el) return;
+  el.classList.toggle('off');
+  const row = el.closest('[role="switch"]');
+  if(row) row.setAttribute('aria-checked', String(!el.classList.contains('off')));
+}
+
+/* ============================================
+   STREAK MILESTONE
+   ============================================ */
+const STREAK_MILESTONES = {1:0.20, 3:0.30, 5:0.40, 7:0.50};
+
+function initStreakMilestone(){
+  const dayEl = document.getElementById('sm-day-count');
+  const bonusEl = document.getElementById('sm-bonus-val');
+  const days = state.streakDays;
+  const bonus = STREAK_MILESTONES[days] || STREAK_MILESTONES[5];
+  if(dayEl)   dayEl.textContent   = days;
+  if(bonusEl) bonusEl.textContent = `+€${bonus.toFixed(2)}`;
 }
 
 /* ============================================
@@ -3387,10 +4460,41 @@ function init(){
       navigate('home', 'forward');
       return;
     }
+    if(route === 'confirm-autopilot'){    applyAutopilot(); return; }
+    if(route === 'route-to-zero'){        navigate('route-to-zero','forward'); return; }
+    if(route === 'start-today-tasks'){    startTodayTasks(); return; }
+    if(route === 'buy-points'){           navigate('buy-points','forward'); return; }
+    if(route === 'buy-pack-250'||route === 'buy-pack-750'||route === 'buy-pack-2000'){ buyPoints(route); return; }
+    if(route === 'onboard-1')  { navigate('onboard-1','forward'); return; }
+    if(route === 'onboard-2')  { navigate('onboard-2','forward'); return; }
+    if(route === 'onboard-3')  { navigate('onboard-3','forward'); return; }
+    if(route === 'onboard-4')  { navigate('onboard-4','forward'); return; }
+    if(route === 'ob-toggle-location'){ obToggle('ob-tog-location'); return; }
+    if(route === 'ob-toggle-appusage'){ obToggle('ob-tog-appusage'); return; }
+    if(route === 'ob-toggle-network'){  obToggle('ob-tog-network');  return; }
+    // Consent-setup toggle rows
+    if(route === 'toggle-location'){ toggleConsentRow('toggle-location'); return; }
+    if(route === 'toggle-appusage'){ toggleConsentRow('toggle-appusage'); return; }
+    if(route === 'toggle-network'){  toggleConsentRow('toggle-network');  return; }
+    // Autopilot: go to control panel if already active, setup if not
+    if(route === 'autopilot'){
+      navigate(state.autopilotOn ? 'autopilot-panel' : 'autopilot', 'forward');
+      return;
+    }
+    // Streak chip: milestone screen on milestone days, urgency otherwise
+    if(route === 'streak-risk'){
+      const milestones = [1, 3, 5, 7];
+      navigate(milestones.includes(state.streakDays) ? 'streak-milestone' : 'streak-risk', 'forward');
+      return;
+    }
 
-    // Nav tab: going back to home uses back-direction slide
-    const dir = route === 'home' ? 'back' : 'forward';
-    navigate(route, dir);
+    // Nav tab: slide direction based on tab order (home|earn|rewards|profile)
+    const TAB_ORDER = ['home','earn','rewards','profile'];
+    const fromScreen = state.history[state.history.length - 1] || 'home';
+    const fromIdx = TAB_ORDER.indexOf(fromScreen);
+    const toIdx   = TAB_ORDER.indexOf(route);
+    const tabDir  = (fromIdx === -1 || toIdx === -1 || toIdx >= fromIdx) ? 'forward' : 'back';
+    navigate(route, tabDir);
   });
 
   // Keyboard accessibility
@@ -3403,14 +4507,132 @@ function init(){
   });
 
   // Page chrome
-  document.getElementById('btn-reset').addEventListener('click', resetPrototype);
+  document.getElementById('btn-reset').addEventListener('click', ()=>{ stopJourney(); resetPrototype(); });
   document.getElementById('btn-eom').addEventListener('click', ()=>{
     state.monthCleared = true;
     navigate('bill-cleared', 'forward');
   });
+
+  // Journey buttons
+  ['j1','j2','j3','j4','j5'].forEach(id => {
+    const btn = document.getElementById(id);
+    if(!btn) return;
+    btn.addEventListener('click', () => {
+      if(btn.classList.contains('playing')){ stopJourney(); return; }
+      runJourney(id);
+    });
+  });
 }
 
-document.addEventListener('DOMContentLoaded', init);
+// ── JOURNEY RUNNER ───────────────────────────────────────────────────────────
+const JOURNEYS = [
+  { id:'j1', steps:[
+    {s:'splash',p:2600},{s:'onboard-1',p:2200},{s:'onboard-2',p:2200},
+    {s:'onboard-3',p:2200},{s:'onboard-4',p:2500},{s:'home',p:0}
+  ]},
+  { id:'j2', steps:[
+    {s:'home',p:1800},{s:'route-to-zero',p:2200},{s:'survey',p:2800},
+    {s:'reward-reveal',p:2500},{s:'come-back-tomorrow',p:0}
+  ]},
+  { id:'j3', steps:[
+    {s:'home',p:1800},{s:'ai',p:5500},{s:'survey',p:2800},{s:'reward-reveal',p:0}
+  ]},
+  { id:'j4', steps:[
+    {s:'home',p:1800},{s:'leagues',p:2500},{s:'buy-points',p:0}
+  ]},
+  { id:'j5', steps:[
+    {s:'home',p:1800},{s:'bill-cleared',p:3000},{s:'ai-wrapped',p:0}
+  ], setup(){ state.bill=0; state.monthCleared=true; updateBillUI(); }},
+];
+
+let _jTimer = null;
+let _jBtn   = null;
+
+function stopJourney(){
+  if(_jTimer){ clearTimeout(_jTimer); _jTimer=null; }
+  if(_jBtn){ _jBtn.classList.remove('playing'); _jBtn=null; }
+}
+
+function runJourney(id){
+  stopJourney();
+  const j = JOURNEYS.find(x=>x.id===id);
+  if(!j) return;
+  state = structuredClone(initialState);   // fresh state for every journey
+  if(j.setup) j.setup();
+  const btn = document.getElementById(id);
+  if(btn){ btn.classList.add('playing'); _jBtn = btn; }
+  let i = 0;
+  function next(){
+    if(i >= j.steps.length){ stopJourney(); return; }
+    const {s, p} = j.steps[i++];
+    navigate(s, 'forward');
+    if(p > 0) _jTimer = setTimeout(next, p);
+    else stopJourney();
+  }
+  next();
+}
+
+/* ============================================
+   ROUTE TO ZERO / TODAY TASKS
+   ============================================ */
+function startTodayTasks(){
+  // Use the existing survey task as "task 1" for demo flow
+  navigate('survey', 'forward');
+}
+
+function completeToday(){
+  state.todayTasksDone = true;
+  state.streakDays = Math.min(7, state.streakDays + 1);
+  applyBillDelta(1.60);
+  navigate('come-back-tomorrow', 'forward');
+}
+
+function initComeBack(){
+  const earnEl   = document.getElementById('cbt-earned');
+  const billEl   = document.getElementById('cbt-bill-left');
+  const streakEl = document.getElementById('cbt-streak-day');
+  if(earnEl)   earnEl.textContent   = '+€1.60';
+  if(billEl)   billEl.textContent   = `€${state.bill.toFixed(2)}`;
+  if(streakEl) streakEl.textContent = state.streakDays;
+}
+
+/* ============================================
+   ONBOARDING TOGGLES
+   ============================================ */
+function obToggle(id){
+  const el = document.getElementById(id);
+  if(!el) return;
+  el.classList.toggle('off');
+  const row = el.closest('[role="switch"]');
+  if(row) row.setAttribute('aria-checked', String(!el.classList.contains('off')));
+}
+
+/* ============================================
+   BUY POINTS
+   ============================================ */
+function buyPoints(pack){
+  const pts = {250:'buy-pack-250', 750:'buy-pack-750', 2000:'buy-pack-2000'};
+  const amounts = {'buy-pack-250':250,'buy-pack-750':750,'buy-pack-2000':2000};
+  const add = amounts[pack] || 250;
+  state.points += add;
+  const myPts = document.getElementById('lb-my-pts');
+  if(myPts) myPts.textContent = state.points.toLocaleString();
+  showToast(`+${add.toLocaleString()} pts added to your rank!`);
+  navigate('leagues', 'back');
+}
+
+function scaleDevice() {
+  const device = document.querySelector('.device');
+  const stage  = document.querySelector('.stage');
+  if (!device || !stage) return;
+  const sw = stage.clientWidth;
+  const sh = stage.clientHeight;
+  const scale = Math.min(1, sw / 390, sh / 844);
+  device.style.transform = scale < 1 ? `scale(${scale.toFixed(3)})` : '';
+  device.style.transformOrigin = 'center center';
+}
+window.addEventListener('resize', scaleDevice);
+document.addEventListener('DOMContentLoaded', () => { init(); scaleDevice(); });
 </script>
 
 </body>
