@@ -438,8 +438,21 @@ nav.nav{
 .opp-ico{font-size:20px;line-height:1}
 .opp-count{font-size:12px;font-weight:700;color:var(--ink);text-align:center}
 .opp-val{font-size:11px;font-weight:700;color:var(--viod);text-align:center}
-/* ── Streak + Wallet tiles ────────────────── */
-.stat-tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+/* ── Streak card ─────────────────────────── */
+.streak-card{background:#fff;border-radius:14px;padding:14px 16px 12px;border:1.5px solid var(--line);cursor:pointer;transition:border-color var(--t-fast) var(--ease)}
+.streak-card:active{border-color:var(--viod)}
+.streak-days{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.sday{display:flex;flex-direction:column;align-items:center;gap:5px}
+.sday-dot{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.sday.done .sday-dot{background:var(--vio)}
+.sday.today .sday-dot{background:transparent;border:2.5px solid var(--vio)}
+.sday.future .sday-dot{background:var(--lavd)}
+.sday-lbl{font-size:11px;font-weight:700;color:var(--ink3);letter-spacing:.2px}
+.sday.done .sday-lbl,.sday.today .sday-lbl{color:var(--ink)}
+.streak-footer{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:9px}
+.streak-count{font-size:11.5px;font-weight:600;color:var(--ink3)}
+.streak-bonus{font-size:11px;font-weight:700;color:var(--viod)}
+/* ── Wallet tile ─────────────────────────── */
 .stat-tile{background:#fff;border-radius:14px;padding:13px 14px;display:flex;align-items:center;gap:10px;cursor:pointer;border:1.5px solid var(--line);transition:border-color var(--t-fast) var(--ease)}
 .stat-tile:active{border-color:var(--viod)}
 .st-ico{font-size:22px;line-height:1;flex-shrink:0}
@@ -1925,21 +1938,29 @@ nav.nav{
             </div>
           </div>
 
-          <!-- Streak + Wallet -->
-          <div class="stat-tiles">
-            <div class="stat-tile" data-route="streak-risk" role="button" tabindex="0" aria-label="5 day streak">
-              <span class="st-ico">🔥</span>
-              <div>
-                <div class="st-val" id="home-streak-val">5 days</div>
-                <div class="st-lbl">Streak</div>
-              </div>
+          <!-- Streak card -->
+          <div class="streak-card" data-route="streak-risk" role="button" tabindex="0" aria-label="5 of 7 days streak">
+            <div class="streak-days">
+              <div class="sday done"><div class="sday-dot"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L19 7"/></svg></div><span class="sday-lbl">M</span></div>
+              <div class="sday done"><div class="sday-dot"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L19 7"/></svg></div><span class="sday-lbl">T</span></div>
+              <div class="sday done"><div class="sday-dot"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L19 7"/></svg></div><span class="sday-lbl">W</span></div>
+              <div class="sday done"><div class="sday-dot"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L19 7"/></svg></div><span class="sday-lbl">T</span></div>
+              <div class="sday done"><div class="sday-dot"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L19 7"/></svg></div><span class="sday-lbl">F</span></div>
+              <div class="sday today"><div class="sday-dot" style="color:var(--viod);font-size:13px;font-weight:800">S</div><span class="sday-lbl">S</span></div>
+              <div class="sday future"><div class="sday-dot"></div><span class="sday-lbl">S</span></div>
             </div>
-            <div class="stat-tile" data-route="rewards" role="button" tabindex="0" aria-label="Wallet balance">
-              <span class="st-ico">💰</span>
-              <div>
-                <div class="st-val" id="home-wallet-val">€4.60</div>
-                <div class="st-lbl">Wallet</div>
-              </div>
+            <div class="streak-footer">
+              <span class="streak-count" id="home-streak-val">5 of 7 days done</span>
+              <span class="streak-bonus">2 days → €0.50 bonus unlocks</span>
+            </div>
+          </div>
+
+          <!-- Wallet tile -->
+          <div class="stat-tile" data-route="rewards" role="button" tabindex="0" aria-label="Wallet balance">
+            <span class="st-ico">💰</span>
+            <div>
+              <div class="st-val" id="home-wallet-val">€4.60</div>
+              <div class="st-lbl">Wallet</div>
             </div>
           </div>
 
