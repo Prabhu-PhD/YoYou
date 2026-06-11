@@ -420,7 +420,7 @@ nav.nav{
 .btz-dchip{display:inline-flex;align-items:center;background:rgba(255,255,255,.15);border-radius:99px;padding:4px 10px;font-size:11px;font-weight:700;color:#fff;margin-bottom:4px}
 .btz-sub{font-size:12.5px;color:rgba(255,255,255,.6);margin:0 0 12px;font-weight:500}
 .btz-track{height:6px;border-radius:99px;background:rgba(255,255,255,.2);overflow:hidden;margin-bottom:14px}
-.btz-track-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#4ade80,#22d3ee);transition:width 900ms var(--ease-out)}
+.btz-track-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#4ade80,#22d3ee);transition:width 900ms cubic-bezier(0.34,1.56,0.64,1)}
 .btz-cta{display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(255,255,255,.15);padding-top:11px;margin-top:2px;font-size:12.5px;font-weight:700;color:rgba(255,255,255,.85)}
 .btz-cta-left{display:flex;align-items:center;gap:7px}
 .btz-ai-dot{width:7px;height:7px;border-radius:50%;background:#A78BFA;box-shadow:0 0 6px #A78BFA;animation:ai-pulse 2s ease-in-out infinite}
@@ -453,6 +453,13 @@ nav.nav{
 .sday.future .sday-dot{background:var(--lavd)}
 .sday-lbl{font-size:11px;font-weight:700;color:var(--ink3);letter-spacing:.2px}
 .sday.done .sday-lbl,.sday.today .sday-lbl{color:var(--ink)}
+/* μ4: streak dot pulse ring on completion */
+@keyframes dotRing{
+  0%{box-shadow:0 0 0 0 rgba(124,58,237,.55)}
+  60%{box-shadow:0 0 0 9px rgba(124,58,237,0)}
+  100%{box-shadow:0 0 0 0 rgba(124,58,237,0)}
+}
+.sday.done.just-done .sday-dot{animation:dotRing .75s ease-out forwards}
 .streak-footer{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:9px}
 .streak-count{font-size:11.5px;font-weight:600;color:var(--ink3)}
 .streak-bonus{font-size:11px;font-weight:700;color:var(--viod)}
@@ -1007,10 +1014,12 @@ nav.nav{
   width:100%;border-radius:10px;padding:15px;
   font-weight:700;font-size:15px;font-family:var(--f);
   cursor:pointer;border:none;
-  transition:opacity var(--t-fast) var(--ease), transform var(--t-fast) var(--ease), background var(--t-fast) var(--ease);
+  /* μ9: spring-back on release */
+  transition:transform 420ms cubic-bezier(0.34,1.56,0.64,1), opacity 200ms ease, background var(--t-fast) var(--ease);
 }
 .btn:hover{opacity:.9}
-.btn:active{transform:scale(.98);opacity:.82}
+/* μ9: fast snap-down on press, spring release handled by parent rule */
+.btn:active{transform:scale(.94);opacity:.85;transition:transform 80ms ease,opacity 80ms ease,background var(--t-fast) var(--ease)}
 .btn.solid{
   background:var(--vio);
   color:#fff;
@@ -1039,6 +1048,12 @@ nav.nav{
 }
 .boost-strip span{font-size:12.5px;color:#7A3D00;font-weight:500;line-height:1.35}
 .boost-strip strong{font-weight:700}
+/* μ5: boost strip pulse glow */
+@keyframes boostPulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(255,160,50,0);border-color:#FFD6A5}
+  50%{box-shadow:0 0 0 5px rgba(255,160,50,.18);border-color:#FFA83E}
+}
+.boost-strip{animation:boostPulse 2.2s ease-in-out infinite}
 
 .survey-step-row{display:flex;align-items:center;justify-content:space-between;padding:2px 0}
 .survey-step-label{font-size:12px;font-weight:600;color:var(--ink3)}
@@ -1699,7 +1714,13 @@ nav.nav{
 .app-ico-wrap:active .app-ico-img{transform:scale(.92)}
 .app-ico-img{width:56px;height:56px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:26px;position:relative;transition:transform .12s ease;flex-shrink:0}
 .app-ico-name{font-size:10px;color:rgba(255,255,255,.88);text-align:center;font-weight:500;text-shadow:0 1px 4px rgba(0,0,0,.6);max-width:62px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
-.app-ico-badge{position:absolute;top:-4px;right:-4px;background:#FF3B30;color:#fff;font-size:9px;font-weight:700;min-width:16px;height:16px;border-radius:8px;display:flex;align-items:center;justify-content:center;border:1.5px solid #fff;padding:0 3px;z-index:1}
+.app-ico-badge{position:absolute;top:-4px;right:-4px;background:#FF3B30;color:#fff;font-size:9px;font-weight:700;min-width:16px;height:16px;border-radius:8px;display:flex;align-items:center;justify-content:center;border:1.5px solid #fff;padding:0 3px;z-index:1;transition:transform .15s ease}
+/* μ11: badge pop on open */
+@keyframes badgePop{0%{transform:scale(1)} 30%{transform:scale(1.5)} 65%{transform:scale(.8)} 100%{transform:scale(0);opacity:0}}
+.app-ico-badge.clearing{animation:badgePop .38s ease-out forwards}
+/* μ10: bill amount flash green on new credit */
+@keyframes billFlash{0%{color:var(--grni);transform:scale(1.06)} 100%{color:inherit;transform:scale(1)}}
+.bill-flash{animation:billFlash .5s ease-out}
 .app-dock-wrap{position:relative;z-index:2;margin:0 10px;background:rgba(255,255,255,.14);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-radius:22px;padding:10px 8px;display:grid;grid-template-columns:repeat(4,1fr)}
 .app-dock-wrap .app-ico-wrap{padding:4px 2px}
 
@@ -4376,14 +4397,14 @@ const initialState = {
   dailyBonusClaimed: false,
   autopilotOn: false,
   surveyCompleted: false,
-  surveyStep: 2,
-  todayTasksDone: false,
+  surveyStep: 1,
+  todayTasksDone: true,
   points: 2260,
   sessionEarned: 0,
   sessionMinutes: 0,
   monthCleared: false,
   currentTask: null,
-  history: ['lock'],
+  history: ['app-gallery'],
   lastFrom: null
 };
 let state = structuredClone(initialState);
@@ -4417,6 +4438,8 @@ function navigate(toId, direction='forward'){
 
   toEl.classList.add(enterClass);
   toEl.classList.add('active');
+  toEl.removeAttribute('inert');
+  toEl.removeAttribute('aria-hidden');
   void toEl.offsetWidth;  // force reflow
   toEl.classList.remove(enterClass);
 
@@ -4434,8 +4457,15 @@ function navigate(toId, direction='forward'){
   }
 
   setTimeout(()=>{
-    if(fromEl) fromEl.classList.remove(exitClass);
+    if(fromEl){
+      fromEl.classList.remove(exitClass);
+      fromEl.setAttribute('inert', '');
+      fromEl.setAttribute('aria-hidden', 'true');
+    }
     isAnimating = false;
+    // Move focus to first heading or back button in new screen (a11y fix #16)
+    const focusTarget = toEl.querySelector('h1,h2,[data-route="back"],[role="heading"]');
+    if(focusTarget) focusTarget.focus({ preventScroll: true });
     onScreenEnter(toId, fromId);
   }, 320);
 }
@@ -4453,7 +4483,7 @@ function onScreenEnter(screenId, fromId){
   if(screenId === 'home')            { clearTimeout(splashTimer); refreshHomeUI(fromId); }
   if(screenId === 'bonus')             initBonusScreen();
   if(screenId === 'survey')            initSurveyScreen();
-  if(screenId === 'reward-reveal')   { initRewardReveal(); checkMonthClearTrigger(); }
+  if(screenId === 'reward-reveal')   { initRewardReveal(); }
   if(screenId === 'earn')              initEarnScreen();
   if(screenId === 'ai')                initAIScreen();
   if(screenId === 'rewards')           initRewardsScreen();
@@ -4569,6 +4599,11 @@ function updateBillUI(){
 function applyBillDelta(amount){
   state.bill = Math.max(0, +(state.bill - amount).toFixed(2));
   updateBillUI();
+  // μ10: flash bill amount green on home
+  const amtEl = document.getElementById('bill-amt');
+  if(amtEl){ amtEl.classList.remove('bill-flash'); void amtEl.offsetWidth; amtEl.classList.add('bill-flash'); }
+  // M2: natural bill-zero trigger
+  checkMonthClearTrigger();
 }
 
 /* ============================================
@@ -4598,7 +4633,7 @@ function initBonusScreen(){
    SURVEY SCREEN (S7)
    ============================================ */
 function initSurveyScreen(){
-  state.surveyStep = 2;
+  state.surveyStep = 1;
   updateSurveyUI();
 }
 
@@ -4622,12 +4657,19 @@ function surveyNext(){
 
 function completeSurvey(){
   state.surveyCompleted = true;
+  state.todayTasksDone = true;
+  state.streakDays = Math.min(7, state.streakDays + 1);
+  // μ4: pulse the completing streak dot
+  const todayDot = document.querySelector('.sday.today');
+  if(todayDot){
+    todayDot.classList.remove('today');
+    todayDot.classList.add('done','just-done');
+    setTimeout(()=> todayDot.classList.remove('just-done'), 1000);
+  }
   state.sessionEarned = +(state.sessionEarned + 1.60).toFixed(2);
   state.sessionMinutes += 7;
-  applyBillDelta(1.60);  // apply to state before reveal screen reads it
+  applyBillDelta(1.60);
   navigate('reward-reveal', 'forward');
-  // checkMonthClearTrigger is called from onScreenEnter('reward-reveal')
-  // so it runs only after the transition has fully settled
 }
 
 /* ============================================
@@ -4688,7 +4730,6 @@ function applyBonus(){
   state.sessionEarned = +(state.sessionEarned + 0.30).toFixed(2);
   applyBillDelta(0.30);
   navigate('home', 'back');
-  checkMonthClearTrigger();
 }
 
 /* ============================================
@@ -4835,7 +4876,7 @@ function handleQR(key){
         planBtn.className = 'btn solid';
         planBtn.style.cssText = 'margin-top:8px;font-size:13px;padding:11px 16px;width:100%';
         planBtn.textContent = 'See my weekly plan →';
-        planBtn.addEventListener('click', ()=> navigate('weekly-plan','forward'));
+        planBtn.addEventListener('click', ()=> navigate('route-to-zero','forward'));
         chatBody.appendChild(planBtn);
         chatBody.scrollTop = chatBody.scrollHeight;
       }, 400);
@@ -4906,10 +4947,7 @@ function applyAutopilot(){
   if(state.autopilotOn) return;
   state.autopilotOn = true;
   navigate('home', 'back');
-  setTimeout(()=>{
-    showToast('Autopilot activated · Earning passively 🌙');
-    checkMonthClearTrigger();
-  }, 380);
+  setTimeout(()=> showToast('Autopilot activated · Earning passively 🌙'), 380);
 }
 
 /* ============================================
@@ -5032,8 +5070,9 @@ function clearNotifications(){
 /* ============================================
    MONTH CLEAR TRIGGER
    ============================================ */
+// M2: fires naturally whenever bill reaches zero, from any action
 function checkMonthClearTrigger(){
-  if(state.surveyCompleted && state.dailyBonusClaimed && state.autopilotOn && !state.monthCleared){
+  if(state.bill === 0 && !state.monthCleared){
     state.monthCleared = true;
     setTimeout(()=> navigate('bill-cleared', 'forward'), 700);
   }
@@ -5043,6 +5082,7 @@ function checkMonthClearTrigger(){
    RESET
    ============================================ */
 function resetPrototype(){
+  stopJourney();
   state = structuredClone(initialState);
   clearTimeout(splashTimer);
   clearTimeout(sessionOverlayTimer);
@@ -5083,12 +5123,18 @@ function resetPrototype(){
   const overlay = document.getElementById('session-overlay');
   if(overlay) overlay.classList.remove('show');
 
-  // Jump all screens to inactive, app-gallery to active
+  // Jump all screens to inactive, app-gallery to active; apply inert to hidden screens
   stack.querySelectorAll('.screen').forEach(s=>{
     s.classList.remove('active','enter-right','enter-left','exit-left','exit-right');
+    s.setAttribute('inert', '');
+    s.setAttribute('aria-hidden', 'true');
   });
   const startScreen = screenEl('app-gallery');
-  if(startScreen) startScreen.classList.add('active');
+  if(startScreen){
+    startScreen.classList.add('active');
+    startScreen.removeAttribute('inert');
+    startScreen.removeAttribute('aria-hidden');
+  }
 }
 
 /* ============================================
@@ -5128,6 +5174,12 @@ function initStreakMilestone(){
    EVENT BINDING
    ============================================ */
 function init(){
+  // a11y: mark all inactive screens inert so they're out of tab order
+  stack.querySelectorAll('.screen:not(.active)').forEach(s=>{
+    s.setAttribute('inert','');
+    s.setAttribute('aria-hidden','true');
+  });
+
   // Single delegated listener for the phone
   stack.addEventListener('click', e => {
 
@@ -5167,6 +5219,15 @@ function init(){
     const btn = e.target.closest('[data-route]');
     if(!btn) return;
     const route = btn.dataset.route;
+
+    // μ11: clear YoYou app badge when opening the app
+    if(route === 'splash'){
+      const badge = document.querySelector('.app-ico-badge');
+      if(badge && !badge.classList.contains('clearing')){
+        badge.classList.add('clearing');
+        badge.addEventListener('animationend', ()=>{ badge.style.display='none'; }, {once:true});
+      }
+    }
 
     // Named actions
     if(route === 'survey-next'){         surveyNext(); return; }
@@ -5323,8 +5384,20 @@ function startTodayTasks(){
 function completeToday(){
   state.todayTasksDone = true;
   state.streakDays = Math.min(7, state.streakDays + 1);
+  // μ4: pulse the "today" streak dot green before leaving home
+  const todayDot = document.querySelector('.sday.today');
+  if(todayDot){
+    todayDot.classList.remove('today');
+    todayDot.classList.add('done','just-done');
+    setTimeout(()=> todayDot.classList.remove('just-done'), 1000);
+  }
   applyBillDelta(1.60);
-  navigate('come-back-tomorrow', 'forward');
+  // M3: if streak hit 7, show milestone instead of come-back
+  if(state.streakDays >= 7){
+    setTimeout(()=> navigate('streak-milestone','forward'), 400);
+  } else {
+    navigate('come-back-tomorrow', 'forward');
+  }
 }
 
 function initComeBack(){
