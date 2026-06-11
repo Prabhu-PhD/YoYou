@@ -1684,6 +1684,108 @@ nav.nav{
 .mth-zero-title{font-size:13px;font-weight:800;color:var(--ink)}
 .mth-zero-sub{font-size:11.5px;color:#4B5563;font-weight:500}
 .rtz-lock{font-size:12px;color:var(--ink3)}
+
+/* ── Missions ───────────────────────────────── */
+.mission-hero{background:linear-gradient(135deg,#1A0A3E,#3B1C78);border-radius:16px;padding:16px 18px;position:relative;overflow:hidden}
+.mission-brand{font-size:10.5px;font-weight:700;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px}
+.mission-title{font-size:20px;font-weight:900;color:#fff;line-height:1.2;margin-bottom:4px}
+.mission-desc{font-size:13px;color:rgba(255,255,255,.6);line-height:1.45}
+.mission-meta{display:flex;align-items:center;gap:7px;margin-top:12px;flex-wrap:wrap}
+.mission-tag{font-size:11px;background:rgba(255,255,255,.12);color:rgba(255,255,255,.75);padding:3px 9px;border-radius:99px;font-weight:600}
+.mission-tag.grn{background:var(--grns);color:var(--grni)}
+.mission-steps-card{background:#fff;border-radius:16px;padding:16px;border:1.5px solid var(--line)}
+.mission-steps-hd{font-size:11px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px}
+.mission-step{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--line)}
+.mission-step:last-child{border-bottom:none;padding-bottom:0}
+.mstep-ico{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px;font-weight:800}
+.mstep-ico.done{background:var(--vio)}
+.mstep-ico.active{background:var(--viod);box-shadow:0 0 0 3px rgba(109,40,217,.18);color:#fff}
+.mstep-ico.todo{background:var(--lavd);color:var(--ink3)}
+.mstep-info{flex:1}
+.mstep-title{font-size:13px;font-weight:600;color:var(--ink)}
+.mstep-sub{font-size:11.5px;color:var(--ink3);margin-top:1px}
+.mstep-rwd{font-size:11.5px;font-weight:800;color:var(--grni);background:var(--grns);padding:3px 8px;border-radius:99px}
+.mission-ai-note{background:var(--lavd);border-radius:12px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.mai-av{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#A78BFA,#7C3AED);flex-shrink:0;margin-top:1px}
+.mai-text{font-size:12.5px;color:var(--ink3);line-height:1.5;font-style:italic}
+
+/* ── Challenges ─────────────────────────────── */
+.chal-card{background:#fff;border-radius:16px;padding:16px;border:1.5px solid var(--line)}
+.chal-card+.chal-card{margin-top:8px}
+.chal-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:4px;gap:10px}
+.chal-name{font-size:14px;font-weight:800;color:var(--ink)}
+.chal-desc{font-size:12.5px;color:var(--ink3);margin-bottom:10px}
+.chal-rwd{font-size:12px;font-weight:800;color:var(--grni);background:var(--grns);padding:3px 9px;border-radius:99px;white-space:nowrap;flex-shrink:0}
+.chal-prog-bar{height:7px;border-radius:99px;background:var(--lavd);overflow:hidden;margin-bottom:6px}
+.chal-prog-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--vio),#A78BFA)}
+.chal-prog-row{display:flex;align-items:center;justify-content:space-between}
+.chal-prog-txt{font-size:12px;font-weight:700;color:var(--ink)}
+.chal-days{font-size:11.5px;color:var(--ink3)}
+
+/* ── Savings History ────────────────────────── */
+.savings-hero{background:linear-gradient(148deg,#4E2699,#6D28D9 48%,#8B2FD6);border-radius:16px;padding:16px 18px 14px;color:#fff}
+.savings-hero-row{display:flex;justify-content:space-between;margin-bottom:12px}
+.savings-hero-item{display:flex;flex-direction:column;gap:3px}
+.savings-hero-val{font-size:20px;font-weight:900;letter-spacing:-.5px}
+.savings-hero-lbl{font-size:10px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.4px;font-weight:500}
+.savings-track{height:6px;border-radius:99px;background:rgba(255,255,255,.2);overflow:hidden}
+.savings-track-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#4ade80,#22d3ee)}
+.savings-list-card{background:#fff;border-radius:16px;padding:14px 16px;border:1.5px solid var(--line)}
+.savings-list-hd{font-size:11px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
+.stl-item{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.stl-item:last-child{border-bottom:none}
+.stl-dot{width:9px;height:9px;border-radius:50%;background:var(--vio);flex-shrink:0}
+.stl-dot.active{background:linear-gradient(135deg,#4ade80,#22d3ee);box-shadow:0 0 5px rgba(74,222,128,.5)}
+.stl-dot.pending{background:transparent;border:2px solid var(--viod)}
+.stl-date{font-size:11.5px;color:var(--ink3);min-width:70px;font-weight:500}
+.stl-tasks{font-size:12.5px;color:var(--ink);flex:1}
+.stl-amt{font-size:12px;font-weight:800;color:var(--grni);background:var(--grns);padding:2px 8px;border-radius:99px}
+.stl-amt.dim{color:var(--ink3);background:var(--lavd)}
+
+/* ── Privacy Dashboard ──────────────────────── */
+.priv-card{background:#fff;border-radius:16px;padding:16px;border:1.5px solid var(--line)}
+.priv-card+.priv-card{margin-top:8px}
+.priv-card-hd{font-size:11px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px}
+.priv-row{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line)}
+.priv-row:last-child{border-bottom:none;padding-bottom:0}
+.priv-row-left{display:flex;flex-direction:column;gap:2px}
+.priv-row-title{font-size:13.5px;font-weight:600;color:var(--ink)}
+.priv-row-sub{font-size:11.5px;color:var(--ink3)}
+.priv-tog{width:42px;height:24px;border-radius:99px;background:var(--vio);position:relative;cursor:pointer;border:none;flex-shrink:0;transition:background var(--t-fast);font-size:0;color:transparent}
+.priv-tog::after{content:'';position:absolute;width:18px;height:18px;background:#fff;border-radius:50%;top:3px;right:3px;transition:right var(--t-fast)}
+.priv-tog.off{background:var(--lavd)}
+.priv-tog.off::after{right:21px}
+.priv-note{font-size:12px;color:var(--ink3);text-align:center;padding:12px 0;line-height:1.55}
+.priv-action-btn{display:flex;align-items:center;justify-content:space-between;padding:13px 16px;background:#fff;border-radius:14px;border:1.5px solid var(--line);cursor:pointer;font-size:13.5px;font-weight:600;color:var(--ink)}
+.priv-action-btn+.priv-action-btn{margin-top:8px}
+.priv-action-btn.danger{color:#EF4444;border-color:rgba(239,68,68,.2)}
+
+/* ── Plan Selection ─────────────────────────── */
+.plan-card{background:#fff;border-radius:16px;padding:16px;border:1.5px solid var(--line);cursor:pointer;transition:border-color var(--t-fast)}
+.plan-card+.plan-card{margin-top:8px}
+.plan-card.current-plan{border-color:var(--viod);box-shadow:0 2px 14px -6px rgba(109,40,217,.3)}
+.plan-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:6px}
+.plan-name{font-size:15px;font-weight:800;color:var(--ink)}
+.plan-price{font-size:14px;font-weight:800;color:var(--ink)}
+.plan-price small{font-size:11px;font-weight:500;color:var(--ink3)}
+.plan-cur-chip{font-size:10px;font-weight:700;background:var(--vio);color:#fff;padding:2px 8px;border-radius:99px}
+.plan-data{font-size:12.5px;color:var(--ink3);margin-bottom:6px}
+.plan-btz{font-size:12px;font-weight:700;color:var(--grni);display:flex;align-items:center;gap:5px}
+
+/* ── Billing History ────────────────────────── */
+.bill-month-card{background:#fff;border-radius:16px;padding:16px;border:1.5px solid var(--line)}
+.bill-month-card+.bill-month-card{margin-top:8px}
+.bm-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.bm-month{font-size:14px;font-weight:800;color:var(--ink)}
+.bm-chip{font-size:10px;font-weight:700;padding:3px 9px;border-radius:99px}
+.bm-chip.cleared{background:var(--grns);color:var(--grni)}
+.bm-chip.inprog{background:var(--vios);color:var(--viod)}
+.bm-prog{height:6px;border-radius:99px;background:var(--lavd);overflow:hidden;margin-bottom:8px}
+.bm-prog-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#4ade80,#22d3ee)}
+.bm-stats{display:flex;gap:20px}
+.bm-stat{display:flex;flex-direction:column;gap:2px}
+.bm-val{font-size:13px;font-weight:700;color:var(--ink)}
+.bm-lbl{font-size:10.5px;color:var(--ink3);text-transform:uppercase;letter-spacing:.3px}
 </style>
 </head>
 <body>
@@ -1934,7 +2036,7 @@ nav.nav{
                 <div class="opp-count">2 Offers</div>
                 <div class="opp-val">+€0.90</div>
               </div>
-              <div class="opp-tile" data-route="earn" role="button" tabindex="0" aria-label="1 mission available">
+              <div class="opp-tile" data-route="missions" role="button" tabindex="0" aria-label="1 mission available">
                 <span class="opp-ico">⚡</span>
                 <div class="opp-count">1 Mission</div>
                 <div class="opp-val">+€0.50</div>
@@ -2401,6 +2503,18 @@ nav.nav{
               </div>
             </div>
           </div>
+
+          <!-- Challenges entry -->
+          <div data-route="challenges" role="button" tabindex="0" style="display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:linear-gradient(135deg,rgba(124,58,237,.07),rgba(78,38,153,.04));border-radius:12px;border:1px solid rgba(124,58,237,.15);cursor:pointer;margin-top:2px">
+            <div style="display:flex;align-items:center;gap:10px">
+              <span style="font-size:17px">🏆</span>
+              <div>
+                <div style="font-size:13px;font-weight:700;color:var(--ink)">Challenges <span style="font-size:11px;font-weight:700;color:var(--vio);background:rgba(124,58,237,.10);padding:2px 7px;border-radius:20px;margin-left:4px">2 active</span></div>
+                <div style="font-size:11.5px;color:var(--ink3)">Complete for bonus rewards</div>
+              </div>
+            </div>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ink3)" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+          </div>
         </div>
         <nav class="nav" role="tablist">
           <button class="ni" role="tab" data-route="home"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg><span>Home</span></button>
@@ -2813,8 +2927,9 @@ nav.nav{
           </div>
           <div class="settings-card">
             <div class="sett-item" data-route="notifications"><div class="sett-ico">🔔</div><span class="sett-label">Notifications</span><svg class="sett-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg></div>
-            <div class="sett-item" data-route="esim-info"><div class="sett-ico">📶</div><span class="sett-label">Connected eSIM</span><svg class="sett-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg></div>
-            <div class="sett-item" data-route="privacy"><div class="sett-ico">🔒</div><span class="sett-label">Privacy Controls</span><svg class="sett-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg></div>
+            <div class="sett-item" data-route="plan-select"><div class="sett-ico">📶</div><span class="sett-label">Connected eSIM &amp; Plan</span><svg class="sett-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg></div>
+            <div class="sett-item" data-route="billing-history"><div class="sett-ico">🧾</div><span class="sett-label">Billing History</span><svg class="sett-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg></div>
+            <div class="sett-item" data-route="privacy-dashboard"><div class="sett-ico">🔒</div><span class="sett-label">Privacy Controls</span><svg class="sett-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg></div>
             <div class="sett-item" data-route="language"><div class="sett-ico">🌍</div><span class="sett-label">Language &amp; Region</span><svg class="sett-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg></div>
             <div class="sett-item" data-route="ai-milestone"><div class="sett-ico">🏅</div><span class="sett-label">3 Months Together</span><svg class="sett-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg></div>
             <div class="sett-item" data-route="help"><div class="sett-ico">❓</div><span class="sett-label">Help &amp; Support</span><svg class="sett-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg></div>
@@ -3306,6 +3421,18 @@ nav.nav{
           </div>
 
         </div>
+          <!-- Savings History link -->
+          <div data-route="savings-history" role="button" tabindex="0" style="display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:#fff;border-radius:12px;border:1px solid var(--line);cursor:pointer">
+            <div style="display:flex;align-items:center;gap:10px">
+              <span style="font-size:17px">📊</span>
+              <div>
+                <div style="font-size:13px;font-weight:700;color:var(--ink)">Savings History</div>
+                <div style="font-size:11.5px;color:var(--ink3)">€6.80 cleared this month so far</div>
+              </div>
+            </div>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ink3)" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+          </div>
+        </div>
         <div class="btn-bottom"><button class="btn solid" data-route="start-today-tasks">Start today's 2 tasks →</button></div>
       </section>
 
@@ -3654,6 +3781,450 @@ nav.nav{
         </div>
         <div class="ob-bottom">
           <button class="btn solid" data-route="lock">Start earning →</button>
+        </div>
+      </section>
+
+      <!-- ========================================
+           MISSIONS SCREEN
+           ======================================== -->
+      <section class="screen" data-screen="missions" aria-label="Active Mission">
+        <div class="sb"><span>9:41</span><span class="ico" aria-hidden="true"><svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="6" width="3" height="5" rx="1" fill="#1B1430"/><rect x="4.5" y="3.5" width="3" height="7.5" rx="1" fill="#1B1430"/><rect x="9" y="1.5" width="3" height="9.5" rx="1" fill="#1B1430"/><rect x="13.5" y="0" width="3" height="11" rx="1" fill="#1B1430" opacity=".35"/></svg><svg width="22" height="11" viewBox="0 0 22 11" fill="none"><rect x=".5" y=".5" width="18" height="10" rx="2.5" stroke="#1B1430" opacity=".4"/><rect x="2" y="2" width="13.5" height="7" rx="1.3" fill="#1B1430"/><rect x="20" y="3.5" width="1.5" height="4" rx=".7" fill="#1B1430" opacity=".5"/></svg></span></div>
+        <div class="appbar-back">
+          <button class="back-btn" data-route="back" aria-label="Go back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>
+          <span class="title">Mission</span>
+        </div>
+        <div class="body" style="gap:12px">
+
+          <!-- Mission hero -->
+          <div class="mission-hero">
+            <div class="mission-brand">
+              <span style="font-size:22px">⚡</span>
+              <span class="mission-tag">High Value</span>
+            </div>
+            <div class="mission-title">Telecom Awareness Campaign</div>
+            <div class="mission-desc">Help Vodafone understand how Gen Z uses mobile data. Complete 3 steps to earn the full reward.</div>
+            <div class="mission-meta">
+              <span style="font-size:12px;color:var(--grni);background:var(--grns);padding:3px 9px;border-radius:20px;font-weight:700">+€0.50 reward</span>
+              <span style="font-size:12px;color:var(--ink3);font-weight:600">~8 min total</span>
+              <span style="font-size:12px;color:var(--ink3);font-weight:600">⏳ 2 days left</span>
+            </div>
+          </div>
+
+          <!-- Steps card -->
+          <div class="mission-steps-card">
+            <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3);margin-bottom:12px">Your progress · 1 of 3 done</div>
+
+            <!-- Step 1 — done -->
+            <div class="mission-step">
+              <div class="mstep-ico done">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+              </div>
+              <div class="mstep-info">
+                <div class="mstep-title">Brand awareness survey <span style="font-size:11px;color:var(--grni);font-weight:700">✓ Done</span></div>
+                <div class="mstep-rwd">+€0.15 · 3 min</div>
+              </div>
+            </div>
+
+            <!-- Step 2 — active -->
+            <div class="mission-step" data-route="survey" role="button" tabindex="0" style="cursor:pointer">
+              <div class="mstep-ico active">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><rect x="5" y="3.5" width="14" height="17" rx="2"/><path d="M9 3.5h6v3H9z"/><path d="M8.5 12h7"/></svg>
+              </div>
+              <div class="mstep-info">
+                <div class="mstep-title">Data usage habits survey <span style="font-size:11px;color:var(--vio);font-weight:700;background:rgba(124,58,237,.1);padding:1px 6px;border-radius:10px">Start</span></div>
+                <div class="mstep-rwd">+€0.20 · 4 min</div>
+              </div>
+            </div>
+
+            <!-- Step 3 — locked -->
+            <div class="mission-step" style="opacity:.5">
+              <div class="mstep-ico todo">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+              </div>
+              <div class="mstep-info">
+                <div class="mstep-title">Watch a 60s brand video 🔒</div>
+                <div class="mstep-rwd">+€0.15 · 1 min</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- AI note -->
+          <div class="mission-ai-note">
+            <div class="mai-av"></div>
+            <div class="mai-text">"This mission matches your telecom profile — high chance of unlocking bonus tasks."</div>
+          </div>
+
+        </div>
+        <div class="btn-bottom"><button class="btn solid" data-route="survey">Start step 2 →</button></div>
+      </section>
+
+      <!-- ========================================
+           CHALLENGES SCREEN
+           ======================================== -->
+      <section class="screen" data-screen="challenges" aria-label="Active Challenges">
+        <div class="sb"><span>9:41</span><span class="ico" aria-hidden="true"><svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="6" width="3" height="5" rx="1" fill="#1B1430"/><rect x="4.5" y="3.5" width="3" height="7.5" rx="1" fill="#1B1430"/><rect x="9" y="1.5" width="3" height="9.5" rx="1" fill="#1B1430"/><rect x="13.5" y="0" width="3" height="11" rx="1" fill="#1B1430" opacity=".35"/></svg><svg width="22" height="11" viewBox="0 0 22 11" fill="none"><rect x=".5" y=".5" width="18" height="10" rx="2.5" stroke="#1B1430" opacity=".4"/><rect x="2" y="2" width="13.5" height="7" rx="1.3" fill="#1B1430"/><rect x="20" y="3.5" width="1.5" height="4" rx=".7" fill="#1B1430" opacity=".5"/></svg></span></div>
+        <div class="appbar-back">
+          <button class="back-btn" data-route="back" aria-label="Go back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>
+          <span class="title">Challenges</span>
+        </div>
+        <div class="body" style="gap:12px">
+
+          <div style="font-size:12px;color:var(--ink3);font-weight:500;padding:2px 0">2 active · Complete for bonus bill credits</div>
+
+          <!-- Challenge 1 -->
+          <div class="chal-card">
+            <div class="chal-top">
+              <span style="font-size:20px">🔥</span>
+              <div style="flex:1">
+                <div class="chal-name">7-Day Streak Master</div>
+                <div class="chal-desc">Complete at least 2 tasks every day for 7 days straight</div>
+              </div>
+              <div class="chal-rwd">+€0.50</div>
+            </div>
+            <div class="chal-prog-bar"><div class="chal-prog-fill" style="width:71%"></div></div>
+            <div class="chal-prog-row">
+              <span class="chal-prog-txt">5 of 7 days done</span>
+              <span class="chal-days">2 days left</span>
+            </div>
+          </div>
+
+          <!-- Challenge 2 -->
+          <div class="chal-card">
+            <div class="chal-top">
+              <span style="font-size:20px">📋</span>
+              <div style="flex:1">
+                <div class="chal-name">Survey Sprint</div>
+                <div class="chal-desc">Complete 10 surveys in a single week</div>
+              </div>
+              <div class="chal-rwd">+€1.00</div>
+            </div>
+            <div class="chal-prog-bar"><div class="chal-prog-fill" style="width:60%"></div></div>
+            <div class="chal-prog-row">
+              <span class="chal-prog-txt">6 of 10 surveys done</span>
+              <span class="chal-days">4 days left</span>
+            </div>
+          </div>
+
+          <!-- Completed challenge -->
+          <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3);margin-top:6px">Completed this month</div>
+          <div class="chal-card" style="opacity:.6">
+            <div class="chal-top">
+              <span style="font-size:20px">🎯</span>
+              <div style="flex:1">
+                <div class="chal-name">First Mission</div>
+                <div class="chal-desc">Complete your first multi-step mission</div>
+              </div>
+              <div style="font-size:12px;font-weight:700;color:var(--grni)">✓ Done</div>
+            </div>
+            <div class="chal-prog-bar"><div class="chal-prog-fill" style="width:100%;background:var(--grni)"></div></div>
+            <div class="chal-prog-row">
+              <span class="chal-prog-txt" style="color:var(--grni)">Earned +€0.30</span>
+              <span class="chal-days">Mar 12</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ========================================
+           SAVINGS HISTORY SCREEN
+           ======================================== -->
+      <section class="screen" data-screen="savings-history" aria-label="Savings History">
+        <div class="sb"><span>9:41</span><span class="ico" aria-hidden="true"><svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="6" width="3" height="5" rx="1" fill="#1B1430"/><rect x="4.5" y="3.5" width="3" height="7.5" rx="1" fill="#1B1430"/><rect x="9" y="1.5" width="3" height="9.5" rx="1" fill="#1B1430"/><rect x="13.5" y="0" width="3" height="11" rx="1" fill="#1B1430" opacity=".35"/></svg><svg width="22" height="11" viewBox="0 0 22 11" fill="none"><rect x=".5" y=".5" width="18" height="10" rx="2.5" stroke="#1B1430" opacity=".4"/><rect x="2" y="2" width="13.5" height="7" rx="1.3" fill="#1B1430"/><rect x="20" y="3.5" width="1.5" height="4" rx=".7" fill="#1B1430" opacity=".5"/></svg></span></div>
+        <div class="appbar-back">
+          <button class="back-btn" data-route="back" aria-label="Go back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>
+          <span class="title">Savings History</span>
+        </div>
+        <div class="body" style="gap:12px">
+
+          <!-- Hero summary -->
+          <div class="savings-hero">
+            <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:rgba(255,255,255,.55);margin-bottom:6px">March 2026 · In progress</div>
+            <div class="savings-hero-row">
+              <div>
+                <div class="savings-hero-val">€6.80</div>
+                <div style="font-size:12px;color:rgba(255,255,255,.6)">cleared so far</div>
+              </div>
+              <div style="text-align:right">
+                <div class="savings-hero-val">€11.20</div>
+                <div style="font-size:12px;color:rgba(255,255,255,.6)">remaining</div>
+              </div>
+            </div>
+            <div class="savings-track"><div style="height:100%;width:38%;background:rgba(255,255,255,.9);border-radius:99px"></div></div>
+            <div style="font-size:11.5px;color:rgba(255,255,255,.55);margin-top:6px">38% of €18.00 bill cleared</div>
+          </div>
+
+          <!-- Timeline -->
+          <div class="savings-list-card">
+            <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3);margin-bottom:10px">This month</div>
+
+            <div class="stl-item">
+              <div class="stl-dot active"></div>
+              <div class="stl-date">Mar 18 · Mon</div>
+              <div class="stl-tasks">Nike survey + Watch ad</div>
+              <div class="stl-amt">−€1.60</div>
+            </div>
+            <div class="stl-item">
+              <div class="stl-dot active"></div>
+              <div class="stl-date">Mar 17 · Sun</div>
+              <div class="stl-tasks">Receipt scan + Mood poll</div>
+              <div class="stl-amt">−€0.80</div>
+            </div>
+            <div class="stl-item">
+              <div class="stl-dot active"></div>
+              <div class="stl-date">Mar 16 · Sat</div>
+              <div class="stl-tasks">Travel survey + Video ad</div>
+              <div class="stl-amt">−€1.40</div>
+            </div>
+            <div class="stl-item">
+              <div class="stl-dot active"></div>
+              <div class="stl-date">Mar 15 · Fri</div>
+              <div class="stl-tasks">App trial (Duolingo) + Poll</div>
+              <div class="stl-amt">−€1.20</div>
+            </div>
+            <div class="stl-item">
+              <div class="stl-dot active"></div>
+              <div class="stl-date">Mar 14 · Thu</div>
+              <div class="stl-tasks">Brand survey + Watch ad</div>
+              <div class="stl-amt">−€1.00</div>
+            </div>
+            <div class="stl-item">
+              <div class="stl-dot active"></div>
+              <div class="stl-date">Mar 10–13 · Wk 2</div>
+              <div class="stl-tasks">4 days · 8 tasks</div>
+              <div class="stl-amt">−€2.80</div>
+            </div>
+            <div class="stl-item" style="opacity:.5">
+              <div class="stl-dot pending"></div>
+              <div class="stl-date">Mar 3–9 · Wk 1</div>
+              <div class="stl-tasks">6 tasks completed</div>
+              <div class="stl-amt">−€2.40</div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ========================================
+           PRIVACY DASHBOARD SCREEN
+           ======================================== -->
+      <section class="screen" data-screen="privacy-dashboard" aria-label="Privacy Dashboard">
+        <div class="sb"><span>9:41</span><span class="ico" aria-hidden="true"><svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="6" width="3" height="5" rx="1" fill="#1B1430"/><rect x="4.5" y="3.5" width="3" height="7.5" rx="1" fill="#1B1430"/><rect x="9" y="1.5" width="3" height="9.5" rx="1" fill="#1B1430"/><rect x="13.5" y="0" width="3" height="11" rx="1" fill="#1B1430" opacity=".35"/></svg><svg width="22" height="11" viewBox="0 0 22 11" fill="none"><rect x=".5" y=".5" width="18" height="10" rx="2.5" stroke="#1B1430" opacity=".4"/><rect x="2" y="2" width="13.5" height="7" rx="1.3" fill="#1B1430"/><rect x="20" y="3.5" width="1.5" height="4" rx=".7" fill="#1B1430" opacity=".5"/></svg></span></div>
+        <div class="appbar-back">
+          <button class="back-btn" data-route="back" aria-label="Go back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>
+          <span class="title">Privacy Controls</span>
+        </div>
+        <div class="body" style="gap:12px">
+
+          <div style="font-size:12.5px;color:var(--ink3);line-height:1.5;padding:2px 0">All data shared for tasks is anonymised. You can change what's shared at any time.</div>
+
+          <!-- Data sharing card -->
+          <div class="priv-card">
+            <div class="priv-card-hd">Data Sharing</div>
+            <div class="priv-row">
+              <div class="priv-row-left">
+                <div class="priv-row-title">📍 Location</div>
+                <div class="priv-row-sub">Used for local brand surveys</div>
+              </div>
+              <button class="priv-tog" aria-label="Location sharing on" data-priv-tog="location">On</button>
+            </div>
+            <div class="priv-row">
+              <div class="priv-row-left">
+                <div class="priv-row-title">📊 Usage patterns</div>
+                <div class="priv-row-sub">App & data behaviour signals</div>
+              </div>
+              <button class="priv-tog" aria-label="Usage patterns on" data-priv-tog="usage">On</button>
+            </div>
+            <div class="priv-row">
+              <div class="priv-row-left">
+                <div class="priv-row-title">🛍️ Purchase history</div>
+                <div class="priv-row-sub">Receipt scan data</div>
+              </div>
+              <button class="priv-tog off" aria-label="Purchase history off" data-priv-tog="purchase">Off</button>
+            </div>
+            <div class="priv-row" style="border-bottom:none">
+              <div class="priv-row-left">
+                <div class="priv-row-title">📱 Device info</div>
+                <div class="priv-row-sub">Model, OS version, carrier</div>
+              </div>
+              <button class="priv-tog" aria-label="Device info on" data-priv-tog="device">On</button>
+            </div>
+          </div>
+
+          <!-- Marketing card -->
+          <div class="priv-card">
+            <div class="priv-card-hd">Marketing</div>
+            <div class="priv-row">
+              <div class="priv-row-left">
+                <div class="priv-row-title">📧 Email offers</div>
+                <div class="priv-row-sub">Partner promotions</div>
+              </div>
+              <button class="priv-tog off" aria-label="Email offers off" data-priv-tog="email">Off</button>
+            </div>
+            <div class="priv-row" style="border-bottom:none">
+              <div class="priv-row-left">
+                <div class="priv-row-title">📲 Push notifications</div>
+                <div class="priv-row-sub">Task reminders &amp; bonuses</div>
+              </div>
+              <button class="priv-tog" aria-label="Push notifications on" data-priv-tog="push">On</button>
+            </div>
+          </div>
+
+          <div class="priv-note">Your data is never sold. All task responses are anonymised before being shared with brands. Read our <span style="color:var(--vio);font-weight:700">Privacy Policy →</span></div>
+
+          <!-- Actions -->
+          <button class="priv-action-btn">Download my data</button>
+          <button class="priv-action-btn danger">Delete my account</button>
+
+        </div>
+      </section>
+
+      <!-- ========================================
+           PLAN SELECTION SCREEN
+           ======================================== -->
+      <section class="screen" data-screen="plan-select" aria-label="Plan Selection">
+        <div class="sb"><span>9:41</span><span class="ico" aria-hidden="true"><svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="6" width="3" height="5" rx="1" fill="#1B1430"/><rect x="4.5" y="3.5" width="3" height="7.5" rx="1" fill="#1B1430"/><rect x="9" y="1.5" width="3" height="9.5" rx="1" fill="#1B1430"/><rect x="13.5" y="0" width="3" height="11" rx="1" fill="#1B1430" opacity=".35"/></svg><svg width="22" height="11" viewBox="0 0 22 11" fill="none"><rect x=".5" y=".5" width="18" height="10" rx="2.5" stroke="#1B1430" opacity=".4"/><rect x="2" y="2" width="13.5" height="7" rx="1.3" fill="#1B1430"/><rect x="20" y="3.5" width="1.5" height="4" rx=".7" fill="#1B1430" opacity=".5"/></svg></span></div>
+        <div class="appbar-back">
+          <button class="back-btn" data-route="back" aria-label="Go back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>
+          <span class="title">eSIM &amp; Plan</span>
+        </div>
+        <div class="body" style="gap:12px">
+
+          <!-- Current eSIM -->
+          <div style="background:#F8F5FE;border-radius:14px;border:1px solid var(--line);padding:14px 16px">
+            <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3);margin-bottom:8px">Connected eSIM</div>
+            <div style="display:flex;align-items:center;gap:10px">
+              <span style="font-size:22px">📶</span>
+              <div>
+                <div style="font-size:13.5px;font-weight:700;color:var(--ink)">YoYou EU Traveller</div>
+                <div style="font-size:12px;color:var(--ink3)">Active · Renews Apr 1, 2026</div>
+              </div>
+              <span style="margin-left:auto;font-size:11px;font-weight:700;color:var(--grni);background:var(--grns);padding:3px 9px;border-radius:20px">Active</span>
+            </div>
+          </div>
+
+          <div style="font-size:12px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.5px;padding-top:4px">Choose a plan</div>
+
+          <!-- Starter plan -->
+          <div class="plan-card">
+            <div class="plan-top">
+              <div>
+                <div class="plan-name">Starter</div>
+                <div class="plan-data">3 GB / month</div>
+              </div>
+              <div class="plan-price">€12<span style="font-size:13px;font-weight:500">/mo</span></div>
+            </div>
+            <div class="plan-btz">Max earn: up to €12 back · Route to Zero in ~28 days</div>
+          </div>
+
+          <!-- Plus plan — current -->
+          <div class="plan-card current-plan">
+            <div class="plan-top">
+              <div>
+                <div class="plan-name">Plus <span class="plan-cur-chip">Your plan</span></div>
+                <div class="plan-data">10 GB / month</div>
+              </div>
+              <div class="plan-price">€18<span style="font-size:13px;font-weight:500">/mo</span></div>
+            </div>
+            <div class="plan-btz">Max earn: up to €18 back · Route to Zero in ~24 days</div>
+          </div>
+
+          <!-- Unlimited plan -->
+          <div class="plan-card">
+            <div class="plan-top">
+              <div>
+                <div class="plan-name">Unlimited</div>
+                <div class="plan-data">Unlimited data</div>
+              </div>
+              <div class="plan-price">€30<span style="font-size:13px;font-weight:500">/mo</span></div>
+            </div>
+            <div class="plan-btz">Max earn: up to €30 back · Route to Zero in ~30 days</div>
+          </div>
+
+          <div style="font-size:12px;color:var(--ink3);text-align:center;line-height:1.6">Plans renew monthly. Switching takes effect next billing cycle.</div>
+
+        </div>
+      </section>
+
+      <!-- ========================================
+           BILLING HISTORY SCREEN
+           ======================================== -->
+      <section class="screen" data-screen="billing-history" aria-label="Billing History">
+        <div class="sb"><span>9:41</span><span class="ico" aria-hidden="true"><svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="6" width="3" height="5" rx="1" fill="#1B1430"/><rect x="4.5" y="3.5" width="3" height="7.5" rx="1" fill="#1B1430"/><rect x="9" y="1.5" width="3" height="9.5" rx="1" fill="#1B1430"/><rect x="13.5" y="0" width="3" height="11" rx="1" fill="#1B1430" opacity=".35"/></svg><svg width="22" height="11" viewBox="0 0 22 11" fill="none"><rect x=".5" y=".5" width="18" height="10" rx="2.5" stroke="#1B1430" opacity=".4"/><rect x="2" y="2" width="13.5" height="7" rx="1.3" fill="#1B1430"/><rect x="20" y="3.5" width="1.5" height="4" rx=".7" fill="#1B1430" opacity=".5"/></svg></span></div>
+        <div class="appbar-back">
+          <button class="back-btn" data-route="back" aria-label="Go back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>
+          <span class="title">Billing History</span>
+        </div>
+        <div class="body" style="gap:10px">
+
+          <!-- March — in progress -->
+          <div class="bill-month-card">
+            <div class="bm-top">
+              <div>
+                <div class="bm-month">March 2026</div>
+                <div style="font-size:11.5px;color:var(--ink3)">18 of 31 days</div>
+              </div>
+              <span class="bm-chip inprog">In progress</span>
+            </div>
+            <div class="bm-prog"><div class="bm-prog-fill" style="width:38%"></div></div>
+            <div class="bm-stats">
+              <div class="bm-stat"><div class="bm-val">€18.00</div><div class="bm-lbl">Bill total</div></div>
+              <div class="bm-stat"><div class="bm-val" style="color:var(--grni)">€6.80</div><div class="bm-lbl">Cleared</div></div>
+              <div class="bm-stat"><div class="bm-val">€11.20</div><div class="bm-lbl">Remaining</div></div>
+            </div>
+          </div>
+
+          <!-- February — cleared -->
+          <div class="bill-month-card">
+            <div class="bm-top">
+              <div>
+                <div class="bm-month">February 2026</div>
+                <div style="font-size:11.5px;color:var(--ink3)">28 days · 14 tasks</div>
+              </div>
+              <span class="bm-chip cleared">Cleared ✓</span>
+            </div>
+            <div class="bm-prog"><div class="bm-prog-fill" style="width:100%;background:var(--grni)"></div></div>
+            <div class="bm-stats">
+              <div class="bm-stat"><div class="bm-val">€18.00</div><div class="bm-lbl">Bill total</div></div>
+              <div class="bm-stat"><div class="bm-val" style="color:var(--grni)">€18.00</div><div class="bm-lbl">Cleared</div></div>
+              <div class="bm-stat"><div class="bm-val" style="color:var(--grni)">€0.00</div><div class="bm-lbl">Remaining</div></div>
+            </div>
+          </div>
+
+          <!-- January — partial -->
+          <div class="bill-month-card">
+            <div class="bm-top">
+              <div>
+                <div class="bm-month">January 2026</div>
+                <div style="font-size:11.5px;color:var(--ink3)">31 days · 11 tasks</div>
+              </div>
+              <span class="bm-chip" style="color:var(--ink3);background:var(--line)">Partial</span>
+            </div>
+            <div class="bm-prog"><div class="bm-prog-fill" style="width:72%"></div></div>
+            <div class="bm-stats">
+              <div class="bm-stat"><div class="bm-val">€18.00</div><div class="bm-lbl">Bill total</div></div>
+              <div class="bm-stat"><div class="bm-val" style="color:var(--grni)">€13.00</div><div class="bm-lbl">Cleared</div></div>
+              <div class="bm-stat"><div class="bm-val">€5.00</div><div class="bm-lbl">Paid</div></div>
+            </div>
+          </div>
+
+          <!-- December — first month -->
+          <div class="bill-month-card">
+            <div class="bm-top">
+              <div>
+                <div class="bm-month">December 2025</div>
+                <div style="font-size:11.5px;color:var(--ink3)">First month · 8 tasks</div>
+              </div>
+              <span class="bm-chip" style="color:var(--ink3);background:var(--line)">Partial</span>
+            </div>
+            <div class="bm-prog"><div class="bm-prog-fill" style="width:50%"></div></div>
+            <div class="bm-stats">
+              <div class="bm-stat"><div class="bm-val">€18.00</div><div class="bm-lbl">Bill total</div></div>
+              <div class="bm-stat"><div class="bm-val" style="color:var(--grni)">€9.00</div><div class="bm-lbl">Cleared</div></div>
+              <div class="bm-stat"><div class="bm-val">€9.00</div><div class="bm-lbl">Paid</div></div>
+            </div>
+          </div>
+
         </div>
       </section>
 
@@ -4442,6 +5013,16 @@ function init(){
     if(catBtn){
       catBtn.closest('.cat-row').querySelectorAll('.cat').forEach(c => c.classList.remove('on'));
       catBtn.classList.add('on');
+      return;
+    }
+
+    // Privacy toggle buttons
+    const privTog = e.target.closest('[data-priv-tog]');
+    if(privTog){
+      const isOff = privTog.classList.contains('off');
+      privTog.classList.toggle('off');
+      privTog.textContent = isOff ? 'On' : 'Off';
+      privTog.setAttribute('aria-label', privTog.getAttribute('aria-label').replace(isOff ? 'off' : 'on', isOff ? 'on' : 'off'));
       return;
     }
 
