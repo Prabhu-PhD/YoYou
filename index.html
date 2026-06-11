@@ -1825,6 +1825,108 @@ nav.nav{
 .bm-stat{display:flex;flex-direction:column;gap:2px}
 .bm-val{font-size:13px;font-weight:700;color:var(--ink)}
 .bm-lbl{font-size:10.5px;color:var(--ink3);text-transform:uppercase;letter-spacing:.3px}
+
+/* ── Consent Flow ───────────────────────────── */
+.cfl-progress{display:flex;align-items:center;gap:6px;padding:10px 20px 0;justify-content:center}
+.cfl-pdot{width:24px;height:4px;border-radius:2px;background:var(--lavd);transition:background .3s}
+.cfl-pdot.on{background:var(--vio)}
+.cfl-hero{padding:18px 20px 10px;display:flex;flex-direction:column;gap:8px;flex:0 0 auto}
+.cfl-step-tag{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--ink3)}
+.cfl-title{font-size:21px;font-weight:800;color:var(--ink);letter-spacing:-.4px;line-height:1.2}
+.cfl-sub{font-size:13px;color:var(--ink3);line-height:1.5}
+.cfl-section-label{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--ink3);padding:0 20px;margin-top:4px}
+.cfl-required-badge{display:inline-flex;align-items:center;gap:4px;background:#FFF3E5;border:1px solid #FFD6A5;border-radius:99px;padding:3px 9px;font-size:10.5px;font-weight:700;color:#7A3D00;margin-left:20px}
+/* Required data items */
+.cfl-data-list{padding:0 18px;display:flex;flex-direction:column;gap:8px}
+.cfl-data-item{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;background:#fff;border:1px solid var(--line);border-radius:13px}
+.cfl-data-ico{font-size:21px;flex:0 0 auto;margin-top:1px}
+.cfl-data-body{flex:1}
+.cfl-data-name{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:2px}
+.cfl-data-desc{font-size:11.5px;color:var(--ink3);line-height:1.35}
+.cfl-data-lock{display:inline-block;margin-top:5px;font-size:9.5px;font-weight:700;color:#9A5500;background:#FFF3E5;padding:2px 7px;border-radius:99px}
+/* Earn/optional toggle rows */
+.cfl-earn-list{padding:0 18px;display:flex;flex-direction:column;gap:8px}
+.cfl-earn-row{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;background:#fff;border:1px solid var(--line);border-radius:13px}
+.cfl-earn-ico{font-size:21px;flex:0 0 auto;margin-top:2px}
+.cfl-earn-body{flex:1}
+.cfl-earn-name{font-size:13px;font-weight:700;color:var(--ink)}
+.cfl-earn-rate{font-size:12px;font-weight:700;color:var(--grni);margin-top:1px}
+.cfl-earn-desc{font-size:11px;color:var(--ink3);line-height:1.35;margin-top:2px}
+/* Partner rows */
+.cfl-partner-row{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;background:#fff;border:1px solid var(--line);border-radius:13px}
+.cfl-partner-row+.cfl-partner-row{margin-top:8px}
+.cfl-partner-logo{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;flex:0 0 auto;border:1px solid var(--line)}
+.cfl-partner-body{flex:1}
+.cfl-partner-name{font-size:13px;font-weight:700;color:var(--ink)}
+.cfl-partner-desc{font-size:11px;color:var(--ink3);line-height:1.35;margin-top:2px}
+.cfl-partner-purpose{display:inline-block;margin-top:5px;font-size:9.5px;font-weight:700;color:var(--viod);background:var(--vios);padding:2px 7px;border-radius:99px}
+/* Rights */
+.cfl-rights-list{padding:0 18px;display:flex;flex-direction:column;gap:8px}
+.cfl-right-row{display:flex;align-items:flex-start;gap:11px;padding:12px 14px;background:#fff;border:1px solid var(--line);border-radius:13px}
+.cfl-right-ico{width:34px;height:34px;border-radius:10px;background:var(--vios);display:flex;align-items:center;justify-content:center;font-size:16px;flex:0 0 auto}
+.cfl-right-body{flex:1}
+.cfl-right-name{font-size:13px;font-weight:700;color:var(--ink)}
+.cfl-right-how{font-size:11px;color:var(--ink3);line-height:1.35;margin-top:2px}
+.cfl-right-action{display:inline-block;margin-top:5px;font-size:10px;font-weight:700;color:var(--vio);cursor:pointer}
+/* Controller card */
+.cfl-controller{margin:0 18px;padding:13px 14px;background:var(--vios);border-radius:13px;font-size:11.5px;color:var(--ink3);line-height:1.6}
+.cfl-controller strong{color:var(--ink);font-weight:700}
+.cfl-controller a{color:var(--vio);font-weight:600;text-decoration:none}
+/* Legal basis note */
+.cfl-legal-note{margin:0 18px;display:flex;align-items:flex-start;gap:8px;padding:10px 12px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:11px;font-size:11px;color:var(--grni);line-height:1.4}
+.cfl-legal-note strong{font-weight:700}
+
+/* ── eSIM Device ─────────────────────────────── */
+.esim-status-card{margin:0 18px;background:linear-gradient(135deg,#0A1628,#1E2D50);border-radius:18px;padding:18px;color:#fff;position:relative;overflow:hidden}
+.esim-status-glow{position:absolute;top:-40px;right:-30px;width:130px;height:130px;border-radius:50%;background:rgba(124,58,237,.3);pointer-events:none}
+.esim-active-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.esim-carrier{font-size:19px;font-weight:800}
+.esim-net-badge{display:flex;align-items:center;gap:5px;background:rgba(74,222,128,.18);border:1px solid rgba(74,222,128,.35);border-radius:99px;padding:4px 11px;font-size:11px;font-weight:700;color:#4ade80}
+.esim-ids{display:flex;flex-direction:column;gap:6px;padding-top:12px;border-top:1px solid rgba(255,255,255,.12)}
+.esim-id-pair{display:flex;flex-direction:column;gap:2px}
+.esim-id-lbl{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.4)}
+.esim-id-val{font-size:11.5px;font-weight:600;font-family:monospace;color:rgba(255,255,255,.85);letter-spacing:.3px}
+.esim-info-card{margin:10px 18px 0;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.esim-info-row{display:flex;align-items:center;gap:12px;padding:11px 14px}
+.esim-info-row+.esim-info-row{border-top:1px solid var(--line)}
+.esim-info-ico{font-size:20px;width:30px;text-align:center;flex:0 0 auto}
+.esim-info-body{flex:1}
+.esim-info-label{font-size:12.5px;font-weight:700;color:var(--ink)}
+.esim-info-val{font-size:11.5px;color:var(--ink3);margin-top:1px}
+.esim-info-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:99px}
+.esim-info-badge.ok{background:var(--grns);color:var(--grni)}
+.esim-actions{display:flex;gap:8px;padding:0 18px;margin-top:12px}
+.esim-act-btn{flex:1;padding:11px 8px;border:1.5px solid var(--line);border-radius:11px;font-size:12px;font-weight:700;color:var(--ink);background:#fff;cursor:pointer;text-align:center;line-height:1.3}
+.esim-act-btn.danger{border-color:#FECACA;color:#DC2626}
+
+/* ── Usage Stats ─────────────────────────────── */
+.usage-donut-wrap{display:flex;align-items:center;justify-content:center;padding:16px 0 8px;position:relative}
+.usage-donut-inner{position:absolute;text-align:center;pointer-events:none}
+.usage-donut-gb{font-size:26px;font-weight:800;color:var(--ink);letter-spacing:-1px;line-height:1.1}
+.usage-donut-sub{font-size:11px;color:var(--ink3);font-weight:500}
+.usage-period-bar{display:flex;align-items:center;justify-content:space-between;padding:0 20px;margin-bottom:10px}
+.usage-period-label{font-size:11.5px;font-weight:700;color:var(--ink3)}
+.usage-period-days{font-size:11.5px;font-weight:700;color:var(--vio)}
+.usage-breakdown{padding:0 18px;display:flex;flex-direction:column;gap:7px}
+.usage-bar-row{display:flex;align-items:center;gap:10px}
+.usage-cat-ico{font-size:14px;width:20px;text-align:center;flex:0 0 auto}
+.usage-cat-label{font-size:12px;font-weight:600;color:var(--ink);width:70px;flex-shrink:0}
+.usage-bar-track{flex:1;height:7px;background:var(--lavd);border-radius:99px;overflow:hidden}
+.usage-bar-fill{height:100%;border-radius:99px;transition:width 900ms cubic-bezier(0.34,1.56,0.64,1)}
+.usage-bar-amt{font-size:11.5px;font-weight:700;color:var(--ink3);width:38px;text-align:right;flex-shrink:0}
+.usage-history-card{margin:12px 18px 0;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.usage-hist-header{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3);padding:11px 14px;border-bottom:1px solid var(--line)}
+.usage-hist-row{display:flex;align-items:center;justify-content:space-between;padding:10px 14px}
+.usage-hist-row+.usage-hist-row{border-top:1px solid var(--line)}
+.usage-hist-month{font-size:13px;font-weight:600;color:var(--ink)}
+.usage-hist-gb{font-size:13px;font-weight:700;color:var(--ink3)}
+.usage-hist-bar{width:80px;height:5px;background:var(--lavd);border-radius:99px;overflow:hidden;margin-top:3px}
+.usage-hist-fill{height:100%;border-radius:99px;background:var(--vio)}
+.usage-roam-card{margin:8px 18px 0;padding:12px 14px;background:#FFF8F0;border:1px solid #FFD6A5;border-radius:13px;display:flex;align-items:flex-start;gap:10px}
+.usage-roam-ico{font-size:22px}
+.usage-roam-body{flex:1}
+.usage-roam-label{font-size:13px;font-weight:700;color:#7A3D00}
+.usage-roam-val{font-size:12px;color:#9A5500;margin-top:2px}
 </style>
 </head>
 <body>
@@ -3081,6 +3183,8 @@ nav.nav{
           <div class="settings-card">
             <div class="sett-item" data-route="notifications"><div class="sett-ico">🔔</div><span class="sett-label">Notifications</span><svg class="sett-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg></div>
             <div class="sett-item" data-route="plan-select"><div class="sett-ico">📶</div><span class="sett-label">Connected eSIM &amp; Plan</span><svg class="sett-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg></div>
+            <div class="sett-item" data-route="esim-device"><div class="sett-ico">📡</div><span class="sett-label">eSIM &amp; Device</span><svg class="sett-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg></div>
+            <div class="sett-item" data-route="usage-stats"><div class="sett-ico">📊</div><span class="sett-label">Data Usage</span><svg class="sett-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg></div>
             <div class="sett-item" data-route="billing-history"><div class="sett-ico">🧾</div><span class="sett-label">Billing History</span><svg class="sett-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg></div>
             <div class="sett-item" data-route="privacy-dashboard"><div class="sett-ico">🔒</div><span class="sett-label">Privacy Controls</span><svg class="sett-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg></div>
             <div class="sett-item" data-route="language"><div class="sett-ico">🌍</div><span class="sett-label">Language &amp; Region</span><svg class="sett-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg></div>
@@ -3898,7 +4002,7 @@ nav.nav{
           </div>
         </div>
         <div class="ob-bottom">
-          <button class="btn solid" data-route="onboard-4">Confirm &amp; continue →</button>
+          <button class="btn solid" data-route="consent-data">Confirm &amp; continue →</button>
           <p style="font-size:11px;color:var(--ink3);text-align:center;line-height:1.5">You can change these anytime in Settings → Privacy</p>
         </div>
       </section>
@@ -4224,6 +4328,16 @@ nav.nav{
 
           <div class="priv-note">Your data is never sold. All task responses are anonymised before being shared with brands. Read our <span style="color:var(--vio);font-weight:700">Privacy Policy →</span></div>
 
+          <!-- Consent review -->
+          <div class="sett-item" data-route="consent-data" style="background:#F8F5FE;border-radius:12px;border:1px solid var(--line);padding:13px 14px">
+            <div class="sett-ico">✅</div>
+            <div style="flex:1">
+              <div style="font-size:13.5px;font-weight:700;color:var(--ink)">Review &amp; update consent</div>
+              <div style="font-size:11.5px;color:var(--ink3);margin-top:2px">Manage what data you share and with whom</div>
+            </div>
+            <svg class="sett-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+          </div>
+
           <!-- Actions -->
           <button class="priv-action-btn">Download my data</button>
           <button class="priv-action-btn danger">Delete my account</button>
@@ -4377,6 +4491,455 @@ nav.nav{
             </div>
           </div>
 
+        </div>
+      </section>
+
+      <!-- ========================================
+           CONSENT STEP 1 — Data you share
+           ======================================== -->
+      <section class="screen" data-screen="consent-data" aria-label="Data consent step 1 of 3">
+        <div class="sb"><span>9:41</span><span class="ico" aria-hidden="true"><svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="6" width="3" height="5" rx="1" fill="#1B1430"/><rect x="4.5" y="3.5" width="3" height="7.5" rx="1" fill="#1B1430"/><rect x="9" y="1.5" width="3" height="9.5" rx="1" fill="#1B1430"/><rect x="13.5" y="0" width="3" height="11" rx="1" fill="#1B1430" opacity=".35"/></svg><svg width="22" height="11" viewBox="0 0 22 11" fill="none"><rect x=".5" y=".5" width="18" height="10" rx="2.5" stroke="#1B1430" opacity=".4"/><rect x="2" y="2" width="13.5" height="7" rx="1.3" fill="#1B1430"/><rect x="20" y="3.5" width="1.5" height="4" rx=".7" fill="#1B1430" opacity=".5"/></svg></span></div>
+        <div class="appbar-back">
+          <button class="back-btn" data-route="back" aria-label="Go back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>
+          <span class="title">Your data &amp; privacy</span>
+        </div>
+        <div class="cfl-progress" aria-label="Step 1 of 3">
+          <div class="cfl-pdot on"></div><div class="cfl-pdot"></div><div class="cfl-pdot"></div>
+        </div>
+        <div class="body" style="gap:14px">
+          <div class="cfl-hero">
+            <div class="cfl-step-tag">Step 1 of 3 · Data you share</div>
+            <div class="cfl-title">What we collect &amp; why</div>
+            <div class="cfl-sub">Some data is needed to run your account. The rest is optional — and each signal you share earns you money.</div>
+          </div>
+
+          <!-- Required -->
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:0 18px">
+            <div class="cfl-section-label" style="padding:0">Always collected</div>
+            <div class="cfl-required-badge" style="margin:0">🔒 Required for service</div>
+          </div>
+          <div class="cfl-data-list">
+            <div class="cfl-data-item">
+              <div class="cfl-data-ico">👤</div>
+              <div class="cfl-data-body">
+                <div class="cfl-data-name">Account &amp; identity</div>
+                <div class="cfl-data-desc">Name, email, phone number. Used to create and secure your account.</div>
+                <span class="cfl-data-lock">Contract performance · GDPR Art. 6(1)(b)</span>
+              </div>
+            </div>
+            <div class="cfl-data-item">
+              <div class="cfl-data-ico">💳</div>
+              <div class="cfl-data-body">
+                <div class="cfl-data-name">Billing &amp; payment</div>
+                <div class="cfl-data-desc">Invoice records and payment method. Never stored on device — processed by our payment provider.</div>
+                <span class="cfl-data-lock">Contract performance · GDPR Art. 6(1)(b)</span>
+              </div>
+            </div>
+            <div class="cfl-data-item">
+              <div class="cfl-data-ico">📡</div>
+              <div class="cfl-data-body">
+                <div class="cfl-data-name">eSIM provisioning data</div>
+                <div class="cfl-data-desc">EID, ICCID, and network authentication tokens needed to activate your SIM on the network.</div>
+                <span class="cfl-data-lock">Contract performance · GDPR Art. 6(1)(b)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Optional -->
+          <div class="cfl-section-label">Optional — earns you money</div>
+          <div class="cfl-earn-list">
+            <div class="cfl-earn-row">
+              <div class="cfl-earn-ico">📍</div>
+              <div class="cfl-earn-body">
+                <div class="cfl-earn-name">Location signals</div>
+                <div class="cfl-earn-rate">+€0.08 / day</div>
+                <div class="cfl-earn-desc">City-level only. Unlocks footfall surveys. We never track precise GPS or store location history.</div>
+              </div>
+              <div class="priv-tog" id="cd-tog-location" data-priv-tog aria-label="Location signals on" role="switch" aria-checked="true">On</div>
+            </div>
+            <div class="cfl-earn-row">
+              <div class="cfl-earn-ico">📱</div>
+              <div class="cfl-earn-body">
+                <div class="cfl-earn-name">App usage patterns</div>
+                <div class="cfl-earn-rate">+€0.05 / day</div>
+                <div class="cfl-earn-desc">Category-level only (e.g. "social", "finance"). No app names, no content, no activity logs.</div>
+              </div>
+              <div class="priv-tog" id="cd-tog-apps" data-priv-tog aria-label="App usage patterns on" role="switch" aria-checked="true">On</div>
+            </div>
+            <div class="cfl-earn-row">
+              <div class="cfl-earn-ico">📶</div>
+              <div class="cfl-earn-body">
+                <div class="cfl-earn-name">Network behaviour</div>
+                <div class="cfl-earn-rate">+€0.07 / day</div>
+                <div class="cfl-earn-desc">Signal quality and handoff patterns only. Powers Autopilot. No content is ever read.</div>
+              </div>
+              <div class="priv-tog" id="cd-tog-network" data-priv-tog aria-label="Network behaviour on" role="switch" aria-checked="true">On</div>
+            </div>
+            <div class="cfl-earn-row">
+              <div class="cfl-earn-ico">📋</div>
+              <div class="cfl-earn-body">
+                <div class="cfl-earn-name">Survey participation</div>
+                <div class="cfl-earn-rate">+€0.40–€1.60 per survey</div>
+                <div class="cfl-earn-desc">Your answers are anonymised and aggregated before being shared with brand research partners.</div>
+              </div>
+              <div class="priv-tog" id="cd-tog-survey" data-priv-tog aria-label="Survey participation on" role="switch" aria-checked="true">On</div>
+            </div>
+          </div>
+
+          <div class="cfl-legal-note">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>Optional data is processed under your <strong>consent (GDPR Art. 6(1)(a))</strong>. You can withdraw any toggle at any time from Settings → Privacy — your account stays active.</span>
+          </div>
+        </div>
+        <div class="btn-bottom" style="display:flex;flex-direction:column;gap:9px">
+          <button class="btn solid" data-route="consent-partners">Next: who sees your data →</button>
+          <p style="font-size:11px;color:var(--ink3);text-align:center;line-height:1.5">Choices saved automatically · changeable any time</p>
+        </div>
+      </section>
+
+      <!-- ========================================
+           CONSENT STEP 2 — Partner data sharing
+           ======================================== -->
+      <section class="screen" data-screen="consent-partners" aria-label="Data consent step 2 of 3">
+        <div class="sb"><span>9:41</span><span class="ico" aria-hidden="true"><svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="6" width="3" height="5" rx="1" fill="#1B1430"/><rect x="4.5" y="3.5" width="3" height="7.5" rx="1" fill="#1B1430"/><rect x="9" y="1.5" width="3" height="9.5" rx="1" fill="#1B1430"/><rect x="13.5" y="0" width="3" height="11" rx="1" fill="#1B1430" opacity=".35"/></svg><svg width="22" height="11" viewBox="0 0 22 11" fill="none"><rect x=".5" y=".5" width="18" height="10" rx="2.5" stroke="#1B1430" opacity=".4"/><rect x="2" y="2" width="13.5" height="7" rx="1.3" fill="#1B1430"/><rect x="20" y="3.5" width="1.5" height="4" rx=".7" fill="#1B1430" opacity=".5"/></svg></span></div>
+        <div class="appbar-back">
+          <button class="back-btn" data-route="back" aria-label="Go back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>
+          <span class="title">Who sees your data</span>
+        </div>
+        <div class="cfl-progress" aria-label="Step 2 of 3">
+          <div class="cfl-pdot on"></div><div class="cfl-pdot on"></div><div class="cfl-pdot"></div>
+        </div>
+        <div class="body" style="gap:14px">
+          <div class="cfl-hero">
+            <div class="cfl-step-tag">Step 2 of 3 · Partner data sharing</div>
+            <div class="cfl-title">Who your data is shared with</div>
+            <div class="cfl-sub">Your earnings come from partners who pay for anonymised audience insights. You control each category.</div>
+          </div>
+
+          <div class="cfl-section-label">Partner categories</div>
+          <div style="padding:0 18px;display:flex;flex-direction:column;gap:8px">
+            <div class="cfl-partner-row">
+              <div class="cfl-partner-logo" style="background:#FFF3E5">🔬</div>
+              <div class="cfl-partner-body">
+                <div class="cfl-partner-name">Market research firms</div>
+                <div class="cfl-partner-desc">Receive aggregated, anonymised audience segments. No individual profiles — your data is pooled with thousands of users before sharing.</div>
+                <span class="cfl-partner-purpose">Legitimate interest · GDPR Art. 6(1)(f)</span>
+              </div>
+              <div class="priv-tog" data-priv-tog aria-label="Market research on" role="switch" aria-checked="true" style="flex-shrink:0">On</div>
+            </div>
+            <div class="cfl-partner-row">
+              <div class="cfl-partner-logo" style="background:#EFF6FF">📢</div>
+              <div class="cfl-partner-body">
+                <div class="cfl-partner-name">Brand advertisers</div>
+                <div class="cfl-partner-desc">Receive anonymised demographic signals to better target surveys and offers to relevant users. Never receive your name or contact details.</div>
+                <span class="cfl-partner-purpose">Consent · GDPR Art. 6(1)(a)</span>
+              </div>
+              <div class="priv-tog" data-priv-tog aria-label="Brand advertisers on" role="switch" aria-checked="true" style="flex-shrink:0">On</div>
+            </div>
+            <div class="cfl-partner-row">
+              <div class="cfl-partner-logo" style="background:#F0FFF4">📡</div>
+              <div class="cfl-partner-body">
+                <div class="cfl-partner-name">Network operators</div>
+                <div class="cfl-partner-desc">Receive technical quality metrics (signal strength, handoff latency) to improve network coverage. No user-identifying information.</div>
+                <span class="cfl-partner-purpose">Legitimate interest · GDPR Art. 6(1)(f)</span>
+              </div>
+              <div class="priv-tog" data-priv-tog aria-label="Network operators on" role="switch" aria-checked="true" style="flex-shrink:0">On</div>
+            </div>
+            <div class="cfl-partner-row">
+              <div class="cfl-partner-logo" style="background:#FDF4FF">🛍️</div>
+              <div class="cfl-partner-body">
+                <div class="cfl-partner-name">Retail &amp; lifestyle brands</div>
+                <div class="cfl-partner-desc">Receive survey response data you explicitly provide when completing brand tasks. You see exactly what's shared before each task.</div>
+                <span class="cfl-partner-purpose">Consent · GDPR Art. 6(1)(a)</span>
+              </div>
+              <div class="priv-tog" data-priv-tog aria-label="Retail brands on" role="switch" aria-checked="true" style="flex-shrink:0">On</div>
+            </div>
+          </div>
+
+          <div style="margin:0 18px;padding:12px 14px;background:var(--vios);border-radius:13px;font-size:12px;color:var(--ink3);line-height:1.6">
+            <strong style="color:var(--ink)">No data broker selling.</strong> YoYou never sells raw individual profiles to data brokers. All transfers are purpose-limited, contractually bound under GDPR Data Processing Agreements, and logged in your privacy dashboard.
+          </div>
+        </div>
+        <div class="btn-bottom" style="display:flex;flex-direction:column;gap:9px">
+          <button class="btn solid" data-route="consent-rights">Next: your GDPR rights →</button>
+          <p style="font-size:11px;color:var(--ink3);text-align:center;line-height:1.5">All sharing agreements available on request · <span style="color:var(--vio);font-weight:600">privacy@yoyou.eu</span></p>
+        </div>
+      </section>
+
+      <!-- ========================================
+           CONSENT STEP 3 — GDPR Rights
+           ======================================== -->
+      <section class="screen" data-screen="consent-rights" aria-label="Your GDPR rights">
+        <div class="sb"><span>9:41</span><span class="ico" aria-hidden="true"><svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="6" width="3" height="5" rx="1" fill="#1B1430"/><rect x="4.5" y="3.5" width="3" height="7.5" rx="1" fill="#1B1430"/><rect x="9" y="1.5" width="3" height="9.5" rx="1" fill="#1B1430"/><rect x="13.5" y="0" width="3" height="11" rx="1" fill="#1B1430" opacity=".35"/></svg><svg width="22" height="11" viewBox="0 0 22 11" fill="none"><rect x=".5" y=".5" width="18" height="10" rx="2.5" stroke="#1B1430" opacity=".4"/><rect x="2" y="2" width="13.5" height="7" rx="1.3" fill="#1B1430"/><rect x="20" y="3.5" width="1.5" height="4" rx=".7" fill="#1B1430" opacity=".5"/></svg></span></div>
+        <div class="appbar-back">
+          <button class="back-btn" data-route="back" aria-label="Go back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>
+          <span class="title">Your rights</span>
+        </div>
+        <div class="cfl-progress" aria-label="Step 3 of 3">
+          <div class="cfl-pdot on"></div><div class="cfl-pdot on"></div><div class="cfl-pdot on"></div>
+        </div>
+        <div class="body" style="gap:14px">
+          <div class="cfl-hero">
+            <div class="cfl-step-tag">Step 3 of 3 · Under GDPR (EU) 2016/679</div>
+            <div class="cfl-title">You are in control</div>
+            <div class="cfl-sub">These rights apply to all personal data YoYou holds about you — at any time, for free.</div>
+          </div>
+
+          <div class="cfl-rights-list">
+            <div class="cfl-right-row">
+              <div class="cfl-right-ico">👁️</div>
+              <div class="cfl-right-body">
+                <div class="cfl-right-name">Right of access</div>
+                <div class="cfl-right-how">Request a full copy of all personal data we hold on you, in a readable format, within 30 days.</div>
+                <span class="cfl-right-action" role="button" tabindex="0" data-route="privacy-dashboard">Request via Privacy Dashboard →</span>
+              </div>
+            </div>
+            <div class="cfl-right-row">
+              <div class="cfl-right-ico">✏️</div>
+              <div class="cfl-right-body">
+                <div class="cfl-right-name">Right to rectification</div>
+                <div class="cfl-right-how">Correct any inaccurate or incomplete personal data we hold. Changes take effect within 72 hours.</div>
+                <span class="cfl-right-action" role="button" tabindex="0" data-route="privacy-dashboard">Update in Privacy Dashboard →</span>
+              </div>
+            </div>
+            <div class="cfl-right-row">
+              <div class="cfl-right-ico">🗑️</div>
+              <div class="cfl-right-body">
+                <div class="cfl-right-name">Right to erasure</div>
+                <div class="cfl-right-how">"Right to be forgotten." Delete your account and all associated data. Note: billing records required by law are retained for 7 years.</div>
+                <span class="cfl-right-action" role="button" tabindex="0" data-route="privacy-dashboard">Request deletion →</span>
+              </div>
+            </div>
+            <div class="cfl-right-row">
+              <div class="cfl-right-ico">📦</div>
+              <div class="cfl-right-body">
+                <div class="cfl-right-name">Right to data portability</div>
+                <div class="cfl-right-how">Export all your data as a structured JSON or CSV file, usable by any other service.</div>
+                <span class="cfl-right-action" role="button" tabindex="0" data-route="privacy-dashboard">Export your data →</span>
+              </div>
+            </div>
+            <div class="cfl-right-row">
+              <div class="cfl-right-ico">⏸️</div>
+              <div class="cfl-right-body">
+                <div class="cfl-right-name">Right to withdraw consent</div>
+                <div class="cfl-right-how">Turn off any optional data sharing toggle at any time — your account remains active. Takes effect immediately.</div>
+                <span class="cfl-right-action" role="button" tabindex="0" data-route="privacy-dashboard">Manage in Privacy Dashboard →</span>
+              </div>
+            </div>
+            <div class="cfl-right-row">
+              <div class="cfl-right-ico">⚖️</div>
+              <div class="cfl-right-body">
+                <div class="cfl-right-name">Right to lodge a complaint</div>
+                <div class="cfl-right-how">If you believe we've mishandled your data, you can complain to the Berliner Beauftragte für Datenschutz (BlnBDI).</div>
+                <span class="cfl-right-action">blnbdi.de</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="cfl-controller">
+            <strong>Data Controller:</strong> YoYou GmbH · Friedrichstraße 68, 10117 Berlin, Germany<br>
+            <strong>DPO:</strong> <a href="#">privacy@yoyou.eu</a> · responds within 5 working days<br>
+            <strong>Supervisory authority:</strong> Berliner Beauftragte für Datenschutz und Informationsfreiheit
+          </div>
+        </div>
+        <div class="btn-bottom">
+          <button class="btn solid" data-route="onboard-4">I've read my rights — let's go →</button>
+        </div>
+      </section>
+
+      <!-- ========================================
+           ESIM & DEVICE MANAGEMENT
+           ======================================== -->
+      <section class="screen" data-screen="esim-device" aria-label="eSIM and Device Management">
+        <div class="sb"><span>9:41</span><span class="ico" aria-hidden="true"><svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="6" width="3" height="5" rx="1" fill="#1B1430"/><rect x="4.5" y="3.5" width="3" height="7.5" rx="1" fill="#1B1430"/><rect x="9" y="1.5" width="3" height="9.5" rx="1" fill="#1B1430"/><rect x="13.5" y="0" width="3" height="11" rx="1" fill="#1B1430" opacity=".35"/></svg><svg width="22" height="11" viewBox="0 0 22 11" fill="none"><rect x=".5" y=".5" width="18" height="10" rx="2.5" stroke="#1B1430" opacity=".4"/><rect x="2" y="2" width="13.5" height="7" rx="1.3" fill="#1B1430"/><rect x="20" y="3.5" width="1.5" height="4" rx=".7" fill="#1B1430" opacity=".5"/></svg></span></div>
+        <div class="appbar-back">
+          <button class="back-btn" data-route="back" aria-label="Go back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>
+          <span class="title">eSIM &amp; Device</span>
+        </div>
+        <div class="body" style="gap:0">
+
+          <!-- Active eSIM card -->
+          <div class="esim-status-card" style="margin-bottom:0">
+            <div class="esim-status-glow" aria-hidden="true"></div>
+            <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.45);margin-bottom:10px">Active eSIM</div>
+            <div class="esim-active-row">
+              <div class="esim-carrier">Telekom DE</div>
+              <div class="esim-net-badge">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M1 6s4-4 11-4 11 4 11 4"/><path d="M5 10s3-3 7-3 7 3 7 3"/><path d="M9 14s1.5-2 3-2 3 2 3 2"/><circle cx="12" cy="18" r="1" fill="currentColor"/></svg>
+                5G · Active
+              </div>
+            </div>
+            <div style="font-size:12px;color:rgba(255,255,255,.6);margin-bottom:14px">YoYou Flex · 15 GB/month · €0 bill share active</div>
+            <div class="esim-ids">
+              <div class="esim-id-pair">
+                <div class="esim-id-lbl">ICCID</div>
+                <div class="esim-id-val">8949 0620 0000 •••• 2847</div>
+              </div>
+              <div class="esim-id-pair" style="margin-top:8px">
+                <div class="esim-id-lbl">EID</div>
+                <div class="esim-id-val">89049032 •••••••• 00000000 29</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Device info -->
+          <div class="esim-info-card">
+            <div class="esim-info-row">
+              <div class="esim-info-ico">📱</div>
+              <div class="esim-info-body">
+                <div class="esim-info-label">Device</div>
+                <div class="esim-info-val">iPhone 15 Pro · iOS 17.4.1</div>
+              </div>
+              <span class="esim-info-badge ok">Compatible</span>
+            </div>
+            <div class="esim-info-row">
+              <div class="esim-info-ico">📶</div>
+              <div class="esim-info-body">
+                <div class="esim-info-label">Network coverage</div>
+                <div class="esim-info-val">Telekom DE · 5G / LTE · Berlin area</div>
+              </div>
+              <span class="esim-info-badge ok">Strong</span>
+            </div>
+            <div class="esim-info-row">
+              <div class="esim-info-ico">🔋</div>
+              <div class="esim-info-body">
+                <div class="esim-info-label">eSIM slot</div>
+                <div class="esim-info-val">Slot 1 of 2 · Dual-SIM active</div>
+              </div>
+            </div>
+            <div class="esim-info-row">
+              <div class="esim-info-ico">📅</div>
+              <div class="esim-info-body">
+                <div class="esim-info-label">Active since</div>
+                <div class="esim-info-val">1 December 2025 · 101 days</div>
+              </div>
+            </div>
+            <div class="esim-info-row" data-route="usage-stats" role="button" tabindex="0" style="cursor:pointer">
+              <div class="esim-info-ico">📊</div>
+              <div class="esim-info-body">
+                <div class="esim-info-label">Data usage this month</div>
+                <div class="esim-info-val" style="color:var(--vio);font-weight:600">8.4 GB of 15 GB used → View stats</div>
+              </div>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ink3)" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="esim-actions">
+            <div class="esim-act-btn" data-route="plan-select" role="button" tabindex="0">
+              ↗ Change plan
+            </div>
+            <div class="esim-act-btn" role="button" tabindex="0" onclick="showToast('Opens transfer flow — not in this demo')">
+              📲 Transfer eSIM
+            </div>
+            <div class="esim-act-btn danger" role="button" tabindex="0" onclick="showToast('Opens account deletion flow')">
+              🗑 Remove
+            </div>
+          </div>
+
+          <div style="margin:12px 18px 0;padding:12px 14px;background:var(--vios);border-radius:12px;font-size:11.5px;color:var(--ink3);line-height:1.5">
+            <strong style="color:var(--ink)">Losing signal?</strong> YoYou auto-switches to LTE when 5G is unavailable. Roaming is included in EU/EEA countries at no extra charge on the Flex plan.
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================
+           DATA USAGE STATS
+           ======================================== -->
+      <section class="screen" data-screen="usage-stats" aria-label="Data usage statistics">
+        <div class="sb"><span>9:41</span><span class="ico" aria-hidden="true"><svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="6" width="3" height="5" rx="1" fill="#1B1430"/><rect x="4.5" y="3.5" width="3" height="7.5" rx="1" fill="#1B1430"/><rect x="9" y="1.5" width="3" height="9.5" rx="1" fill="#1B1430"/><rect x="13.5" y="0" width="3" height="11" rx="1" fill="#1B1430" opacity=".35"/></svg><svg width="22" height="11" viewBox="0 0 22 11" fill="none"><rect x=".5" y=".5" width="18" height="10" rx="2.5" stroke="#1B1430" opacity=".4"/><rect x="2" y="2" width="13.5" height="7" rx="1.3" fill="#1B1430"/><rect x="20" y="3.5" width="1.5" height="4" rx=".7" fill="#1B1430" opacity=".5"/></svg></span></div>
+        <div class="appbar-back">
+          <button class="back-btn" data-route="back" aria-label="Go back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>
+          <span class="title">Data Usage</span>
+        </div>
+        <div class="body" style="gap:0;padding-bottom:18px">
+
+          <!-- Donut arc -->
+          <div class="usage-donut-wrap">
+            <svg width="180" height="180" viewBox="0 0 180 180" aria-label="8.4 GB used of 15 GB">
+              <circle cx="90" cy="90" r="72" fill="none" stroke="#EDE8F6" stroke-width="14"/>
+              <!-- Used: 8.4/15 = 56% of circumference 452.4 = 253.3 filled, 199.1 gap -->
+              <circle cx="90" cy="90" r="72" fill="none" stroke="url(#usageGrad)" stroke-width="14" stroke-linecap="round"
+                stroke-dasharray="253 200" stroke-dashoffset="113" transform="rotate(-90 90 90)"/>
+              <defs>
+                <linearGradient id="usageGrad" x1="0" y1="0" x2="1" y2="0">
+                  <stop stop-color="#7C3AED"/><stop offset="1" stop-color="#22d3ee"/>
+                </linearGradient>
+              </defs>
+            </svg>
+            <div class="usage-donut-inner">
+              <div class="usage-donut-gb">8.4 GB</div>
+              <div class="usage-donut-sub">of 15 GB</div>
+            </div>
+          </div>
+
+          <div class="usage-period-bar">
+            <div class="usage-period-label">March 2026 · 18 of 31 days</div>
+            <div class="usage-period-days">13 days left</div>
+          </div>
+
+          <!-- Breakdown bars -->
+          <div class="usage-breakdown">
+            <div class="usage-bar-row">
+              <div class="usage-cat-ico">🎬</div>
+              <div class="usage-cat-label">Streaming</div>
+              <div class="usage-bar-track"><div class="usage-bar-fill" style="width:71%;background:linear-gradient(90deg,#7C3AED,#A855F7)"></div></div>
+              <div class="usage-bar-amt">3.6 GB</div>
+            </div>
+            <div class="usage-bar-row">
+              <div class="usage-cat-ico">🌐</div>
+              <div class="usage-cat-label">Browsing</div>
+              <div class="usage-bar-track"><div class="usage-bar-fill" style="width:40%;background:linear-gradient(90deg,#3B82F6,#06B6D4)"></div></div>
+              <div class="usage-bar-amt">2.0 GB</div>
+            </div>
+            <div class="usage-bar-row">
+              <div class="usage-cat-ico">💬</div>
+              <div class="usage-cat-label">Social</div>
+              <div class="usage-bar-track"><div class="usage-bar-fill" style="width:33%;background:linear-gradient(90deg,#EC4899,#F43F5E)"></div></div>
+              <div class="usage-bar-amt">1.7 GB</div>
+            </div>
+            <div class="usage-bar-row">
+              <div class="usage-cat-ico">📱</div>
+              <div class="usage-cat-label">Apps</div>
+              <div class="usage-bar-track"><div class="usage-bar-fill" style="width:20%;background:linear-gradient(90deg,#10B981,#34D399)"></div></div>
+              <div class="usage-bar-amt">1.1 GB</div>
+            </div>
+          </div>
+
+          <!-- 3-month history -->
+          <div class="usage-history-card">
+            <div class="usage-hist-header">Last 3 months</div>
+            <div class="usage-hist-row">
+              <div>
+                <div class="usage-hist-month">March 2026</div>
+                <div class="usage-hist-bar"><div class="usage-hist-fill" style="width:56%"></div></div>
+              </div>
+              <div class="usage-hist-gb">8.4 / 15 GB</div>
+            </div>
+            <div class="usage-hist-row">
+              <div>
+                <div class="usage-hist-month">February 2026</div>
+                <div class="usage-hist-bar"><div class="usage-hist-fill" style="width:87%"></div></div>
+              </div>
+              <div class="usage-hist-gb">13.1 / 15 GB</div>
+            </div>
+            <div class="usage-hist-row">
+              <div>
+                <div class="usage-hist-month">January 2026</div>
+                <div class="usage-hist-bar"><div class="usage-hist-fill" style="width:62%"></div></div>
+              </div>
+              <div class="usage-hist-gb">9.3 / 15 GB</div>
+            </div>
+          </div>
+
+          <!-- Roaming -->
+          <div class="usage-roam-card">
+            <div class="usage-roam-ico">✈️</div>
+            <div class="usage-roam-body">
+              <div class="usage-roam-label">EU/EEA roaming · included</div>
+              <div class="usage-roam-val">0.2 GB used roaming this month · No extra charges on Flex plan</div>
+            </div>
+          </div>
         </div>
       </section>
 
