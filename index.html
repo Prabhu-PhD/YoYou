@@ -437,7 +437,7 @@ nav.nav{
 .opp-tile:active{transform:scale(.96)}
 .opp-ico{font-size:20px;line-height:1}
 .opp-count{font-size:12px;font-weight:700;color:var(--ink);text-align:center}
-.opp-val{font-size:11px;font-weight:700;color:var(--viod);text-align:center}
+.opp-val{font-size:11px;font-weight:700;color:#4ade80;text-align:center}
 /* ── Streak card ─────────────────────────── */
 .streak-card{background:#fff;border-radius:14px;padding:14px 16px 12px;border:1.5px solid var(--line);cursor:pointer;transition:border-color var(--t-fast) var(--ease)}
 .streak-card:active{border-color:var(--viod)}
@@ -452,20 +452,24 @@ nav.nav{
 .streak-footer{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:9px}
 .streak-count{font-size:11.5px;font-weight:600;color:var(--ink3)}
 .streak-bonus{font-size:11px;font-weight:700;color:var(--viod)}
-/* ── Wallet tile ─────────────────────────── */
-.stat-tile{background:#fff;border-radius:14px;padding:13px 14px;display:flex;align-items:center;gap:10px;cursor:pointer;border:1.5px solid var(--line);transition:border-color var(--t-fast) var(--ease)}
-.stat-tile:active{border-color:var(--viod)}
-.st-ico{font-size:22px;line-height:1;flex-shrink:0}
-.st-val{font-size:16px;font-weight:800;color:var(--ink);letter-spacing:-.4px}
-.st-lbl{font-size:10px;font-weight:500;color:var(--ink3);text-transform:uppercase;letter-spacing:.3px;margin-top:2px}
+/* ── Wallet card ─────────────────────────── */
+.wallet-card{background:#fff;border-radius:14px;padding:13px 16px 12px;border:1.5px solid var(--line);cursor:pointer;transition:border-color var(--t-fast) var(--ease)}
+.wallet-card:active{border-color:var(--viod)}
+.wallet-inner{display:flex;align-items:center;justify-content:space-between}
+.wallet-left{}
+.wallet-amt{font-size:22px;font-weight:900;color:#4ade80;letter-spacing:-.5px;line-height:1}
+.wallet-lbl{font-size:11px;color:var(--ink3);font-weight:500;margin-top:3px}
+.wallet-tasks{display:flex;align-items:center;gap:6px}
+.wtask{width:34px;height:34px;border-radius:9px;background:var(--lavd);display:flex;align-items:center;justify-content:center;font-size:16px}
+.wtask-more{font-size:10.5px;font-weight:700;color:var(--ink3)}
 /* ── AI Recommendation ────────────────────── */
-.ai-rec{background:linear-gradient(135deg,#1A0A3E,#2D1060);border-radius:16px;padding:16px 16px 14px;cursor:pointer;position:relative;overflow:hidden}
+.ai-rec{background:linear-gradient(135deg,#1A0A3E,#2D1060);border-radius:16px;padding:12px 14px 11px;cursor:pointer;position:relative;overflow:hidden}
 .ai-rec::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 40%,rgba(139,92,246,.35),transparent 60%);pointer-events:none}
-.ai-rec-top{display:flex;align-items:center;gap:8px;margin-bottom:10px;position:relative}
-.ai-rec-av{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#A78BFA,#7C3AED);flex-shrink:0}
-.ai-rec-lbl{font-size:10.5px;font-weight:700;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.6px}
-.ai-rec-msg{font-size:14.5px;font-weight:600;color:#fff;line-height:1.45;margin:0 0 12px;font-style:italic;position:relative}
-.ai-rec-cta{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;color:#A78BFA;position:relative}
+.ai-rec-top{display:flex;align-items:center;gap:8px;margin-bottom:7px;position:relative}
+.ai-rec-av{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#A78BFA,#7C3AED);flex-shrink:0}
+.ai-rec-lbl{font-size:10px;font-weight:700;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.6px}
+.ai-rec-msg{font-size:13.5px;font-weight:600;color:#fff;line-height:1.4;margin:0 0 8px;font-style:italic;position:relative}
+.ai-rec-cta{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:#A78BFA;position:relative}
 
 /* Daily Bonus chip — pulsing, gold-bordered */
 .bonus-chip{
@@ -1897,20 +1901,9 @@ nav.nav{
             <div class="btz-track" aria-hidden="true">
               <div class="btz-track-fill" id="bill-fill" style="width:38%"></div>
             </div>
-            <div class="btz-stats">
-              <div class="btz-stat">
-                <span class="btz-val" id="bill-cleared-amt">€6.80</span>
-                <span class="btz-lbl">Cleared</span>
-              </div>
-              <div class="btz-stat">
-                <span class="btz-val" id="bill-dial-pct">38%</span>
-                <span class="btz-lbl">Done</span>
-              </div>
-              <div class="btz-stat">
-                <span class="btz-val" id="bill-days-left">7 days</span>
-                <span class="btz-lbl">To zero</span>
-              </div>
-            </div>
+            <span id="bill-cleared-amt" style="display:none">€6.80</span>
+            <span id="bill-dial-pct" style="display:none">38%</span>
+            <span id="bill-days-left" style="display:none">7 days</span>
           </div>
 
           <!-- Today's Opportunities -->
@@ -1955,12 +1948,19 @@ nav.nav{
             </div>
           </div>
 
-          <!-- Wallet tile -->
-          <div class="stat-tile" data-route="rewards" role="button" tabindex="0" aria-label="Wallet balance">
-            <span class="st-ico">💰</span>
-            <div>
-              <div class="st-val" id="home-wallet-val">€4.60</div>
-              <div class="st-lbl">Wallet</div>
+          <!-- Wallet card -->
+          <div class="wallet-card" data-route="rewards" role="button" tabindex="0" aria-label="Wallet balance">
+            <div class="wallet-inner">
+              <div class="wallet-left">
+                <div class="wallet-amt" id="home-wallet-val">€4.60</div>
+                <div class="wallet-lbl">earned · going to your bill</div>
+              </div>
+              <div class="wallet-tasks">
+                <div class="wtask">📋</div>
+                <div class="wtask">⭐</div>
+                <div class="wtask">📺</div>
+                <div class="wtask wtask-more">+2</div>
+              </div>
             </div>
           </div>
 
