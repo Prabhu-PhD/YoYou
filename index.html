@@ -6600,19 +6600,16 @@ async function exportAllScreens(){
   device.style.transform       = 'none';
   device.style.transformOrigin = 'top left';
 
-  // One injected <style> overrides which screen is visible per iteration
-  const ovr = document.createElement('style');
-  document.head.appendChild(ovr);
-
   for (let i = 0; i < screens.length; i++) {
-    const id = screens[i].dataset.screen;
+    const target = screens[i];
+    const id = target.dataset.screen;
     btn.textContent = `${i + 1} / ${screens.length}`;
 
-    // Force exactly this screen visible; push all others off-canvas
-    ovr.textContent = `
-      .screen{transform:translateX(110%)!important;transition:none!important}
-      [data-screen="${id}"]{transform:translateX(0)!important}
-    `;
+    // Directly stamp inline styles on every screen — bypasses cascade & transitions entirely
+    screens.forEach(s => {
+      s.style.cssText = 'transition:none!important;opacity:0!important;transform:translateX(110%)!important';
+    });
+    target.style.cssText = 'transition:none!important;opacity:1!important;transform:translateX(0)!important';
 
     // Two rAFs — let the browser paint before capturing
     await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
@@ -6624,8 +6621,8 @@ async function exportAllScreens(){
     zip.file(`${String(i + 1).padStart(2, '0')}-${id}.png`, blob);
   }
 
-  // Restore prototype state
-  ovr.remove();
+  // Restore all inline styles so the live prototype state takes over again
+  screens.forEach(s => { s.style.cssText = ''; });
   device.style.transform       = savedTransform;
   device.style.transformOrigin = savedOrigin;
 
