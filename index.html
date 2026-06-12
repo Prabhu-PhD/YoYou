@@ -129,6 +129,70 @@ svg{display:block}
 }
 
 /* ============================================
+   PERSONA PANEL
+   ============================================ */
+.js-divider{height:1px;background:rgba(124,58,237,.12);margin:10px 10px 8px}
+.js-persona-btn{
+  display:flex;align-items:center;gap:8px;
+  width:100%;padding:9px 12px;border-radius:9px;
+  background:transparent;border:1.5px solid transparent;
+  font-size:12.5px;font-weight:700;color:var(--viod);
+  text-align:left;cursor:pointer;white-space:nowrap;
+  transition:all .15s var(--ease);margin-top:2px;
+}
+.js-persona-btn:hover{background:#FAF7FE;border-color:rgba(124,58,237,.25)}
+.js-persona-btn.active{background:#F3EFFE;border-color:rgba(124,58,237,.35);color:var(--viod)}
+.persona-avatar-sm{width:20px;height:20px;border-radius:50%;background:var(--vio);color:#fff;font-size:10px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+
+.persona-panel{
+  width:0;overflow:hidden;flex-shrink:0;
+  transition:width .28s cubic-bezier(.4,0,.2,1);
+}
+.persona-panel.open{width:300px}
+.persona-inner{
+  width:300px;height:100%;overflow-y:auto;
+  padding:22px 20px 32px;background:#fff;
+  border-left:1px solid rgba(124,58,237,.1);
+  box-sizing:border-box;
+}
+.pcard-avatar{
+  width:64px;height:64px;border-radius:50%;
+  background:linear-gradient(135deg,var(--vio),var(--viod));
+  color:#fff;font-size:26px;font-weight:900;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:12px;box-shadow:0 4px 14px -4px rgba(124,58,237,.45);
+}
+.pcard-name{font-size:20px;font-weight:900;color:var(--ink);letter-spacing:-.3px;line-height:1}
+.pcard-role{font-size:12.5px;color:var(--ink3);font-weight:500;margin-top:3px}
+.pcard-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+.pcard-chip{
+  font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;
+  background:#F3EFFE;color:var(--viod);border:1px solid rgba(124,58,237,.2);
+}
+.pcard-quote{
+  font-size:13px;font-style:italic;color:var(--ink);line-height:1.55;
+  border-left:3px solid var(--vio);padding-left:12px;margin:16px 0;
+}
+.pcard-section{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--ink3);margin-bottom:8px;margin-top:16px}
+.pcard-tag{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:7px;
+  margin:0 4px 5px 0;
+}
+.pcard-tag.goal{background:#ECFDF5;color:#065F46;border:1px solid #A7F3D0}
+.pcard-tag.pain{background:#FEF2F2;color:#991B1B;border:1px solid #FECACA}
+.pcard-tag.neutral{background:#F3EFFE;color:var(--viod);border:1px solid rgba(124,58,237,.2)}
+.pcard-stat{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:9px 12px;border-radius:10px;background:#FAFAFA;
+  border:1px solid var(--line);margin-bottom:6px;font-size:13px;
+}
+.pcard-stat-lbl{color:var(--ink3);font-weight:600;font-size:12px}
+.pcard-stat-val{font-weight:800;color:var(--ink)}
+.pcard-bar-wrap{margin-top:4px;height:6px;background:#EDE9FE;border-radius:3px;overflow:hidden}
+.pcard-bar{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--vio),var(--viod))}
+
+/* ============================================
    4. PHONE FRAME (390x844)
    ============================================ */
 .device{
@@ -2073,6 +2137,11 @@ nav.nav{
     <button class="js-tab" id="j4" aria-label="Play Leaderboard journey"><span class="j-dot" aria-hidden="true"></span>Leaderboard</button>
     <button class="js-tab" id="j5" aria-label="Play Bill Clears journey"><span class="j-dot" aria-hidden="true"></span>Bill Clears</button>
     <button class="js-tab" id="j6" aria-label="Play Consent journey"><span class="j-dot" aria-hidden="true"></span>Consent</button>
+    <div class="js-divider"></div>
+    <button class="js-persona-btn" id="btn-persona" aria-label="Toggle Matt persona panel" aria-expanded="false">
+      <div class="persona-avatar-sm" aria-hidden="true">M</div>
+      Matt
+    </button>
   </nav>
   <main class="stage">
     <div class="device" role="presentation">
@@ -5381,6 +5450,75 @@ nav.nav{
     </div>
   </div>
   </main>
+
+  <!-- ===================== PERSONA PANEL ===================== -->
+  <aside class="persona-panel" id="persona-panel" aria-label="Matt persona" aria-hidden="true">
+    <div class="persona-inner">
+
+      <!-- Avatar + name -->
+      <div class="pcard-avatar" aria-hidden="true">M</div>
+      <div class="pcard-name">Matt</div>
+      <div class="pcard-role">Freelance Designer · Berlin, Germany</div>
+      <div class="pcard-chips">
+        <span class="pcard-chip">28 years old</span>
+        <span class="pcard-chip">🇩🇪 Berlin</span>
+        <span class="pcard-chip">Freelancer</span>
+        <span class="pcard-chip">Tech-savvy</span>
+      </div>
+
+      <!-- Quote -->
+      <div class="pcard-quote">"I pay for data I barely use every month. There has to be a smarter way to do this."</div>
+
+      <!-- Stats -->
+      <div class="pcard-section">Right now</div>
+      <div class="pcard-stat">
+        <span class="pcard-stat-lbl">Monthly bill</span>
+        <span class="pcard-stat-val">€18.50</span>
+      </div>
+      <div class="pcard-stat">
+        <span class="pcard-stat-lbl">Earned this month</span>
+        <span class="pcard-stat-val" style="color:#059669">€6.80</span>
+      </div>
+      <div class="pcard-stat">
+        <span class="pcard-stat-lbl">Left to clear</span>
+        <span class="pcard-stat-val" style="color:var(--vio)">€11.20</span>
+      </div>
+
+      <!-- Tech profile -->
+      <div class="pcard-section">Tech comfort</div>
+      <div style="font-size:12px;color:var(--ink3);margin-bottom:5px;font-weight:600">Advanced user · comfortable with privacy settings</div>
+      <div class="pcard-bar-wrap"><div class="pcard-bar" style="width:82%"></div></div>
+
+      <!-- Goals -->
+      <div class="pcard-section">Goals</div>
+      <div>
+        <span class="pcard-tag goal">✓ Cut phone bill to €0</span>
+        <span class="pcard-tag goal">✓ Earn passively</span>
+        <span class="pcard-tag goal">✓ Stay in control of data</span>
+        <span class="pcard-tag goal">✓ No faff, no dark patterns</span>
+      </div>
+
+      <!-- Pain points -->
+      <div class="pcard-section">Pain points</div>
+      <div>
+        <span class="pcard-tag pain">✗ Confusing phone bills</span>
+        <span class="pcard-tag pain">✗ Data wasted every month</span>
+        <span class="pcard-tag pain">✗ Feels exploited by telcos</span>
+        <span class="pcard-tag pain">✗ Too many loyalty apps</span>
+      </div>
+
+      <!-- Behaviours -->
+      <div class="pcard-section">Behaviours</div>
+      <div>
+        <span class="pcard-tag neutral">📱 Heavy mobile user</span>
+        <span class="pcard-tag neutral">🔒 Reads privacy policies</span>
+        <span class="pcard-tag neutral">📊 Tracks spending</span>
+        <span class="pcard-tag neutral">🌍 ESG-conscious</span>
+      </div>
+
+    </div>
+  </aside>
+
 </div>
 <footer class="foot">
 </footer>
@@ -6424,6 +6562,18 @@ async function exportAllScreens(){
 }
 
 document.getElementById('btn-export').addEventListener('click', exportAllScreens);
+
+/* ---- Persona panel toggle ---- */
+(function(){
+  const btn   = document.getElementById('btn-persona');
+  const panel = document.getElementById('persona-panel');
+  btn.addEventListener('click', () => {
+    const open = panel.classList.toggle('open');
+    btn.classList.toggle('active', open);
+    btn.setAttribute('aria-expanded', open);
+    panel.setAttribute('aria-hidden', !open);
+  });
+})();
 
 let _jTimer = null;
 let _jBtn   = null;
