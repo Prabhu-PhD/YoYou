@@ -142,7 +142,7 @@ svg{display:block}
 }
 .js-persona-btn:hover{background:#FAF7FE;border-color:rgba(124,58,237,.25)}
 .js-persona-btn.active{background:#F3EFFE;border-color:rgba(124,58,237,.35);color:var(--viod)}
-.persona-avatar-sm{width:20px;height:20px;border-radius:50%;background:var(--vio);color:#fff;font-size:10px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.persona-avatar-sm{width:20px;height:20px;border-radius:50%;background:var(--persona-color, var(--vio));color:#fff;font-size:10px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 
 .persona-panel{
   width:0;overflow:hidden;flex-shrink:0;
@@ -191,6 +191,27 @@ svg{display:block}
 .pcard-stat-val{font-weight:800;color:var(--ink)}
 .pcard-bar-wrap{margin-top:4px;height:6px;background:#EDE9FE;border-radius:3px;overflow:hidden}
 .pcard-bar{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--vio),var(--viod))}
+
+/* === Persona tab strip === */
+.pcard-tabs{display:flex;gap:4px;background:#F3EFFE;padding:4px;border-radius:12px;margin-bottom:18px}
+.pcard-tab{flex:1;padding:8px;border-radius:9px;font-size:12.5px;font-weight:700;border:none;background:transparent;color:var(--viod);cursor:pointer;transition:all .15s var(--ease)}
+.pcard-tab.active{background:#fff;color:var(--ink);box-shadow:0 1px 5px -1px rgba(124,58,237,.2)}
+
+/* === Barbara adaptive mode === */
+.persona-barbara .device{font-size:15.5px}
+.persona-barbara .btn{font-size:16px;padding:16px 22px}
+.persona-barbara .cfl-data-lock{display:none}
+.persona-barbara .cfl-legal-note{display:none}
+.barbara-reassure{
+  display:none;align-items:flex-start;gap:10px;
+  background:#ECFDF5;border:1.5px solid #6EE7B7;border-radius:12px;
+  padding:12px 14px;font-size:13px;color:#065F46;line-height:1.55;
+}
+.persona-barbara .barbara-reassure{display:flex}
+.barbara-legal{display:none;font-size:12px;color:var(--ink3);line-height:1.6;padding:12px 14px;background:#F8F5FE;border-radius:10px;border:1px solid rgba(124,58,237,.15)}
+.persona-barbara .barbara-legal{display:block}
+.matt-only{display:block}
+.persona-barbara .matt-only{display:none!important}
 
 /* ============================================
    4. PHONE FRAME (390x844)
@@ -4665,6 +4686,12 @@ nav.nav{
           <div class="cfl-pdot on"></div><div class="cfl-pdot"></div><div class="cfl-pdot"></div>
         </div>
         <div class="body" style="gap:14px">
+          <!-- Barbara reassurance banner (hidden in Matt mode) -->
+          <div class="barbara-reassure" role="note">
+            <span style="font-size:20px;flex-shrink:0">🔒</span>
+            <span><strong>You're in safe hands.</strong> We'll explain each choice in plain English. You can always go back and change your mind — nothing is permanent.</span>
+          </div>
+
           <div class="cfl-hero">
             <div class="cfl-step-tag">Step 1 of 3 · Data you share</div>
             <div class="cfl-title">What we collect &amp; why</div>
@@ -4747,6 +4774,9 @@ nav.nav{
           <div class="cfl-legal-note">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             <span>Optional data is processed under your <strong>consent (GDPR Art. 6(1)(a))</strong>. You can withdraw any toggle at any time from Settings → Privacy — your account stays active.</span>
+          </div>
+          <div class="barbara-legal">
+            <strong>The optional choices above are completely up to you.</strong> Turning them on means you earn more money. Turning them off is fine too — your account keeps working either way. You can change these any time in Settings.
           </div>
         </div>
         <div class="btn-bottom" style="display:flex;flex-direction:column;gap:9px">
@@ -5452,68 +5482,111 @@ nav.nav{
   </main>
 
   <!-- ===================== PERSONA PANEL ===================== -->
-  <aside class="persona-panel" id="persona-panel" aria-label="Matt persona" aria-hidden="true">
+  <aside class="persona-panel" id="persona-panel" aria-label="User personas" aria-hidden="true">
     <div class="persona-inner">
 
-      <!-- Avatar + name -->
-      <div class="pcard-avatar" aria-hidden="true">M</div>
-      <div class="pcard-name">Matt</div>
-      <div class="pcard-role">Freelance Designer · Berlin, Germany</div>
-      <div class="pcard-chips">
-        <span class="pcard-chip">28 years old</span>
-        <span class="pcard-chip">🇩🇪 Berlin</span>
-        <span class="pcard-chip">Freelancer</span>
-        <span class="pcard-chip">Tech-savvy</span>
+      <!-- Tab strip -->
+      <div class="pcard-tabs" role="tablist">
+        <button class="pcard-tab active" id="ptab-matt" role="tab" aria-selected="true" aria-controls="pcontent-matt">Matt</button>
+        <button class="pcard-tab" id="ptab-barbara" role="tab" aria-selected="false" aria-controls="pcontent-barbara">Barbara</button>
       </div>
 
-      <!-- Quote -->
-      <div class="pcard-quote">"I pay for data I barely use every month. There has to be a smarter way to do this."</div>
+      <!-- ======= MATT ======= -->
+      <div id="pcontent-matt" role="tabpanel">
+        <div class="pcard-avatar" aria-hidden="true">M</div>
+        <div class="pcard-name">Matt</div>
+        <div class="pcard-role">Freelance Designer · Berlin, Germany</div>
+        <div class="pcard-chips">
+          <span class="pcard-chip">28 years old</span>
+          <span class="pcard-chip">🇩🇪 Berlin</span>
+          <span class="pcard-chip">Freelancer</span>
+          <span class="pcard-chip">Tech-savvy</span>
+        </div>
+        <div class="pcard-quote">"I pay for data I barely use every month. There has to be a smarter way to do this."</div>
 
-      <!-- Stats -->
-      <div class="pcard-section">Right now</div>
-      <div class="pcard-stat">
-        <span class="pcard-stat-lbl">Monthly bill</span>
-        <span class="pcard-stat-val">€18.50</span>
-      </div>
-      <div class="pcard-stat">
-        <span class="pcard-stat-lbl">Earned this month</span>
-        <span class="pcard-stat-val" style="color:#059669">€6.80</span>
-      </div>
-      <div class="pcard-stat">
-        <span class="pcard-stat-lbl">Left to clear</span>
-        <span class="pcard-stat-val" style="color:var(--vio)">€11.20</span>
+        <div class="pcard-section">Right now</div>
+        <div class="pcard-stat"><span class="pcard-stat-lbl">Monthly bill</span><span class="pcard-stat-val">€18.50</span></div>
+        <div class="pcard-stat"><span class="pcard-stat-lbl">Earned this month</span><span class="pcard-stat-val" style="color:#059669">€6.80</span></div>
+        <div class="pcard-stat"><span class="pcard-stat-lbl">Left to clear</span><span class="pcard-stat-val" style="color:var(--vio)">€11.20</span></div>
+
+        <div class="pcard-section">Tech comfort</div>
+        <div style="font-size:12px;color:var(--ink3);margin-bottom:5px;font-weight:600">Advanced · comfortable with privacy settings</div>
+        <div class="pcard-bar-wrap"><div class="pcard-bar" style="width:82%"></div></div>
+
+        <div class="pcard-section">Goals</div>
+        <div>
+          <span class="pcard-tag goal">✓ Cut phone bill to €0</span>
+          <span class="pcard-tag goal">✓ Earn passively</span>
+          <span class="pcard-tag goal">✓ Stay in control of data</span>
+          <span class="pcard-tag goal">✓ No faff, no dark patterns</span>
+        </div>
+
+        <div class="pcard-section">Pain points</div>
+        <div>
+          <span class="pcard-tag pain">✗ Confusing phone bills</span>
+          <span class="pcard-tag pain">✗ Data wasted every month</span>
+          <span class="pcard-tag pain">✗ Feels exploited by telcos</span>
+          <span class="pcard-tag pain">✗ Too many loyalty apps</span>
+        </div>
+
+        <div class="pcard-section">Behaviours</div>
+        <div>
+          <span class="pcard-tag neutral">📱 Heavy mobile user</span>
+          <span class="pcard-tag neutral">🔒 Reads privacy policies</span>
+          <span class="pcard-tag neutral">📊 Tracks spending</span>
+          <span class="pcard-tag neutral">🌍 ESG-conscious</span>
+        </div>
       </div>
 
-      <!-- Tech profile -->
-      <div class="pcard-section">Tech comfort</div>
-      <div style="font-size:12px;color:var(--ink3);margin-bottom:5px;font-weight:600">Advanced user · comfortable with privacy settings</div>
-      <div class="pcard-bar-wrap"><div class="pcard-bar" style="width:82%"></div></div>
+      <!-- ======= BARBARA ======= -->
+      <div id="pcontent-barbara" role="tabpanel" style="display:none">
+        <div class="pcard-avatar" style="background:linear-gradient(135deg,#F59E0B,#D97706)" aria-hidden="true">B</div>
+        <div class="pcard-name">Barbara</div>
+        <div class="pcard-role">Retired Teacher · Munich, Germany</div>
+        <div class="pcard-chips">
+          <span class="pcard-chip">64 years old</span>
+          <span class="pcard-chip">🇩🇪 Munich</span>
+          <span class="pcard-chip">Retired</span>
+          <span class="pcard-chip">Low tech confidence</span>
+        </div>
+        <div class="pcard-quote" style="border-left-color:#F59E0B">"I just want a cheaper phone bill. I don't need to understand all the technical bits — I just need to trust it's safe."</div>
 
-      <!-- Goals -->
-      <div class="pcard-section">Goals</div>
-      <div>
-        <span class="pcard-tag goal">✓ Cut phone bill to €0</span>
-        <span class="pcard-tag goal">✓ Earn passively</span>
-        <span class="pcard-tag goal">✓ Stay in control of data</span>
-        <span class="pcard-tag goal">✓ No faff, no dark patterns</span>
-      </div>
+        <div class="pcard-section">Right now</div>
+        <div class="pcard-stat"><span class="pcard-stat-lbl">Monthly bill</span><span class="pcard-stat-val">€22.00</span></div>
+        <div class="pcard-stat"><span class="pcard-stat-lbl">Earned this month</span><span class="pcard-stat-val" style="color:#059669">€3.20</span></div>
+        <div class="pcard-stat"><span class="pcard-stat-lbl">Left to clear</span><span class="pcard-stat-val" style="color:var(--vio)">€18.80</span></div>
 
-      <!-- Pain points -->
-      <div class="pcard-section">Pain points</div>
-      <div>
-        <span class="pcard-tag pain">✗ Confusing phone bills</span>
-        <span class="pcard-tag pain">✗ Data wasted every month</span>
-        <span class="pcard-tag pain">✗ Feels exploited by telcos</span>
-        <span class="pcard-tag pain">✗ Too many loyalty apps</span>
-      </div>
+        <div class="pcard-section">Tech comfort</div>
+        <div style="font-size:12px;color:var(--ink3);margin-bottom:5px;font-weight:600">Beginner · prefers simple language and clear steps</div>
+        <div class="pcard-bar-wrap"><div class="pcard-bar" style="width:22%;background:linear-gradient(90deg,#F59E0B,#D97706)"></div></div>
 
-      <!-- Behaviours -->
-      <div class="pcard-section">Behaviours</div>
-      <div>
-        <span class="pcard-tag neutral">📱 Heavy mobile user</span>
-        <span class="pcard-tag neutral">🔒 Reads privacy policies</span>
-        <span class="pcard-tag neutral">📊 Tracks spending</span>
-        <span class="pcard-tag neutral">🌍 ESG-conscious</span>
+        <div class="pcard-section">Goals</div>
+        <div>
+          <span class="pcard-tag goal">✓ Lower phone bill simply</span>
+          <span class="pcard-tag goal">✓ Feel safe and not tricked</span>
+          <span class="pcard-tag goal">✓ Understand what she's agreeing to</span>
+          <span class="pcard-tag goal">✓ Easy to undo any choices</span>
+        </div>
+
+        <div class="pcard-section">Pain points</div>
+        <div>
+          <span class="pcard-tag pain">✗ Legal jargon she can't parse</span>
+          <span class="pcard-tag pain">✗ Fear of making a mistake</span>
+          <span class="pcard-tag pain">✗ Too many options at once</span>
+          <span class="pcard-tag pain">✗ No one to ask for help</span>
+        </div>
+
+        <div class="pcard-section">Behaviours</div>
+        <div>
+          <span class="pcard-tag neutral">📖 Reads everything carefully</span>
+          <span class="pcard-tag neutral">☎️ Prefers to call support</span>
+          <span class="pcard-tag neutral">👨‍👩‍👧 Asks family for help</span>
+          <span class="pcard-tag neutral">🐢 Takes her time</span>
+        </div>
+
+        <div style="margin-top:18px;padding:12px;background:#FEF3C7;border:1.5px solid #FCD34D;border-radius:10px;font-size:12px;color:#92400E;line-height:1.55">
+          <strong>Prototype note:</strong> In Barbara mode the app hides GDPR article codes, shows plain-language explanations, and adds a reassurance banner to consent screens.
+        </div>
       </div>
 
     </div>
@@ -6563,16 +6636,37 @@ async function exportAllScreens(){
 
 document.getElementById('btn-export').addEventListener('click', exportAllScreens);
 
-/* ---- Persona panel toggle ---- */
+/* ---- Persona panel toggle + persona switching ---- */
 (function(){
   const btn   = document.getElementById('btn-persona');
   const panel = document.getElementById('persona-panel');
+
+  // Open / close panel
   btn.addEventListener('click', () => {
     const open = panel.classList.toggle('open');
     btn.classList.toggle('active', open);
     btn.setAttribute('aria-expanded', open);
     panel.setAttribute('aria-hidden', !open);
   });
+
+  // Persona tab switching
+  function switchPersona(name) {
+    const isBarbara = name === 'barbara';
+    document.getElementById('pcontent-matt').style.display     = isBarbara ? 'none' : '';
+    document.getElementById('pcontent-barbara').style.display  = isBarbara ? '' : 'none';
+    document.getElementById('ptab-matt').classList.toggle('active', !isBarbara);
+    document.getElementById('ptab-barbara').classList.toggle('active', isBarbara);
+    document.getElementById('ptab-matt').setAttribute('aria-selected', !isBarbara);
+    document.getElementById('ptab-barbara').setAttribute('aria-selected', isBarbara);
+    document.body.classList.toggle('persona-barbara', isBarbara);
+    // Update sidebar button label
+    btn.querySelector('.persona-avatar-sm').textContent = isBarbara ? 'B' : 'M';
+    btn.lastChild.textContent = isBarbara ? 'Barbara' : 'Matt';
+    btn.style.setProperty('--persona-color', isBarbara ? '#F59E0B' : 'var(--vio)');
+  }
+
+  document.getElementById('ptab-matt').addEventListener('click',     () => switchPersona('matt'));
+  document.getElementById('ptab-barbara').addEventListener('click',  () => switchPersona('barbara'));
 })();
 
 let _jTimer = null;
