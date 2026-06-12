@@ -1630,6 +1630,35 @@ nav.nav{
 .sm-ladder-tick{font-size:14px}
 
 /* ============================================
+   STREAK FIRE (On Fire — active 5-day)
+   ============================================ */
+.sf-bg{background:linear-gradient(165deg,#FF8C42 0%,#F55C23 45%,#C0280E 100%)}
+.sf-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.2);border:1.5px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 14px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:#fff;margin-bottom:8px}
+.sf-badge-dot{width:6px;height:6px;border-radius:50%;background:#fff;animation:jdot 1s ease-in-out infinite}
+.sf-hero{text-align:center;padding:20px 0 8px;display:flex;flex-direction:column;align-items:center}
+.sf-num-row{display:flex;align-items:flex-end;justify-content:center;gap:6px}
+.sf-num{font-size:96px;font-weight:900;color:#fff;letter-spacing:-6px;line-height:1;text-shadow:0 4px 24px rgba(0,0,0,.2)}
+.sf-flame-big{font-size:64px;line-height:1;filter:drop-shadow(0 6px 20px rgba(255,150,50,.6))}
+.sf-sub{font-size:18px;font-weight:700;color:rgba(255,255,255,.85);margin-top:6px}
+.sf-bonus-pill{background:rgba(255,255,255,.25);border:1.5px solid rgba(255,255,255,.5);border-radius:24px;padding:6px 18px;font-size:15px;font-weight:900;color:#fff;margin-top:10px}
+.sf-progress{background:rgba(0,0,0,.15);border-radius:14px;padding:14px 16px;color:#fff}
+.sf-prog-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.sf-prog-lbl{font-size:12px;font-weight:700;opacity:.8}
+.sf-prog-val{font-size:12px;font-weight:800}
+.sf-dots{display:flex;gap:5px}
+.sf-dot{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800}
+.sf-dot.done{background:rgba(255,255,255,.9);color:#C0280E}
+.sf-dot.today{background:#fff;color:#C0280E;box-shadow:0 0 0 3px rgba(255,255,255,.4)}
+.sf-dot.future{background:rgba(255,255,255,.2);color:rgba(255,255,255,.6)}
+.sf-dot-lbl{display:block;font-size:9px;font-weight:700;color:rgba(255,255,255,.6);text-align:center;margin-top:3px}
+.sf-dot-wrap{display:flex;flex-direction:column;align-items:center}
+.sf-stakes{background:rgba(0,0,0,.18);border-radius:14px;padding:14px 16px}
+.sf-stakes-title{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:rgba(255,255,255,.7);margin-bottom:10px}
+.sf-stake-row{display:flex;align-items:flex-start;gap:8px;padding:5px 0;font-size:13px;color:rgba(255,255,255,.9);line-height:1.4}
+.sf-stake-ico{font-size:15px;flex-shrink:0;margin-top:1px}
+.sf-cta{background:#fff;color:#C0280E;border-radius:14px;padding:16px;font-size:16px;font-weight:900;border:none;width:100%;cursor:pointer;text-align:center;letter-spacing:-.2px}
+
+/* ============================================
    NEW: AI MILESTONE (J4S4)
    ============================================ */
 .am-bg{background:linear-gradient(160deg,#0F0524 0%,#1A0A3A 50%,#0A1428 100%) !important}
@@ -2626,6 +2655,96 @@ nav.nav{
           <div class="so-dismiss-track"><div class="so-dismiss-fill" id="so-dismiss-fill"></div></div>
         </div>
 
+      </section>
+
+      <!-- ========================================
+           HOME — EU LOCALE (German)
+           ======================================== -->
+      <section class="screen" data-screen="home-de" aria-label="Home — German locale">
+        <div class="sb"><span>9:41</span><span class="ico" aria-hidden="true"><svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="6" width="3" height="5" rx="1" fill="#1B1430"/><rect x="4.5" y="3.5" width="3" height="7.5" rx="1" fill="#1B1430"/><rect x="9" y="1.5" width="3" height="9.5" rx="1" fill="#1B1430"/><rect x="13.5" y="0" width="3" height="11" rx="1" fill="#1B1430" opacity=".35"/></svg><svg width="22" height="11" viewBox="0 0 22 11" fill="none"><rect x=".5" y=".5" width="18" height="10" rx="2.5" stroke="#1B1430" opacity=".4"/><rect x="2" y="2" width="13.5" height="7" rx="1.3" fill="#1B1430"/><rect x="20" y="3.5" width="1.5" height="4" rx=".7" fill="#1B1430" opacity=".5"/></svg></span></div>
+        <div class="appbar">
+          <div class="alogo">
+            <div class="mark" aria-hidden="true"><span class="dot"></span><span style="height:9px"></span><span style="height:14px"></span><span style="height:18px"></span><span style="height:14px"></span><span style="height:9px"></span><span class="dot"></span></div>
+            <span class="wm">YoYou</span>
+          </div>
+          <div class="aright">
+            <div class="lchip" aria-label="Sprache und Währung: Deutsch, Euro">DE · €</div>
+            <div class="bell" aria-label="Benachrichtigungen" data-route="notifications"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></div>
+            <div class="av" aria-label="Matts Profil" data-route="profile"><svg width="36" height="36" viewBox="0 0 48 48" fill="none" aria-hidden="true"><defs><linearGradient id="avbg2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9A6BF0"/><stop offset="1" stop-color="#6D28D9"/></linearGradient><clipPath id="avc2"><circle cx="24" cy="24" r="24"/></clipPath></defs><g clip-path="url(#avc2)"><rect width="48" height="48" fill="url(#avbg2)"/><rect x="8" y="37" width="32" height="20" rx="13" fill="#36B39E"/><rect x="20" y="29" width="8" height="8" rx="4" fill="#E8B083"/><circle cx="24" cy="21.5" r="9.2" fill="#F2C49A"/><path d="M14.8 21c0-6.2 4-9.4 9.2-9.4s9.2 3 9.2 8.4c-1.2-2-3.8-2.8-9.2-2.8s-8 1-9.2 3.8z" fill="#3A2E25"/><circle cx="20.8" cy="21.6" r="1.15" fill="#3A2E25"/><circle cx="27.2" cy="21.6" r="1.15" fill="#3A2E25"/><path d="M20.8 25c1.2 1.3 5.2 1.3 6.4 0" stroke="#B07A52" stroke-width="1.4" stroke-linecap="round" fill="none"/></g></svg></div>
+          </div>
+        </div>
+        <div class="body">
+          <!-- Bill Hero -->
+          <div class="btz-hero" data-route="route-to-zero" role="button" tabindex="0">
+            <div class="btz-eyebrow"><span class="btz-ontrack">AUF KURS</span><span class="btz-month">März 2026</span></div>
+            <div class="btz-amt-row">
+              <div class="btz-amt">€11<small>,20</small></div>
+              <span class="btz-dchip">▼ €1,60 gestern</span>
+            </div>
+            <p class="btz-sub">noch zu begleichen</p>
+            <div class="btz-track" aria-hidden="true"><div class="btz-track-fill" style="width:38%"></div></div>
+            <div class="btz-cta">
+              <div class="btz-cta-left"><span class="btz-ai-dot" aria-hidden="true"></span>KI · Route zu Null</div>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </div>
+          </div>
+          <!-- Heutige Möglichkeiten -->
+          <div class="opps-mod">
+            <div class="opps-hd"><span class="opps-title">Heutige Möglichkeiten</span><span class="opps-earn">bis zu <strong>€3,40</strong></span></div>
+            <div class="opps-grid">
+              <div class="opp-tile" data-route="earn" role="button" tabindex="0"><span class="opp-ico">📋</span><div class="opp-count">3 Umfragen</div><div class="opp-val">+€2,00</div></div>
+              <div class="opp-tile" data-route="earn" role="button" tabindex="0"><span class="opp-ico">🎯</span><div class="opp-count">2 Angebote</div><div class="opp-val">+€0,90</div></div>
+              <div class="opp-tile" data-route="missions" role="button" tabindex="0"><span class="opp-ico">⚡</span><div class="opp-count">1 Mission</div><div class="opp-val">+€0,50</div></div>
+            </div>
+          </div>
+          <!-- Streak -->
+          <div class="streak-card" data-route="streak-risk" role="button" tabindex="0">
+            <div class="streak-days">
+              <div class="sday done"><div class="sday-dot"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L19 7"/></svg></div><span class="sday-lbl">Mo</span></div>
+              <div class="sday done"><div class="sday-dot"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L19 7"/></svg></div><span class="sday-lbl">Di</span></div>
+              <div class="sday done"><div class="sday-dot"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L19 7"/></svg></div><span class="sday-lbl">Mi</span></div>
+              <div class="sday done"><div class="sday-dot"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L19 7"/></svg></div><span class="sday-lbl">Do</span></div>
+              <div class="sday done"><div class="sday-dot"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L19 7"/></svg></div><span class="sday-lbl">Fr</span></div>
+              <div class="sday today"><div class="sday-dot" style="color:var(--viod);font-size:13px;font-weight:800">S</div><span class="sday-lbl">Sa</span></div>
+              <div class="sday future"><div class="sday-dot"></div><span class="sday-lbl">So</span></div>
+            </div>
+            <div class="streak-footer">
+              <span class="streak-count">5 von 7 Tagen erledigt</span>
+              <span class="streak-bonus">2 Tage → €0,50 Bonus wartet</span>
+            </div>
+          </div>
+          <!-- Guthaben -->
+          <div class="wallet-card" data-route="rewards" role="button" tabindex="0">
+            <div class="wallet-inner">
+              <div class="wallet-left"><div class="wallet-amt">€4,60</div><div class="wallet-lbl">verdient · geht auf deine Rechnung</div></div>
+              <div class="wallet-tasks"><div class="wtask">📋</div><div class="wtask">⭐</div><div class="wtask">📺</div><div class="wtask wtask-more">+2</div></div>
+            </div>
+          </div>
+          <!-- KI-Empfehlung -->
+          <div class="ai-rec" data-route="ai" role="button" tabindex="0">
+            <div class="ai-rec-top"><div class="ai-rec-av" aria-hidden="true"></div><span class="ai-rec-lbl">KI-Empfehlung</span></div>
+            <p class="ai-rec-msg">„Schließe diese Umfrage ab und spare €1,20 auf deiner Rechnung"</p>
+            <div class="ai-rec-cta">Jetzt starten <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+          </div>
+          <!-- Bonus -->
+          <div class="bonus-chip" data-route="bonus" role="button" tabindex="0">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><defs><linearGradient id="bcg2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFE08A"/><stop offset="1" stop-color="#FFB13D"/></linearGradient></defs><polygon points="12 2 15.1 8.3 22 9.3 17 14.1 18.2 21 12 17.8 5.8 21 7 14.1 2 9.3 8.9 8.3 12 2" fill="url(#bcg2)" stroke="#B45D00" stroke-width="0.6"/></svg>
+            <div class="bc-text">2× Verdienst bis 20:00 Uhr<small>Jede Aktivität bringt heute doppelt ein</small></div>
+            <svg class="bc-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </div>
+          <!-- Datenschutz -->
+          <div class="drow" data-route="privacy" role="button" tabindex="0">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <span>Ihre Daten &amp; Datenschutz</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </div>
+        </div>
+        <nav class="nav" role="tablist" aria-label="Hauptnavigation">
+          <button class="ni on" role="tab" aria-selected="true" data-route="home-de"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg><span>Startseite</span></button>
+          <button class="ni" role="tab" aria-selected="false" data-route="earn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 9.2a4.3 4.3 0 1 0 0 5.6"/><path d="M7.5 11h6M7.5 13.2h5"/></svg><span>Verdienen</span></button>
+          <button class="ni" role="tab" aria-selected="false" data-route="rewards"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="9" width="17" height="11.5" rx="1.6"/><path d="M3.5 13h17"/><path d="M12 9v11.5"/><path d="M12 9C12 9 10.4 4 7.8 5.3 5.8 6.3 8 9 12 9z"/><path d="M12 9C12 9 13.6 4 16.2 5.3 18.2 6.3 16 9 12 9z"/></svg><span>Prämien</span></button>
+          <button class="ni" role="tab" aria-selected="false" data-route="profile"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-6 8-6s8 2 8 6"/></svg><span>Profil</span></button>
+        </nav>
       </section>
 
       <!-- ========================================
@@ -3943,6 +4062,61 @@ nav.nav{
         <nav class="nav" role="tablist">
           <button class="ni on" role="tab" data-route="home"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg><span>Home</span></button>
           <button class="ni" role="tab" data-route="earn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L3 14h8l-1 8 11-13h-8z"/></svg><span>Earn</span></button>
+          <button class="ni" role="tab" data-route="rewards"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="9" width="17" height="11.5" rx="1.6"/><path d="M3.5 13h17"/><path d="M12 9v11.5"/><path d="M12 9C12 9 10.4 4 7.8 5.3 5.8 6.3 8 9 12 9z"/><path d="M12 9C12 9 13.6 4 16.2 5.3 18.2 6.3 16 9 12 9z"/></svg><span>Rewards</span></button>
+          <button class="ni" role="tab" data-route="profile"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-6 8-6s8 2 8 6"/></svg><span>Profile</span></button>
+        </nav>
+      </section>
+
+      <!-- ========================================
+           STREAK FIRE — On Fire (active 5-day)
+           ======================================== -->
+      <section class="screen sf-bg" data-screen="streak-fire" aria-label="On Fire — Active 5-Day Streak">
+        <div class="sb" style="position:relative;z-index:2"><span style="color:#fff">9:41</span><span class="ico" aria-hidden="true"><svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="6" width="3" height="5" rx="1" fill="#fff"/><rect x="4.5" y="3.5" width="3" height="7.5" rx="1" fill="#fff"/><rect x="9" y="1.5" width="3" height="9.5" rx="1" fill="#fff"/><rect x="13.5" y="0" width="3" height="11" rx="1" fill="#fff" opacity=".4"/></svg><svg width="22" height="11" viewBox="0 0 22 11" fill="none"><rect x=".5" y=".5" width="18" height="10" rx="2.5" stroke="#fff" opacity=".5"/><rect x="2" y="2" width="13.5" height="7" rx="1.3" fill="#fff"/><rect x="20" y="3.5" width="1.5" height="4" rx=".7" fill="#fff" opacity=".5"/></svg></span></div>
+        <div class="body" style="gap:14px;padding:8px 20px 20px">
+
+          <!-- Hero -->
+          <div class="sf-hero">
+            <div class="sf-badge"><span class="sf-badge-dot"></span>ACTIVE STREAK</div>
+            <div class="sf-num-row">
+              <div class="sf-num">5</div>
+              <div class="sf-flame-big" aria-hidden="true">🔥</div>
+            </div>
+            <div class="sf-sub">day streak</div>
+            <div class="sf-bonus-pill">Day 7 bonus: <strong>€0.50</strong></div>
+          </div>
+
+          <!-- Progress dots -->
+          <div class="sf-progress">
+            <div class="sf-prog-row">
+              <span class="sf-prog-lbl">5 of 7 days done</span>
+              <span class="sf-prog-val">2 days → €0.50 bonus unlocks</span>
+            </div>
+            <div style="display:flex;gap:6px;justify-content:center">
+              <div class="sf-dot-wrap"><div class="sf-dot done">✓</div><span class="sf-dot-lbl">Mon</span></div>
+              <div class="sf-dot-wrap"><div class="sf-dot done">✓</div><span class="sf-dot-lbl">Tue</span></div>
+              <div class="sf-dot-wrap"><div class="sf-dot done">✓</div><span class="sf-dot-lbl">Wed</span></div>
+              <div class="sf-dot-wrap"><div class="sf-dot done">✓</div><span class="sf-dot-lbl">Thu</span></div>
+              <div class="sf-dot-wrap"><div class="sf-dot today">5</div><span class="sf-dot-lbl">Fri</span></div>
+              <div class="sf-dot-wrap"><div class="sf-dot future">6</div><span class="sf-dot-lbl">Sat</span></div>
+              <div class="sf-dot-wrap"><div class="sf-dot future" style="border:1.5px dashed rgba(255,255,255,.4)">7</div><span class="sf-dot-lbl">Sun</span></div>
+            </div>
+          </div>
+
+          <!-- Stakes -->
+          <div class="sf-stakes">
+            <div class="sf-stakes-title">What's at stake today</div>
+            <div class="sf-stake-row"><span class="sf-stake-ico">⛓️</span><span>Losing Day 5 resets the chain to 0</span></div>
+            <div class="sf-stake-row"><span class="sf-stake-ico">💸</span><span>Day 6 bonus (€0.40) disappears</span></div>
+            <div class="sf-stake-row"><span class="sf-stake-ico">🏆</span><span>Day 7 bonus (€0.50) requires re-earning Day 5</span></div>
+          </div>
+
+          <!-- CTA -->
+          <button class="sf-cta" data-route="earn">Earn now to protect Day 5 →</button>
+
+        </div>
+        <nav class="nav" role="tablist">
+          <button class="ni on" role="tab" data-route="home"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg><span>Home</span></button>
+          <button class="ni" role="tab" data-route="earn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 9.2a4.3 4.3 0 1 0 0 5.6"/><path d="M7.5 11h6M7.5 13.2h5"/></svg><span>Earn</span></button>
           <button class="ni" role="tab" data-route="rewards"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="9" width="17" height="11.5" rx="1.6"/><path d="M3.5 13h17"/><path d="M12 9v11.5"/><path d="M12 9C12 9 10.4 4 7.8 5.3 5.8 6.3 8 9 12 9z"/><path d="M12 9C12 9 13.6 4 16.2 5.3 18.2 6.3 16 9 12 9z"/></svg><span>Rewards</span></button>
           <button class="ni" role="tab" data-route="profile"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-6 8-6s8 2 8 6"/></svg><span>Profile</span></button>
         </nav>
