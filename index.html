@@ -1927,6 +1927,63 @@ nav.nav{
 .usage-roam-body{flex:1}
 .usage-roam-label{font-size:13px;font-weight:700;color:#7A3D00}
 .usage-roam-val{font-size:12px;color:#9A5500;margin-top:2px}
+
+/* ── Export button ── */
+#btn-export:disabled{opacity:.55;cursor:wait}
+#btn-export.exporting{background:#F1EDFD;border-color:var(--vio);color:var(--vio)}
+
+/* ── TRUST FIRST (Customer Principle) ── */
+.tf-earn-wrap{display:flex;flex-direction:column;align-items:center;padding:24px 0 16px;gap:6px}
+.tf-earn-ico{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#7C3AED,#4ade80);display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 8px 24px -6px rgba(124,58,237,.4)}
+.tf-earn-label{font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--ink3)}
+.tf-earn-val{font-size:40px;font-weight:900;color:var(--ink);line-height:1}
+.tf-earn-sub{font-size:13px;color:var(--ink3);text-align:center;max-width:230px;line-height:1.45}
+.tf-divider{border:none;border-top:1px solid var(--line);margin:4px 0}
+.tf-unlock-label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3)}
+.tf-unlock-card{background:#F8F5FE;border:1.5px solid #D8CCFA;border-radius:14px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start}
+.tf-unlock-ico{font-size:26px;flex-shrink:0;margin-top:2px}
+.tf-unlock-body{flex:1}
+.tf-unlock-name{font-size:14px;font-weight:800;color:var(--ink)}
+.tf-unlock-desc{font-size:12px;color:var(--ink3);margin-top:3px;line-height:1.45}
+.tf-unlock-earn{display:inline-flex;align-items:center;gap:4px;margin-top:7px;background:#ECFAF1;border-radius:6px;padding:3px 8px;font-size:11.5px;font-weight:800;color:#166534}
+.tf-tog{width:44px;height:26px;border-radius:13px;background:var(--vio);border:none;flex-shrink:0;position:relative;cursor:pointer;margin-top:4px}
+.tf-tog::after{content:'';position:absolute;top:3px;right:3px;width:20px;height:20px;border-radius:50%;background:#fff}
+
+/* ── PURPOSE CONSENT (Platform Principle) ── */
+.pc-intro{font-size:13px;color:var(--ink3);line-height:1.5;padding:0}
+.pc-card{background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:13px 14px;display:flex;align-items:flex-start;gap:12px;margin-bottom:8px}
+.pc-card-left{flex:1}
+.pc-card-top{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.pc-card-ico{font-size:19px;flex-shrink:0}
+.pc-card-name{font-size:13.5px;font-weight:800;color:var(--ink)}
+.pc-card-desc{font-size:12px;color:var(--ink3);line-height:1.4;margin-bottom:6px}
+.pc-card-chips{display:flex;gap:5px;flex-wrap:wrap}
+.pc-chip{font-size:10.5px;font-weight:700;border-radius:5px;padding:2px 7px}
+.pc-chip.data{background:#F1EDFD;color:#5B21B6}
+.pc-chip.earn{background:#ECFAF1;color:#166534}
+.pc-chip.legal{background:#FEF9C3;color:#854D0E}
+.pc-tog{width:40px;height:24px;border-radius:12px;border:none;flex-shrink:0;position:relative;cursor:pointer;margin-top:2px;background:var(--vio)}
+.pc-tog::after{content:'';position:absolute;top:3px;right:3px;width:18px;height:18px;border-radius:50%;background:#fff}
+.pc-tog.off{background:#D1D5DB}
+.pc-tog.off::after{right:auto;left:3px}
+.pc-note{font-size:11.5px;color:var(--ink3);text-align:center;line-height:1.5;padding:8px 4px 0;border-top:1px solid var(--line)}
+
+/* ── NEW PARTNER UNLOCK (Business Outcome) ── */
+.np-badge{display:inline-flex;align-items:center;gap:5px;background:linear-gradient(90deg,#7C3AED,#06B6D4);color:#fff;border-radius:7px;padding:4px 11px;font-size:11px;font-weight:800;letter-spacing:.3px}
+.np-brand-card{background:linear-gradient(135deg,#064E3B,#065F46);border-radius:16px;padding:20px;color:#fff;position:relative;overflow:hidden}
+.np-brand-card::before{content:'';position:absolute;top:-24px;right:-24px;width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,.07)}
+.np-brand-ico{font-size:36px;margin-bottom:10px}
+.np-brand-name{font-size:19px;font-weight:900}
+.np-brand-sub{font-size:12.5px;color:rgba(255,255,255,.72);margin-top:4px;line-height:1.45}
+.np-earn-pill{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.18);border-radius:8px;padding:5px 11px;font-size:13px;font-weight:800;color:#fff;margin-top:11px}
+.np-consent-section{background:#F0FDF4;border:1.5px solid #BBF7D0;border-radius:14px;padding:14px 16px}
+.np-consent-header{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:#166534;margin-bottom:10px}
+.np-consent-row{display:flex;align-items:center;gap:10px;padding:7px 0}
+.np-consent-row+.np-consent-row{border-top:1px solid #D1FAE5}
+.np-consent-ico{font-size:15px}
+.np-consent-text{flex:1;font-size:13px;font-weight:600;color:var(--ink)}
+.np-consent-ok{font-size:12px;font-weight:800;color:#16A34A}
+.np-ok-banner{background:#DCFCE7;border:1.5px solid #86EFAC;border-radius:10px;padding:10px 14px;font-size:12.5px;font-weight:700;color:#166534;text-align:center;line-height:1.4}
 </style>
 </head>
 <body>
@@ -1962,6 +2019,10 @@ nav.nav{
         </svg>
         End of month
       </button>
+      <button class="demo-btn" id="btn-export" aria-label="Export all screens as hi-res PNG">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Export
+      </button>
     </div>
   </div>
   <div class="journey-bar" role="toolbar" aria-label="Demo journeys">
@@ -1980,6 +2041,9 @@ nav.nav{
     </button>
     <button class="journey-btn" id="j5" aria-label="Play Bill Clears journey">
       <span class="j-dot" aria-hidden="true"></span>▶ Bill Clears
+    </button>
+    <button class="journey-btn" id="j6" aria-label="Play Consent Principles journey">
+      <span class="j-dot" aria-hidden="true"></span>▶ Consent
     </button>
   </div>
 </header>
@@ -4943,6 +5007,170 @@ nav.nav{
         </div>
       </section>
 
+      <!-- ========================================
+           TRUST FIRST — Customer Principle
+           ======================================== -->
+      <section class="screen" data-screen="trust-first" aria-label="Earn trust before requesting more data">
+        <div class="sb"><span>9:41</span><span class="ico" aria-hidden="true"><svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="6" width="3" height="5" rx="1" fill="#1B1430"/><rect x="4.5" y="3.5" width="3" height="7.5" rx="1" fill="#1B1430"/><rect x="9" y="1.5" width="3" height="9.5" rx="1" fill="#1B1430"/><rect x="13.5" y="0" width="3" height="11" rx="1" fill="#1B1430" opacity=".35"/></svg><svg width="22" height="11" viewBox="0 0 22 11" fill="none"><rect x=".5" y=".5" width="18" height="10" rx="2.5" stroke="#1B1430" opacity=".4"/><rect x="2" y="2" width="13.5" height="7" rx="1.3" fill="#1B1430"/><rect x="20" y="3.5" width="1.5" height="4" rx=".7" fill="#1B1430" opacity=".5"/></svg></span></div>
+        <div class="appbar-back">
+          <button class="back-btn" data-route="back" aria-label="Go back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>
+          <span class="title">Your data, your choice</span>
+        </div>
+        <div class="body" style="gap:12px">
+
+          <div class="tf-earn-wrap">
+            <div class="tf-earn-ico" aria-hidden="true">💶</div>
+            <div class="tf-earn-label">First earn — no extra permissions</div>
+            <div class="tf-earn-val">€1.60</div>
+            <div class="tf-earn-sub">taken off your bill just for completing a survey. We proved value before asking for more.</div>
+          </div>
+
+          <hr class="tf-divider">
+
+          <div class="tf-unlock-label">Want to earn even faster?</div>
+
+          <div class="tf-unlock-card">
+            <div class="tf-unlock-ico" aria-hidden="true">📍</div>
+            <div class="tf-unlock-body">
+              <div class="tf-unlock-name">Location signals</div>
+              <div class="tf-unlock-desc">Helps brands find users near their stores. Only active when you take a survey — never in the background.</div>
+              <div class="tf-unlock-earn">+€0.40 avg per task</div>
+            </div>
+            <button class="tf-tog" aria-label="Location signals toggle — currently off" aria-pressed="false"></button>
+          </div>
+
+          <p style="font-size:11.5px;color:var(--ink3);line-height:1.55;margin:0">You're in control. Turn it on to unlock higher-earning surveys — or leave it off. Your base tasks keep working either way.</p>
+
+          <button class="btn solid" data-route="home">Unlock more earning →</button>
+          <button class="btn ghost" data-route="home" style="font-size:13px;color:var(--ink3);border-color:transparent;padding-top:0">Keep earning €1.60 per task</button>
+
+        </div>
+      </section>
+
+      <!-- ========================================
+           PURPOSE CONSENT — Platform Principle
+           ======================================== -->
+      <section class="screen" data-screen="purpose-consent" aria-label="Consent by purpose — each independently controlled">
+        <div class="sb"><span>9:41</span><span class="ico" aria-hidden="true"><svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="6" width="3" height="5" rx="1" fill="#1B1430"/><rect x="4.5" y="3.5" width="3" height="7.5" rx="1" fill="#1B1430"/><rect x="9" y="1.5" width="3" height="9.5" rx="1" fill="#1B1430"/><rect x="13.5" y="0" width="3" height="11" rx="1" fill="#1B1430" opacity=".35"/></svg><svg width="22" height="11" viewBox="0 0 22 11" fill="none"><rect x=".5" y=".5" width="18" height="10" rx="2.5" stroke="#1B1430" opacity=".4"/><rect x="2" y="2" width="13.5" height="7" rx="1.3" fill="#1B1430"/><rect x="20" y="3.5" width="1.5" height="4" rx=".7" fill="#1B1430" opacity=".5"/></svg></span></div>
+        <div class="appbar-back">
+          <button class="back-btn" data-route="back" aria-label="Go back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>
+          <span class="title">Your purposes</span>
+        </div>
+        <div class="body" style="gap:0;padding-bottom:20px">
+
+          <div style="margin-bottom:12px">
+            <h2 style="font-size:19px;font-weight:900;color:var(--ink);margin:0 0 6px">Each purpose, independently controlled</h2>
+            <p class="pc-intro">Turn one off — the others keep working. Your earnings from each stream stay completely separate.</p>
+          </div>
+
+          <!-- Surveys -->
+          <div class="pc-card">
+            <div class="pc-card-left">
+              <div class="pc-card-top"><span class="pc-card-ico">💬</span><span class="pc-card-name">Surveys</span></div>
+              <div class="pc-card-desc">Answer short questions from brands. Each survey earns money off your bill.</div>
+              <div class="pc-card-chips">
+                <span class="pc-chip data">App behaviour</span>
+                <span class="pc-chip earn">€1.60 / task</span>
+                <span class="pc-chip legal">Art. 6(1)(a)</span>
+              </div>
+            </div>
+            <button class="pc-tog" aria-label="Surveys on" aria-pressed="true"></button>
+          </div>
+
+          <!-- Advertising -->
+          <div class="pc-card">
+            <div class="pc-card-left">
+              <div class="pc-card-top"><span class="pc-card-ico">📣</span><span class="pc-card-name">Advertising</span></div>
+              <div class="pc-card-desc">Receive relevant offers from partners. Based on anonymised demographics — no individual profiling.</div>
+              <div class="pc-card-chips">
+                <span class="pc-chip data">Demographics</span>
+                <span class="pc-chip earn">€0.20 / week</span>
+                <span class="pc-chip legal">Art. 6(1)(a)</span>
+              </div>
+            </div>
+            <button class="pc-tog" aria-label="Advertising on" aria-pressed="true"></button>
+          </div>
+
+          <!-- Personalisation -->
+          <div class="pc-card">
+            <div class="pc-card-left">
+              <div class="pc-card-top"><span class="pc-card-ico">✨</span><span class="pc-card-name">Personalisation</span></div>
+              <div class="pc-card-desc">AI adapts your task mix to maximise your earnings over time.</div>
+              <div class="pc-card-chips">
+                <span class="pc-chip data">Usage + history</span>
+                <span class="pc-chip earn">Boosts all tasks</span>
+                <span class="pc-chip legal">Art. 6(1)(f)</span>
+              </div>
+            </div>
+            <button class="pc-tog" aria-label="Personalisation on" aria-pressed="true"></button>
+          </div>
+
+          <!-- Passive earning -->
+          <div class="pc-card" style="margin-bottom:10px">
+            <div class="pc-card-left">
+              <div class="pc-card-top"><span class="pc-card-ico">📡</span><span class="pc-card-name">Passive earning</span></div>
+              <div class="pc-card-desc">Earn while idle. Network signal quality only — no content is ever read.</div>
+              <div class="pc-card-chips">
+                <span class="pc-chip data">Network signals</span>
+                <span class="pc-chip earn">€0.08 / day</span>
+                <span class="pc-chip legal">Art. 6(1)(a)</span>
+              </div>
+            </div>
+            <button class="pc-tog off" aria-label="Passive earning off" aria-pressed="false"></button>
+          </div>
+
+          <p class="pc-note">Turning off Surveys doesn't affect Advertising — and vice versa. Each purpose is truly independent.</p>
+
+        </div>
+      </section>
+
+      <!-- ========================================
+           NEW PARTNER UNLOCK — Business Outcome
+           ======================================== -->
+      <section class="screen" data-screen="new-partner-unlock" aria-label="New earning partner — no re-consent needed">
+        <div class="sb"><span>9:41</span><span class="ico" aria-hidden="true"><svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="6" width="3" height="5" rx="1" fill="#1B1430"/><rect x="4.5" y="3.5" width="3" height="7.5" rx="1" fill="#1B1430"/><rect x="9" y="1.5" width="3" height="9.5" rx="1" fill="#1B1430"/><rect x="13.5" y="0" width="3" height="11" rx="1" fill="#1B1430" opacity=".35"/></svg><svg width="22" height="11" viewBox="0 0 22 11" fill="none"><rect x=".5" y=".5" width="18" height="10" rx="2.5" stroke="#1B1430" opacity=".4"/><rect x="2" y="2" width="13.5" height="7" rx="1.3" fill="#1B1430"/><rect x="20" y="3.5" width="1.5" height="4" rx=".7" fill="#1B1430" opacity=".5"/></svg></span></div>
+        <div class="appbar-back">
+          <button class="back-btn" data-route="back" aria-label="Go back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>
+          <span class="title">New opportunity</span>
+        </div>
+        <div class="body" style="gap:12px">
+
+          <div><span class="np-badge">🆕 New earning partner</span></div>
+
+          <div class="np-brand-card">
+            <div class="np-brand-ico" aria-hidden="true">🌿</div>
+            <div class="np-brand-name">Green Wave Energy</div>
+            <div class="np-brand-sub">Looking for eco-conscious households to survey about home energy habits and renewable preferences</div>
+            <div class="np-earn-pill">💶 €2.40 avg per survey</div>
+          </div>
+
+          <div class="np-consent-section">
+            <div class="np-consent-header">What they need from you</div>
+            <div class="np-consent-row">
+              <span class="np-consent-ico">📍</span>
+              <span class="np-consent-text">Location (region only — no street level)</span>
+              <span class="np-consent-ok">✓ On</span>
+            </div>
+            <div class="np-consent-row">
+              <span class="np-consent-ico">💬</span>
+              <span class="np-consent-text">Survey consent</span>
+              <span class="np-consent-ok">✓ On</span>
+            </div>
+            <div class="np-consent-row">
+              <span class="np-consent-ico">📊</span>
+              <span class="np-consent-text">App behaviour signals</span>
+              <span class="np-consent-ok">✓ On</span>
+            </div>
+          </div>
+
+          <div class="np-ok-banner">No new permissions required — your existing consent already covers this partner. You can opt out of any individual survey.</div>
+
+          <button class="btn solid" data-route="earn">Start earning from Green Wave →</button>
+          <button class="btn ghost" data-route="back" style="font-size:13px;color:var(--ink3);border-color:transparent;padding-top:0">Not interested</button>
+
+        </div>
+      </section>
+
     </div>
   </div>
 </main>
@@ -5892,7 +6120,8 @@ function init(){
 const JOURNEYS = [
   { id:'j1', steps:[
     {s:'splash',p:2600},{s:'onboard-1',p:2200},{s:'onboard-2',p:2200},
-    {s:'onboard-3',p:2200},{s:'onboard-4',p:2500},{s:'home',p:0}
+    {s:'onboard-3',p:2200},{s:'consent-data',p:2200},{s:'consent-partners',p:2200},
+    {s:'consent-rights',p:2200},{s:'onboard-4',p:2500},{s:'home',p:0}
   ]},
   { id:'j2', steps:[
     {s:'home',p:1800},{s:'route-to-zero',p:2200},{s:'survey',p:2800},
@@ -5907,7 +6136,85 @@ const JOURNEYS = [
   { id:'j5', steps:[
     {s:'home',p:1800},{s:'bill-cleared',p:3000},{s:'ai-wrapped',p:0}
   ], setup(){ state.bill=0; state.monthCleared=true; updateBillUI(); }},
+  { id:'j6', steps:[
+    {s:'trust-first',p:3500},{s:'purpose-consent',p:4000},{s:'new-partner-unlock',p:0}
+  ]},
 ];
+
+// ── EXPORT ALL SCREENS ────────────────────────────────────────────────────────
+async function exportAllScreens(){
+  const btn = document.getElementById('btn-export');
+  btn.disabled = true;
+  btn.classList.add('exporting');
+
+  const loadScript = src => new Promise((res, rej) => {
+    if (document.querySelector(`script[src="${src}"]`)) return res();
+    const s = Object.assign(document.createElement('script'), {src, onload:res, onerror:rej});
+    document.head.appendChild(s);
+  });
+
+  btn.textContent = 'Loading…';
+  try {
+    await loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js');
+    await loadScript('https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js');
+  } catch(_) {
+    alert('Export needs an internet connection to load render libraries.');
+    btn.disabled = false; btn.classList.remove('exporting'); btn.textContent = 'Export'; return;
+  }
+
+  const device  = document.querySelector('.device');
+  const screens = Array.from(document.querySelectorAll('.screen[data-screen]'));
+  const zip     = new JSZip();
+
+  // Remove CSS scale so we capture at full 390 px width
+  const savedTransform = device.style.transform;
+  const savedOrigin    = device.style.transformOrigin;
+  device.style.transform       = 'none';
+  device.style.transformOrigin = 'top left';
+
+  // One injected <style> overrides which screen is visible per iteration
+  const ovr = document.createElement('style');
+  document.head.appendChild(ovr);
+
+  for (let i = 0; i < screens.length; i++) {
+    const id = screens[i].dataset.screen;
+    btn.textContent = `${i + 1} / ${screens.length}`;
+
+    // Force exactly this screen visible; push all others off-canvas
+    ovr.textContent = `
+      .screen{transform:translateX(110%)!important;transition:none!important}
+      [data-screen="${id}"]{transform:translateX(0)!important}
+    `;
+
+    // Two rAFs — let the browser paint before capturing
+    await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+
+    const canvas = await html2canvas(device, {
+      scale: 3, backgroundColor: null, useCORS: true, logging: false, allowTaint: true
+    });
+    const blob = await new Promise(r => canvas.toBlob(r, 'image/png'));
+    zip.file(`${String(i + 1).padStart(2, '0')}-${id}.png`, blob);
+  }
+
+  // Restore prototype state
+  ovr.remove();
+  device.style.transform       = savedTransform;
+  device.style.transformOrigin = savedOrigin;
+
+  btn.textContent = 'Zipping…';
+  const zipBlob = await zip.generateAsync({ type: 'blob' });
+  const a = Object.assign(document.createElement('a'), {
+    href: URL.createObjectURL(zipBlob), download: 'yoyou-screens.zip'
+  });
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 8000);
+
+  btn.disabled = false;
+  btn.classList.remove('exporting');
+  btn.textContent = 'Export';
+}
+
+document.getElementById('btn-export').addEventListener('click', exportAllScreens);
 
 let _jTimer = null;
 let _jBtn   = null;
