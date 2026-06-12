@@ -69,23 +69,30 @@ svg{display:block}
 }
 .page-hd-top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .page-hd-left{display:flex;align-items:center;gap:14px}
-/* Journey bar */
-.journey-bar{display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:8px 12px;background:rgba(109,40,217,.05);border-radius:10px;border:1px solid rgba(109,40,217,.10)}
-.journey-bar-lbl{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--ink3);margin-right:4px;white-space:nowrap;flex-shrink:0}
-.journey-btn{
-  display:inline-flex;align-items:center;gap:5px;
-  background:#fff;color:var(--viod);
-  padding:6px 13px;border-radius:7px;
-  font-size:12px;font-weight:700;
-  border:1.5px solid var(--line);
-  cursor:pointer;white-space:nowrap;
-  transition:all .15s var(--ease);
-  box-shadow:0 1px 4px -1px rgba(60,40,120,.12);
+/* Journey sidebar */
+.proto-body{display:flex;flex:1;min-height:0}
+.journey-sidebar{
+  width:148px;flex-shrink:0;
+  display:flex;flex-direction:column;gap:2px;
+  padding:2px 18px 0 0;
 }
-.journey-btn:hover{background:#FAF7FE;border-color:var(--vio);transform:translateY(-1px);box-shadow:0 4px 12px -3px rgba(124,58,237,.28)}
-.journey-btn:active{transform:translateY(0) scale(.97)}
-.journey-btn.playing{background:var(--vio);color:#fff;border-color:var(--vio);box-shadow:0 4px 12px -3px rgba(124,58,237,.5)}
-.journey-btn.playing .j-dot{display:inline-block}
+.js-lbl{
+  font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;
+  color:var(--ink3);padding:0 10px 9px;
+  border-bottom:1px solid rgba(124,58,237,.15);margin-bottom:5px;
+}
+.js-tab{
+  display:flex;align-items:center;gap:8px;
+  width:100%;padding:9px 12px;border-radius:9px;
+  background:transparent;border:1.5px solid transparent;
+  font-size:12.5px;font-weight:700;color:var(--viod);
+  text-align:left;cursor:pointer;white-space:nowrap;
+  transition:all .15s var(--ease);
+}
+.js-tab:hover{background:#FAF7FE;border-color:rgba(124,58,237,.25)}
+.js-tab:active{transform:scale(.97)}
+.js-tab.playing{background:var(--vio);color:#fff;border-color:var(--vio);box-shadow:0 3px 10px -3px rgba(124,58,237,.5)}
+.js-tab.playing .j-dot{display:inline-block}
 .j-dot{display:none;width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.85);animation:jdot 1s ease-in-out infinite;flex-shrink:0}
 @keyframes jdot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.6)}}
 .pg-mark{display:flex;align-items:center;gap:5px;height:30px;color:var(--vio)}
@@ -119,7 +126,6 @@ svg{display:block}
   display:flex;
   align-items:center;
   justify-content:center;
-  width:100%;
 }
 
 /* ============================================
@@ -2025,32 +2031,20 @@ nav.nav{
       </button>
     </div>
   </div>
-  <div class="journey-bar" role="toolbar" aria-label="Demo journeys">
-    <span class="journey-bar-lbl">Journeys</span>
-    <button class="journey-btn" id="j1" aria-label="Play New User journey">
-      <span class="j-dot" aria-hidden="true"></span>▶ New User
-    </button>
-    <button class="journey-btn" id="j2" aria-label="Play Daily Earn journey">
-      <span class="j-dot" aria-hidden="true"></span>▶ Daily Earn
-    </button>
-    <button class="journey-btn" id="j3" aria-label="Play AI Match journey">
-      <span class="j-dot" aria-hidden="true"></span>▶ AI Match
-    </button>
-    <button class="journey-btn" id="j4" aria-label="Play Leaderboard journey">
-      <span class="j-dot" aria-hidden="true"></span>▶ Leaderboard
-    </button>
-    <button class="journey-btn" id="j5" aria-label="Play Bill Clears journey">
-      <span class="j-dot" aria-hidden="true"></span>▶ Bill Clears
-    </button>
-    <button class="journey-btn" id="j6" aria-label="Play Consent Principles journey">
-      <span class="j-dot" aria-hidden="true"></span>▶ Consent
-    </button>
-  </div>
 </header>
 
-<!-- STAGE (centers the phone) -->
-<main class="stage">
-  <div class="device" role="presentation">
+<div class="proto-body">
+  <nav class="journey-sidebar" aria-label="Demo journeys">
+    <div class="js-lbl">Journeys</div>
+    <button class="js-tab" id="j1" aria-label="Play New User journey"><span class="j-dot" aria-hidden="true"></span>New User</button>
+    <button class="js-tab" id="j2" aria-label="Play Daily Earn journey"><span class="j-dot" aria-hidden="true"></span>Daily Earn</button>
+    <button class="js-tab" id="j3" aria-label="Play AI Match journey"><span class="j-dot" aria-hidden="true"></span>AI Match</button>
+    <button class="js-tab" id="j4" aria-label="Play Leaderboard journey"><span class="j-dot" aria-hidden="true"></span>Leaderboard</button>
+    <button class="js-tab" id="j5" aria-label="Play Bill Clears journey"><span class="j-dot" aria-hidden="true"></span>Bill Clears</button>
+    <button class="js-tab" id="j6" aria-label="Play Consent journey"><span class="j-dot" aria-hidden="true"></span>Consent</button>
+  </nav>
+  <main class="stage">
+    <div class="device" role="presentation">
     <div class="island" aria-hidden="true"></div>
     <div class="screen-stack" id="screen-stack">
 
@@ -5173,7 +5167,8 @@ nav.nav{
 
     </div>
   </div>
-</main>
+  </main>
+</div>
 <footer class="foot">
 </footer>
 
@@ -6106,7 +6101,7 @@ function init(){
   });
 
   // Journey buttons
-  ['j1','j2','j3','j4','j5'].forEach(id => {
+  ['j1','j2','j3','j4','j5','j6'].forEach(id => {
     const btn = document.getElementById(id);
     if(!btn) return;
     btn.addEventListener('click', () => {
