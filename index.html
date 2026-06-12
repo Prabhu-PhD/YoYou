@@ -2128,6 +2128,13 @@ nav.nav{
       </div>
     </div>
     <div class="demo-controls">
+      <button class="demo-btn" id="btn-home" aria-label="Go to home screen">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9.5z"/>
+          <polyline points="9 21 9 12 15 12 15 21"/>
+        </svg>
+        Home
+      </button>
       <button class="demo-btn" id="btn-reset" aria-label="Reset prototype">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M3 12a9 9 0 1 0 3-6.7"/>
@@ -6518,6 +6525,7 @@ function init(){
   });
 
   // Page chrome
+  document.getElementById('btn-home').addEventListener('click', ()=>{ stopJourney(); navigate('home', 'forward'); });
   document.getElementById('btn-reset').addEventListener('click', ()=>{ stopJourney(); resetPrototype(); });
   document.getElementById('btn-eom').addEventListener('click', ()=>{
     state.monthCleared = true;
